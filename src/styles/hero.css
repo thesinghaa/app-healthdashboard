@@ -102,48 +102,48 @@
 .lp-snapshot-row {
   display: flex;
   border-radius: var(--rm);
-  background: linear-gradient(135deg, var(--w1) 0%, var(--ocean-light) 100%);
-  border: 1px solid var(--w4);
+  background: var(--ocean-light);
+  border: 1.5px solid var(--ocean-mid);
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(74,152,152,0.14), 0 1px 4px rgba(74,152,152,0.08);
+  box-shadow: 0 4px 20px rgba(74,152,152,0.18), 0 1px 4px rgba(74,152,152,0.10);
 }
 
 .lp-snapshot-item {
-  padding: 14px 16px 12px;
+  padding: 18px 18px 14px;
   text-align: center;
   flex: 1;
   border-right: 1px solid var(--w4);
-  background: var(--w1);
+  background: #FFFFFF;          /* crisp white so text always pops */
   position: relative;
   transition: background 0.18s;
 }
 .lp-snapshot-item:last-child { border-right: none; }
-.lp-snapshot-item:hover { background: var(--w2); }
+.lp-snapshot-item:hover { background: #F6FCFC; }
 
-/* Coloured top stripe per tile */
+/* Coloured top stripe per tile — thicker for visibility */
 .lp-snapshot-item::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
+  height: 4px;
 }
 .snap-good-tile::before { background: var(--grn-dot); }
 .snap-bad-tile::before  { background: var(--red-dot); }
 
 .lp-snap-value {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
-.snap-good { color: #1A6028; }
-.snap-bad  { color: #A02020; }
-.lp-snap-unit  { font-size: 9.5px; color: var(--ink-faint); margin-bottom: 5px; }
-.lp-snap-label { font-size: 11px; font-weight: 600; color: var(--ink-mid); margin-bottom: 4px; line-height: 1.4; }
-.lp-snap-note  { font-size: 10px; font-style: italic; }
-.note-good     { color: #1A6028; }
-.note-bad      { color: #A02020; }
+.snap-good { color: #155220; }   /* deeper green — high contrast on white */
+.snap-bad  { color: #8B1A1A; }   /* deeper red   — high contrast on white */
+.lp-snap-unit  { font-size: 9.5px; color: #5A6A70; margin-bottom: 5px; font-weight: 500; }
+.lp-snap-label { font-size: 11.5px; font-weight: 700; color: #1A2530; margin-bottom: 5px; line-height: 1.4; }
+.lp-snap-note  { font-size: 10.5px; font-style: italic; font-weight: 500; }
+.note-good     { color: #155220; }
+.note-bad      { color: #8B1A1A; }
 
 /* ── Divider ────────────────────────────────────────────────────── */
 .lp-divider-line {
