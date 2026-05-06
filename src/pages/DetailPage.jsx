@@ -12,14 +12,15 @@ export default function DetailPage({ program, division, onBack }) {
   const wrapRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(wrapRef.current,
-      { opacity: 0, y: 18 },
-      { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' },
-    );
-    // Metric cards stagger
-    gsap.from('.dm-card', { y: 28, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', delay: 0.15 });
-    // Obs/action items
-    gsap.from('.obs-item, .action-item', { x: -14, opacity: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out', delay: 0.4 });
+    const ctx = gsap.context(() => {
+      gsap.fromTo(wrapRef.current,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' },
+      );
+      gsap.from('.dm-card', { y: 28, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', delay: 0.15 });
+      gsap.from('.obs-item, .action-item', { x: -14, opacity: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out', delay: 0.4 });
+    }, wrapRef);
+    return () => ctx.revert();
   }, [program.id]);
 
   const handleBack = () => {
