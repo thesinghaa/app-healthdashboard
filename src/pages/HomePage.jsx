@@ -114,7 +114,7 @@ export default function HomePage({ onSelectProgram }) {
             <p className="lp-snapshot-label">State at a Glance — NFHS-5 (2019-21)</p>
             <div className="lp-snapshot-row">
               {STATE_SNAPSHOT.map(s => (
-                <div className="lp-snapshot-item" key={s.label}>
+                <div className={`lp-snapshot-item ${s.good ? 'snap-good-tile' : 'snap-bad-tile'}`} key={s.label}>
                   <div className={`lp-snap-value ${s.good ? 'snap-good' : 'snap-bad'}`}>{s.value}</div>
                   {s.unit && <div className="lp-snap-unit">{s.unit}</div>}
                   <div className="lp-snap-label">{s.label}</div>
