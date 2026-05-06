@@ -234,49 +234,56 @@
 .detail-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
 
 /* ── Observations ───────────────────────────────────────────────── */
-.obs-list { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+.obs-list { display: flex; flex-direction: column; gap: 6px; list-style: none; }
 .obs-item {
   display: flex;
   gap: 12px;
   align-items: flex-start;
   font-size: 13px;
-  line-height: 1.65;
-  color: var(--ink-mid);
-  padding: 10px 14px;
-  background: var(--w2);
+  line-height: 1.68;
+  color: #1A1410;
+  padding: 11px 16px;
+  background: #FFFFFF;
   border-radius: var(--r);
+  border: 1px solid #DDD0B0;
+  border-left: 3.5px solid var(--navy);
 }
-.obs-critical { background: var(--w2); border-left: 3px solid var(--red-dot); }
+.obs-critical {
+  background: #FFF8F8;
+  border: 1px solid rgba(176,48,48,0.22);
+  border-left: 3.5px solid var(--red-dot);
+}
 .obs-marker {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--ink-faint); margin-top: 8px; flex-shrink: 0;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--navy); margin-top: 7px; flex-shrink: 0;
 }
 .obs-critical .obs-marker { background: var(--red-dot); }
 
 /* ── Priority actions ───────────────────────────────────────────── */
-.action-list { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+.action-list { display: flex; flex-direction: column; gap: 6px; list-style: none; }
 .action-item {
   display: flex;
   gap: 14px;
   align-items: flex-start;
   font-size: 13px;
-  line-height: 1.65;
-  color: var(--ink-mid);
-  padding: 10px 14px;
+  line-height: 1.68;
+  color: #1A1410;
+  padding: 11px 16px;
   border-radius: var(--r);
-  border: 1px solid var(--w4);
-  background: var(--w1);
+  border: 1px solid #DDD0B0;
+  border-left: 3.5px solid var(--gold);
+  background: #FFFFFF;
 }
 .action-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
-  color: var(--gold);
-  background: rgba(181,144,42,0.10);
-  padding: 2px 7px;
+  color: #FFFFFF;
+  background: var(--navy);
+  padding: 2px 8px;
   border-radius: 3px;
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
 /* ── Footer ─────────────────────────────────────────────────────── */
