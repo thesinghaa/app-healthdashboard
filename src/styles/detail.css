@@ -7,8 +7,8 @@
 .detail-root {
   min-height: 100vh;
   background:
-    radial-gradient(ellipse 70% 50% at 90% 10%,  rgba(74,152,152,0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 5%  90%,  rgba(142,200,200,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 10%,  rgba(138,118,96,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 5%  90%,  rgba(180,155,120,0.06) 0%, transparent 55%),
     var(--w2);
   display: flex;
   flex-direction: column;
@@ -111,7 +111,7 @@
   background: linear-gradient(145deg, var(--w1) 0%, var(--ocean-light) 100%);
   border-radius: var(--rm);
   padding: 24px 20px;
-  box-shadow: 0 2px 12px rgba(74,152,152,0.12), 0 1px 3px rgba(74,152,152,0.07);
+  box-shadow: 0 2px 12px rgba(80,60,40,0.09), 0 1px 3px rgba(80,60,40,0.05);
   border: 1px solid var(--w4);
   border-top: 3px solid var(--navy);
 }
@@ -131,10 +131,10 @@
 
 /* ── Generic content card ───────────────────────────────────────── */
 .detail-card {
-  background: linear-gradient(160deg, var(--w1) 0%, rgba(200,232,232,0.55) 100%);
+  background: linear-gradient(160deg, var(--w1) 0%, var(--ocean-light) 100%);
   border-radius: var(--rl);
   padding: 26px 30px;
-  box-shadow: 0 2px 12px rgba(74,152,152,0.10), 0 1px 3px rgba(74,152,152,0.06);
+  box-shadow: 0 2px 12px rgba(80,60,40,0.08), 0 1px 3px rgba(80,60,40,0.05);
   border: 1px solid var(--w4);
 }
 .detail-card-header {
