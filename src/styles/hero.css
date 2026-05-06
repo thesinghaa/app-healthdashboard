@@ -7,17 +7,25 @@
 .home-root { min-height: 100vh; }
 
 .lp-section {
-  background: var(--w1);
+  background:
+    radial-gradient(ellipse 75% 60% at 100% 0%,   rgba(74,152,152,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 0%   100%,  rgba(142,200,200,0.14) 0%, transparent 55%),
+    var(--w2);
   border-bottom: 1px solid var(--w4);
   position: relative;
 }
 
-/* Thin navy+gold top rule */
+/* Premium top rule: navy → ocean → gold → ocean → navy */
 .lp-glow {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--navy) 0%, var(--gold-mid) 50%, var(--navy) 100%);
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--navy)     0%,
+    var(--ocean-deep) 30%,
+    var(--gold-mid) 50%,
+    var(--ocean-deep) 70%,
+    var(--navy)     100%);
 }
 .lp-grid-bg { display: none; }
 
@@ -94,10 +102,10 @@
 .lp-snapshot-row {
   display: flex;
   border-radius: var(--rm);
-  background: var(--w2);
+  background: linear-gradient(135deg, var(--w1) 0%, var(--ocean-light) 100%);
   border: 1px solid var(--w4);
   overflow: hidden;
-  box-shadow: var(--sh);
+  box-shadow: 0 2px 16px rgba(74,152,152,0.14), 0 1px 4px rgba(74,152,152,0.08);
 }
 
 .lp-snapshot-item {
@@ -153,9 +161,9 @@
   border-radius: var(--r);
   overflow: hidden;
   width: fit-content;
-  background: var(--w1);
+  background: linear-gradient(135deg, var(--w1) 0%, var(--ocean-light) 100%);
   border: 1px solid var(--w4);
-  box-shadow: var(--sh);
+  box-shadow: 0 2px 12px rgba(74,152,152,0.12), 0 1px 3px rgba(74,152,152,0.07);
 }
 .lp-meta-item {
   padding: 10px 22px;

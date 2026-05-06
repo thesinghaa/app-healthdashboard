@@ -4,12 +4,18 @@
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Ocean green-blue tinted surface layers */
-  --w1: #EEF6F6;   /* lightest — card surfaces   */
-  --w2: #E4EFEF;   /* base page background        */
-  --w3: #D6E8E8;   /* section strips, headers     */
-  --w4: #C0D8D8;   /* borders                     */
-  --w5: #A0C4C4;   /* strong borders, scrollbar   */
+  /* Ocean green-blue surfaces — rich but refined */
+  --w1: #DFF0EF;   /* lightest — card faces       */
+  --w2: #CEEAEA;   /* base page background         */
+  --w3: #BADEDE;   /* section strips, headers      */
+  --w4: #9FCCCC;   /* borders                      */
+  --w5: #7AB8B8;   /* strong borders, scrollbar    */
+
+  /* Ocean accent shades for gradients & glows */
+  --ocean-light: #C8E8E8;
+  --ocean-mid:   #8EC8C8;
+  --ocean-deep:  #4A9898;
+  --ocean-glass: rgba(142,200,200,0.18);
 
   /* Navy brand */
   --navy:       #0C2340;
