@@ -1,0 +1,213 @@
+/* ─────────────────────────────────────────────────────────────────
+   hero.css — Landing page / Section 1
+   Edit this file to change the hero layout, State at a Glance,
+   metadata row, CTA button, or provenance stamp.
+   ───────────────────────────────────────────────────────────────── */
+
+.home-root { min-height: 100vh; }
+
+.lp-section {
+  background: var(--w1);
+  border-bottom: 1px solid var(--w4);
+  position: relative;
+}
+
+/* Thin navy+gold top rule */
+.lp-glow {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--gold-mid) 50%, var(--navy) 100%);
+}
+.lp-grid-bg { display: none; }
+
+.lp-inner {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 36px 52px 40px;
+  text-align: left;
+}
+
+/* Provenance stamp */
+.lp-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--navy);
+  width: fit-content;
+}
+.lp-stamp-gov { color: var(--navy); font-weight: 800; }
+.lp-stamp-sep { color: var(--w4); font-size: 13px; }
+
+/* State name */
+.lp-state-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(34px, 4.2vw, 56px);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.025em;
+}
+
+/* Title block */
+.lp-title-block { display: flex; flex-direction: column; margin-bottom: 18px; gap: 1px; }
+.lp-title-line {
+  font-size: clamp(11.5px, 1.4vw, 14.5px);
+  font-weight: 600;
+  color: var(--ink-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.7;
+}
+.lp-title-accent { color: var(--gold); }
+
+/* Description */
+.lp-desc {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--ink-light);
+  max-width: 720px;
+  margin: 0 0 28px;
+}
+
+/* ── State at a Glance ──────────────────────────────────────────── */
+.lp-snapshot { margin-bottom: 26px; }
+
+.lp-snapshot-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+
+.lp-snapshot-row {
+  display: flex;
+  border-radius: var(--rm);
+  background: var(--w2);
+  border: 1px solid var(--w4);
+  overflow: hidden;
+  box-shadow: var(--sh);
+}
+
+.lp-snapshot-item {
+  padding: 14px 16px 12px;
+  text-align: center;
+  flex: 1;
+  border-right: 1px solid var(--w4);
+  background: var(--w1);
+  position: relative;
+  transition: background 0.18s;
+}
+.lp-snapshot-item:last-child { border-right: none; }
+.lp-snapshot-item:hover { background: var(--w2); }
+
+/* Coloured top stripe per tile */
+.lp-snapshot-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.snap-good-tile::before { background: var(--grn-dot); }
+.snap-bad-tile::before  { background: var(--red-dot); }
+
+.lp-snap-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.snap-good { color: #1A6028; }
+.snap-bad  { color: #A02020; }
+.lp-snap-unit  { font-size: 9.5px; color: var(--ink-faint); margin-bottom: 5px; }
+.lp-snap-label { font-size: 11px; font-weight: 600; color: var(--ink-mid); margin-bottom: 4px; line-height: 1.4; }
+.lp-snap-note  { font-size: 10px; font-style: italic; }
+.note-good     { color: #1A6028; }
+.note-bad      { color: #A02020; }
+
+/* ── Divider ────────────────────────────────────────────────────── */
+.lp-divider-line {
+  width: 100%;
+  max-width: 560px;
+  height: 1px;
+  background: var(--w4);
+  margin: 0 0 18px;
+}
+
+/* ── Meta row ───────────────────────────────────────────────────── */
+.lp-meta-row {
+  display: flex;
+  margin-bottom: 28px;
+  border-radius: var(--r);
+  overflow: hidden;
+  width: fit-content;
+  background: var(--w1);
+  border: 1px solid var(--w4);
+  box-shadow: var(--sh);
+}
+.lp-meta-item {
+  padding: 10px 22px;
+  text-align: center;
+  border-right: 1px solid var(--w4);
+}
+.lp-meta-item:last-child { border-right: none; }
+.lp-meta-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  display: block;
+  margin-bottom: 4px;
+}
+.lp-meta-label {
+  font-size: 9.5px;
+  color: var(--ink-faint);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* ── CTA button ─────────────────────────────────────────────────── */
+.lp-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 36px;
+  background: var(--navy);
+  color: #E8F0F8;
+  border: none;
+  border-radius: var(--r);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 14px rgba(12,35,64,0.18);
+}
+.lp-cta-btn:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(12,35,64,0.26);
+}
+.lp-cta-arrow { font-size: 15px; transition: transform 0.18s; }
+.lp-cta-btn:hover .lp-cta-arrow { transform: translateX(5px); }
+
+/* Scroll hint */
+.lp-scroll-hint { display: flex; flex-direction: column; gap: 7px; }
+.lp-scroll-text { font-size: 9.5px; color: var(--ink-faint); letter-spacing: 0.18em; text-transform: uppercase; }
+.lp-scroll-arrow { font-size: 13px; color: var(--ink-faint); }
