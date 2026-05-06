@@ -7,8 +7,8 @@
 .detail-root {
   min-height: 100vh;
   background:
-    radial-gradient(ellipse 70% 50% at 90% 10%,  rgba(138,118,96,0.08) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 5%  90%,  rgba(180,155,120,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 10%,  rgba(200,164,80,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 5%  90%,  rgba(138,108,40,0.08) 0%, transparent 55%),
     var(--w2);
   display: flex;
   flex-direction: column;

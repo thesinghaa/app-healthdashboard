@@ -4,18 +4,18 @@
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Warm stone / parchment surfaces */
-  --w1: #FAF7F2;   /* lightest — card faces        */
-  --w2: #F3EDE3;   /* base page background          */
-  --w3: #E8DFD0;   /* section strips, headers       */
-  --w4: #D5C9B5;   /* borders                       */
-  --w5: #B8A898;   /* strong borders, scrollbar     */
+  /* Warm amber-gold parchment surfaces */
+  --w1: #FAF3E0;   /* lightest — card faces, golden parchment  */
+  --w2: #F2E6C8;   /* base page — warm amber                   */
+  --w3: #E6D4A8;   /* section strips, card headers             */
+  --w4: #CEB880;   /* borders — golden tan                     */
+  --w5: #B09A60;   /* strong borders, scrollbar                */
 
-  /* Stone accent shades for gradients & depth */
-  --ocean-light: #EDE5D6;   /* warm stone light  */
-  --ocean-mid:   #C8B89A;   /* warm stone mid    */
-  --ocean-deep:  #8A7660;   /* warm stone deep   */
-  --ocean-glass: rgba(138,118,96,0.10);
+  /* Gold accent shades for gradients & depth */
+  --ocean-light: #ECD9A8;   /* soft gold           */
+  --ocean-mid:   #C8A450;   /* amber gold          */
+  --ocean-deep:  #8A6C28;   /* deep antique gold   */
+  --ocean-glass: rgba(138,108,40,0.10);
 
   /* Navy brand */
   --navy:       #0C2340;

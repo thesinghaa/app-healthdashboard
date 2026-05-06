@@ -8,8 +8,8 @@
 
 .lp-section {
   background:
-    radial-gradient(ellipse 70% 55% at 100% 0%,  rgba(180,155,120,0.13) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 0%  100%, rgba(138,118,96,0.09)  0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 100% 0%,  rgba(200,164,80,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 0%  100%, rgba(138,108,40,0.12) 0%, transparent 55%),
     var(--w2);
   border-bottom: 1px solid var(--w4);
   position: relative;
