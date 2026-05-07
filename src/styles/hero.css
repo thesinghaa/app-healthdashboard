@@ -2,13 +2,12 @@
    hero.css — Compact dashboard header (single-page layout)
    ───────────────────────────────────────────────────────────────── */
 
-.home-root { min-height: 100vh; display: flex; flex-direction: column; }
+.home-root { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
 
 /* ── Compact sticky header ──────────────────────────────────────── */
 .home-header {
   background: var(--navy);
-  position: sticky;
-  top: 0;
+  flex-shrink: 0;
   z-index: 20;
   border-bottom: 3px solid var(--gold-mid);
   box-shadow: 0 2px 20px rgba(12,35,64,0.30);
@@ -119,11 +118,14 @@
 /* ── Grid area ──────────────────────────────────────────────────── */
 .home-grid {
   flex: 1;
+  min-height: 0;           /* allow flex child to shrink below content size */
+  display: flex;
+  flex-direction: column;
   background:
     radial-gradient(ellipse 65% 50% at 5%  30%, rgba(200,164,80,0.12) 0%, transparent 55%),
     radial-gradient(ellipse 60% 45% at 95% 70%, rgba(138,108,40,0.08) 0%, transparent 55%),
     var(--w2);
-  padding: 18px 40px 24px;
+  padding: 14px 40px 14px;
 }
 
 /* Override grid-section if still referenced */

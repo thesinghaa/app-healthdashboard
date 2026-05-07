@@ -85,13 +85,6 @@ export default function HomePage({ onSelectProgram }) {
             <DivisionCard key={div.id} division={div} onProgramClick={handleProgramClick} />
           ))}
         </div>
-        <p className="grid-footnote">
-          Red = critical gap requiring officer intervention &nbsp;·&nbsp;
-          Yellow = below benchmark, monitoring needed &nbsp;·&nbsp;
-          Green = on track or improved.
-          Source: NFHS-5 (2019-21) IIPS Mumbai / MoHFW &nbsp;·&nbsp;
-          NHM NPCC Meeting, Arunachal Pradesh, 1 April 2026.
-        </p>
       </div>
 
     </div>

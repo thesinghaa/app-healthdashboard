@@ -70,10 +70,14 @@
 
 /* ── Divisions grid ─────────────────────────────────────────────── */
 .divisions-grid {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
   max-width: 1420px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);   /* split available height equally */
   gap: 14px;
 }
 
@@ -82,6 +86,9 @@
   background: var(--w1);
   border-radius: var(--rm);
   overflow: hidden;
+  min-height: 0;          /* cascade shrinkability */
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 2px 12px rgba(80,60,40,0.09), 0 1px 4px rgba(80,60,40,0.06);
   border: 1px solid var(--w4);
   transition: box-shadow 0.22s, transform 0.22s;
@@ -93,6 +100,7 @@
 
 .division-header {
   padding: 10px 16px 9px;
+  flex-shrink: 0;          /* never compress the header row */
   border-bottom: 1px solid var(--w4);
   display: flex;
   align-items: center;
@@ -131,10 +139,14 @@
 
 /* ── Programme grid inside each card ───────────────────────────── */
 .prog-grid {
+  flex: 1;
+  min-height: 0;
   padding: 8px 10px 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-content: start;    /* pack tiles to top, don't stretch them */
   gap: 6px;
+  overflow: hidden;        /* clip if content still exceeds */
   background: linear-gradient(160deg, var(--w2) 0%, var(--ocean-light) 100%);
 }
 
