@@ -21,9 +21,25 @@ export default function HomePage({ onSelectProgram }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.home-header', { y: -24, opacity: 0, duration: 0.5, ease: 'power3.out' });
-      gsap.from('.division-card', {
-        y: 36, opacity: 0, duration: 0.55, stagger: 0.1, ease: 'power3.out', delay: 0.25,
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      // Header slides down
+      tl.from('.home-header', { y: -40, opacity: 0, duration: 0.5 })
+        // Brand name rises up
+        .from('.home-state-name', { y: 16, opacity: 0, duration: 0.55 }, '-=0.25')
+        .from('.home-state-sub',  { y: 10, opacity: 0, duration: 0.45 }, '-=0.35')
+        // Stat pills pop in with stagger
+        .from('.hs-pill', { y: 12, opacity: 0, duration: 0.4, stagger: 0.07 }, '-=0.3')
+        // Legend fades in
+        .from('.hl-item', { x: 10, opacity: 0, duration: 0.35, stagger: 0.06 }, '-=0.25')
+        // Division cards stagger up
+        .from('.division-card', { y: 40, opacity: 0, duration: 0.55, stagger: 0.12 }, '-=0.1')
+        // Programme tiles stagger inside cards
+        .from('.prog-card', { y: 14, opacity: 0, duration: 0.35, stagger: 0.025 }, '-=0.35');
+
+      // Subtle continuous pulse on critical stat value
+      gsap.to('.hs-red .hs-val', {
+        opacity: 0.65, duration: 1.4, repeat: -1, yoyo: true, ease: 'power1.inOut', delay: 1.8,
       });
     }, rootRef);
     return () => ctx.revert();
