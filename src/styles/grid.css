@@ -74,55 +74,55 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
+  gap: 14px;
 }
 
 /* ── Division card ──────────────────────────────────────────────── */
 .division-card {
   background: var(--w1);
-  border-radius: var(--rl);
+  border-radius: var(--rm);
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(80,60,40,0.09), 0 1px 4px rgba(80,60,40,0.06);
   border: 1px solid var(--w4);
   transition: box-shadow 0.22s, transform 0.22s;
 }
 .division-card:hover {
-  box-shadow: 0 8px 32px rgba(80,60,40,0.14), 0 2px 8px rgba(80,60,40,0.08);
-  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(80,60,40,0.13), 0 2px 6px rgba(80,60,40,0.07);
+  transform: translateY(-2px);
 }
 
 .division-header {
-  padding: 20px 24px 16px;
+  padding: 10px 16px 9px;
   border-bottom: 1px solid var(--w4);
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 10px;
   background: linear-gradient(135deg, var(--w3) 0%, var(--ocean-light) 100%);
 }
-.div-tag-wrap { flex: 1; display: flex; align-items: center; gap: 10px; }
+.div-tag-wrap { flex: 1; display: flex; align-items: center; gap: 8px; }
 .div-tag {
   background: var(--navy);
   color: #C8D8EC;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  padding: 5px 11px;
-  border-radius: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
   flex-shrink: 0;
   text-transform: uppercase;
 }
 .div-name {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--ink);
 }
-.div-counts { display: flex; gap: 5px; flex-shrink: 0; }
+.div-counts { display: flex; gap: 4px; flex-shrink: 0; }
 .count-pill {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 10px;
+  padding: 2px 7px;
+  border-radius: 8px;
   background: var(--w1);
 }
 .cp-red    { color: var(--red-txt);  border: 1px solid var(--red-bdr); }
@@ -131,28 +131,27 @@
 
 /* ── Programme grid inside each card ───────────────────────────── */
 .prog-grid {
-  padding: 14px 14px 18px;
+  padding: 8px 10px 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 6px;
   background: linear-gradient(160deg, var(--w2) 0%, var(--ocean-light) 100%);
 }
 
-/* ── Programme tile — coloured glass ───────────────────────────── */
+/* ── Programme tile — compact coloured glass ────────────────────── */
 .prog-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 14px 15px 13px;
-  border-radius: var(--rm);
+  padding: 8px 11px 7px;
+  border-radius: var(--r);
   cursor: pointer;
   font-family: 'Manrope', sans-serif;
   text-align: left;
   width: 100%;
   border: 1px solid transparent;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: box-shadow 0.2s, transform 0.16s, background 0.2s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: box-shadow 0.18s, transform 0.14s, background 0.18s;
   position: relative;
   overflow: hidden;
 }
@@ -215,49 +214,45 @@
 .s-yellow::before { background: linear-gradient(90deg, #AA8C0C, #CEB020); }
 .s-green::before  { background: linear-gradient(90deg, #247030, #3A9848); }
 
-.prog-card-top {
+/* ── Compact card row: name + arrow ─────────────────────────────── */
+.prog-card-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 8px;
-  margin-top: 4px;
+  gap: 4px;
+  margin-bottom: 3px;
 }
-.prog-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.s-red    .prog-dot { background: var(--red-dot); box-shadow: 0 0 5px rgba(176,48,48,0.5); }
-.s-yellow .prog-dot { background: var(--yel-dot); box-shadow: 0 0 5px rgba(170,140,12,0.5); }
-.s-green  .prog-dot { background: var(--grn-dot); box-shadow: 0 0 5px rgba(36,112,48,0.5); }
 
 .prog-arrow {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--ink-faint);
+  flex-shrink: 0;
   transition: transform 0.14s, color 0.14s;
 }
 .prog-card:hover .prog-arrow { transform: translateX(3px); color: var(--gold); }
 
 .prog-name {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
-  line-height: 1.38;
-  margin-bottom: 5px;
+  line-height: 1.25;
 }
 .s-red    .prog-name { color: #4A0E0E; }
 .s-yellow .prog-name { color: #3A2600; }
 .s-green  .prog-name { color: #0A2E10; }
 
 .prog-reason {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 500;
-  line-height: 1.48;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
-.s-red    .prog-reason { color: rgba(90,20,20,0.7); }
-.s-yellow .prog-reason { color: rgba(70,48,0,0.7); }
-.s-green  .prog-reason { color: rgba(15,56,20,0.7); }
+.s-red    .prog-reason { color: rgba(90,20,20,0.65); }
+.s-yellow .prog-reason { color: rgba(70,48,0,0.65); }
+.s-green  .prog-reason { color: rgba(15,56,20,0.65); }
 
 /* ── Footnote ───────────────────────────────────────────────────── */
 .grid-footnote {

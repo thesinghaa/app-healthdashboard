@@ -127,11 +127,10 @@ function DivisionCard({ division, onProgramClick }) {
             onClick={() => onProgramClick(prog, division)}
             title={`View ${prog.name} indicators and priority actions`}
           >
-            <div className="prog-card-top">
-              <span className="prog-dot" />
+            <div className="prog-card-row">
+              <span className="prog-name">{prog.name}</span>
               <span className="prog-arrow">→</span>
             </div>
-            <span className="prog-name">{prog.name}</span>
             {prog.statusReason && (
               <span className="prog-reason">{prog.statusReason}</span>
             )}
