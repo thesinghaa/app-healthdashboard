@@ -120,14 +120,14 @@
 /* ── Grid area ──────────────────────────────────────────────────── */
 .home-grid {
   flex: 1;
-  min-height: 0;           /* allow flex child to shrink below content size */
+  min-height: 0;
   display: flex;
   flex-direction: column;
   background:
     radial-gradient(ellipse 65% 50% at 5%  30%, rgba(200,164,80,0.12) 0%, transparent 55%),
     radial-gradient(ellipse 60% 45% at 95% 70%, rgba(138,108,40,0.08) 0%, transparent 55%),
     var(--w2);
-  padding: 14px 40px 14px;
+  padding: 20px 48px 20px;
 }
 
 /* Override grid-section if still referenced */
