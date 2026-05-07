@@ -74,7 +74,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 26px;
+  gap: 22px;
 }
 
 /* ── Division card ──────────────────────────────────────────────── */
@@ -262,10 +262,10 @@
 /* ── Footnote ───────────────────────────────────────────────────── */
 .grid-footnote {
   max-width: 1420px;
-  margin: 32px auto 0;
-  font-size: 11.5px;
+  margin: 22px auto 0;
+  font-size: 11px;
   color: var(--ink-faint);
   line-height: 1.75;
-  padding-top: 22px;
+  padding-top: 16px;
   border-top: 1px solid var(--w4);
 }
