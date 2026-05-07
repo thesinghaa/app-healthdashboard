@@ -6,8 +6,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Manrope', system-ui, sans-serif;
-  background: var(--w2);
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
 }

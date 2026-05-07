@@ -1,56 +1,59 @@
 /* ─────────────────────────────────────────────────────────────────
-   tokens.css — Design tokens (colours, shadows, radii)
-   Edit this file to change the global colour palette.
+   tokens.css — Design tokens
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Warm amber-gold parchment surfaces */
-  --w1: #FAF3E0;   /* lightest — card faces, golden parchment  */
-  --w2: #F2E6C8;   /* base page — warm amber                   */
-  --w3: #E6D4A8;   /* section strips, card headers             */
-  --w4: #CEB880;   /* borders — golden tan                     */
-  --w5: #B09A60;   /* strong borders, scrollbar                */
+  /* Page & surface */
+  --bg:       #F4F6F9;   /* cool neutral page background */
+  --w1:       #FFFFFF;   /* card face */
+  --w2:       #F8FAFC;   /* subtle hover / row tint */
+  --w3:       #F1F5F9;   /* section strip */
+  --w4:       #E2E8F0;   /* borders */
+  --w5:       #CBD5E1;   /* strong border / scrollbar */
 
-  /* Gold accent shades for gradients & depth */
-  --ocean-light: #ECD9A8;   /* soft gold           */
-  --ocean-mid:   #C8A450;   /* amber gold          */
-  --ocean-deep:  #8A6C28;   /* deep antique gold   */
-  --ocean-glass: rgba(138,108,40,0.10);
+  /* Keep ocean tokens as aliases so detail.css doesn't break */
+  --ocean-light: #F1F5F9;
+  --ocean-mid:   #CBD5E1;
+  --ocean-deep:  #94A3B8;
+  --ocean-glass: rgba(148,163,184,0.10);
 
   /* Navy brand */
-  --navy:       #0C2340;
-  --navy-mid:   #163450;
-  --navy-light: #1E4A6A;
+  --navy:       #1E293B;
+  --navy-mid:   #334155;
+  --navy-light: #475569;
 
-  /* Gold accent */
-  --gold:     #B5902A;
-  --gold-mid: #D0A83A;
+  /* Gold accent — keep for Playfair headings */
+  --gold:     #B45309;
+  --gold-mid: #D97706;
 
   /* Ink */
-  --ink:       #111010;
-  --ink-mid:   #222020;
-  --ink-light: #555050;
-  --ink-faint: #908880;
+  --ink:       #0F172A;
+  --ink-mid:   #1E293B;
+  --ink-light: #475569;
+  --ink-faint: #94A3B8;
 
-  /* Status — dots and stripes only, never backgrounds */
-  --red-dot:  #B03030;
-  --red-bdr:  rgba(176,48,48,0.30);
-  --red-txt:  #5A1010;
+  /* Status — precise, muted */
+  --red-dot:  #C0392B;
+  --red-bdr:  rgba(192,57,43,0.25);
+  --red-txt:  #C0392B;
+  --red-bg:   #FDF2F2;
 
-  --yel-dot:  #AA8C0C;
-  --yel-bdr:  rgba(160,132,16,0.30);
-  --yel-txt:  #3E2C06;
+  --yel-dot:  #B7770D;
+  --yel-bdr:  rgba(183,119,13,0.25);
+  --yel-txt:  #B7770D;
+  --yel-bg:   #FFFBEB;
 
-  --grn-dot:  #247030;
-  --grn-bdr:  rgba(35,102,40,0.30);
-  --grn-txt:  #082E0A;
+  --grn-dot:  #1A7F5A;
+  --grn-bdr:  rgba(26,127,90,0.25);
+  --grn-txt:  #1A7F5A;
+  --grn-bg:   #F0FDF8;
 
-  /* Shadows (warm) */
-  --sh:  0 1px 3px rgba(60,45,20,0.07), 0 4px 18px rgba(60,45,20,0.05);
-  --shm: 0 2px 8px rgba(60,45,20,0.09), 0 8px 28px rgba(60,45,20,0.07);
+  /* Shadows — single-layer, no color tinting */
+  --sh:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+  --shm: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
 
-  /* Radii */
+  /* Radii — consistent */
   --r:  6px;
-  --rm: 14px;
-  --rl: 20px;
+  --rm: 10px;
+  --rl: 10px;   /* same as rm — no mixing */
 }
