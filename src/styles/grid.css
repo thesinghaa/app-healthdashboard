@@ -144,9 +144,9 @@
   padding: 8px 10px 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  align-content: start;    /* pack tiles to top, don't stretch them */
+  grid-auto-rows: 1fr;     /* all rows share height equally — all tiles visible */
   gap: 6px;
-  overflow: hidden;        /* clip if content still exceeds */
+  overflow: hidden;
   background: linear-gradient(160deg, var(--w2) 0%, var(--ocean-light) 100%);
 }
 
@@ -154,7 +154,7 @@
 .prog-card {
   display: flex;
   flex-direction: column;
-  padding: 8px 11px 7px;
+  padding: 6px 10px 6px;
   border-radius: var(--r);
   cursor: pointer;
   font-family: 'Manrope', sans-serif;
