@@ -1,0 +1,670 @@
+/* ─────────────────────────────────────────────────────────────────
+   ncd.css — NCD Detail Page styles
+   ───────────────────────────────────────────────────────────────── */
+
+/* ── Page root ─────────────────────────────────────────────────── */
+.ncd-root {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #F0FAFA 0%, #E8F4F2 40%, #F5F9FF 100%);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Topbar ────────────────────────────────────────────────────── */
+.ncd-topbar {
+  background: rgba(255,255,255,0.60);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(255,255,255,0.80);
+  box-shadow:
+    0 4px 24px rgba(10,123,108,0.10),
+    0 1px 0px rgba(255,255,255,1.00) inset;
+}
+.ncd-topbar-inner {
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.ncd-badge {
+  background: #C0392B;
+  color: #FFFFFF;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.ncd-source-tag {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+/* ── Content wrapper ───────────────────────────────────────────── */
+.ncd-content {
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 32px 40px 48px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Base card ─────────────────────────────────────────────────── */
+.ncd-card {
+  background: rgba(255,255,255,0.88);
+  border: 1.5px solid rgba(14,158,138,0.42);
+  border-top: 3px solid rgba(14,158,138,0.68);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 32px rgba(10,123,108,0.14);
+}
+.ncd-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--cloud-gray);
+}
+.ncd-card-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy-dark);
+}
+.ncd-card-header h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy-dark);
+}
+.ncd-card-note {
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-style: italic;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+/* ── Two-col layout ────────────────────────────────────────────── */
+.ncd-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+/* ── Hero section ──────────────────────────────────────────────── */
+.ncd-hero-card {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+.ncd-hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.ncd-hero-right {
+  flex: 1;
+}
+.ncd-hero-summary {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-mid);
+  margin-bottom: 24px;
+}
+
+/* ── SVG Dial ──────────────────────────────────────────────────── */
+.ncd-dial-svg { display: block; }
+.ncd-dial-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  fill: #C0392B;
+}
+.ncd-dial-label1,
+.ncd-dial-label2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  fill: var(--ink-faint);
+}
+
+/* ── Dial flanks ───────────────────────────────────────────────── */
+.ncd-dial-flanks {
+  display: flex;
+  gap: 28px;
+  margin-top: 12px;
+}
+.ncd-flank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ncd-flank-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  line-height: 1;
+}
+.ncd-flank-teal { color: var(--teal-dark) !important; }
+.ncd-flank-lbl {
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 3px;
+  text-align: center;
+}
+
+/* ── Hero stat row ─────────────────────────────────────────────── */
+.ncd-hero-stats {
+  display: flex;
+  gap: 24px;
+}
+.ncd-hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ncd-hero-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+.ncd-hero-stat-lbl {
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* ── Cascade funnel ────────────────────────────────────────────── */
+.ncd-cascade {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ncd-cascade-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  align-items: center;
+  gap: 14px;
+}
+.ncd-cascade-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-mid);
+  text-align: right;
+}
+.ncd-cascade-track {
+  height: 32px;
+  background: #F0F4F8;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.ncd-cascade-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: width 0.6s ease;
+  min-width: 40px;
+}
+.ncd-cascade-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  white-space: nowrap;
+}
+.ncd-cascade-meta {
+  display: flex;
+  flex-direction: column;
+}
+.ncd-cascade-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  line-height: 1;
+}
+.ncd-cascade-note {
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+/* ── Recharts tooltip ──────────────────────────────────────────── */
+.ncd-tooltip {
+  background: rgba(255,255,255,0.96);
+  border: 1px solid #e0e8ec;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 16px rgba(10,123,108,0.14);
+}
+.ncd-tip-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin-bottom: 6px;
+  border-bottom: 1px solid #E8ECF0;
+  padding-bottom: 4px;
+}
+.ncd-tip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 11.5px;
+  margin-top: 3px;
+}
+.ncd-tip-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+}
+
+/* ── Donut wrap ────────────────────────────────────────────────── */
+.ncd-donut-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ncd-donut-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  margin-bottom: 4px;
+  font-style: italic;
+}
+
+/* ── Insights grid ─────────────────────────────────────────────── */
+.ncd-insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ncd-insight-card {
+  border-radius: 12px;
+  padding: 16px 18px;
+  border: 1px solid transparent;
+  border-left-width: 4px;
+}
+.ncd-insight-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.ncd-insight-body {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--ink-mid);
+}
+/* Critical */
+.ncd-insight-critical {
+  background: #FEF2F2;
+  border-color: #C0392B;
+}
+.ncd-insight-critical .ncd-insight-headline { color: #C0392B; }
+/* Positive */
+.ncd-insight-positive {
+  background: #F0FDFA;
+  border-color: #0E9E8A;
+}
+.ncd-insight-positive .ncd-insight-headline { color: #0A7B6C; }
+/* Caution */
+.ncd-insight-caution {
+  background: #FFFBEB;
+  border-color: #E8821A;
+}
+.ncd-insight-caution .ncd-insight-headline { color: #B7540A; }
+/* Warning */
+.ncd-insight-warning {
+  background: #FFF7ED;
+  border-color: #F5C518;
+}
+.ncd-insight-warning .ncd-insight-headline { color: #B7770D; }
+
+/* ── Cascade Dial wrapper — 2-column ───────────────────────────── */
+.ncd-cascade-wrap {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ── Left: dial column ──────────────────────────────────────────── */
+.ncd-dial-col {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* SVG dial wrapper */
+.ncd-dial-container {
+  width: 360px;
+  height: 360px;
+  flex-shrink: 0;
+}
+
+/* Compact ring legend */
+.ncd-dial-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 360px;
+}
+
+.ncd-dlg-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  width: 100%;
+  background: transparent;
+  transition: opacity 0.18s ease, background 0.18s ease;
+}
+.ncd-dlg-row:hover { background: rgba(14,158,138,0.05); }
+
+.ncd-dlg-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ncd-dlg-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  width: 10px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.ncd-dlg-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1A1F36;
+  flex: 1;
+  white-space: nowrap;
+}
+.ncd-dlg-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ncd-dlg-bar {
+  width: 48px;
+  height: 4px;
+  background: #EBF0F0;
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ncd-dlg-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.2s ease;
+}
+
+/* ── Reset button ───────────────────────────────────────────────── */
+.ncd-dial-reset {
+  margin-top: 10px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8892A4;
+  background: transparent;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 7px 0;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.ncd-dial-reset:hover {
+  color: #0A7B6C;
+  border-color: rgba(14, 158, 138, 0.40);
+  background: rgba(14, 158, 138, 0.05);
+}
+
+/* ── Right: detail panel ────────────────────────────────────────── */
+.ncd-cascade-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Default state (nothing selected) */
+.ncd-default-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px 0;
+  animation: panelFadeIn 0.25s ease both;
+}
+.ncd-dp-eyebrow {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1F36;
+}
+.ncd-dp-subtitle {
+  font-size: 12px;
+  color: #8892A4;
+  font-style: italic;
+  margin-top: -10px;
+}
+.ncd-dp-summary {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #3D4966;
+}
+.ncd-dp-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.ncd-dp-stat {
+  background: #F8FAFC;
+  border: 1px solid #E8ECF0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ncd-dp-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+.ncd-dp-stat-lbl {
+  font-size: 11px;
+  color: #8892A4;
+  font-weight: 600;
+}
+.ncd-dp-prompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #C8D0DC;
+  font-style: italic;
+  margin-top: 4px;
+}
+.ncd-dp-arrow {
+  font-size: 14px;
+  animation: arrowBounce 1.4s ease-in-out infinite;
+}
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(5px); }
+}
+
+/* Active ring state */
+.ncd-active-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: panelSlideIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes panelSlideIn {
+  from { opacity: 0; transform: translateX(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.ncd-ap-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ncd-ap-step {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  width: fit-content;
+}
+.ncd-ap-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.ncd-ap-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1F36;
+}
+.ncd-ap-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+}
+.ncd-ap-meta {
+  font-size: 12px;
+  color: #8892A4;
+}
+
+.ncd-ap-stats {
+  display: flex;
+  gap: 14px;
+}
+.ncd-ap-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  background: #F8FAFC;
+  border: 1px solid #E8ECF0;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.ncd-ap-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A1F36;
+  line-height: 1;
+}
+.ncd-ap-stat-lbl {
+  font-size: 9px;
+  color: #8892A4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.ncd-ap-chart { width: 100%; }
+.ncd-ap-chart-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #8892A4;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+/* Insight chip */
+.ncd-ap-insight {
+  border-radius: 10px;
+  padding: 12px 14px;
+  border-left: 4px solid;
+}
+.ncd-ap-insight-positive  { background: #F0FDFA; border-color: #0E9E8A; }
+.ncd-ap-insight-caution   { background: #FFFBEB; border-color: #D97706; }
+.ncd-ap-insight-critical  { background: #FEF2F2; border-color: #DC2626; }
+.ncd-ap-insight-neutral   { background: #F8FAFC; border-color: #94A3B8; }
+
+.ncd-ap-insight-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1A1F36;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.ncd-ap-insight-body {
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: #475569;
+}
+
+/* Hero card override for new layout */
+.ncd-hero-card-v2 {
+  padding: 24px 28px;
+}
+
+/* ── Heatmap container ─────────────────────────────────────────── */
+.ncd-heatmap-wrap {
+  height: 350px;
+  width: 100%;
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .ncd-content { padding: 20px 20px 40px; }
+  .ncd-topbar-inner { padding: 12px 20px; }
+  .ncd-two-col { grid-template-columns: 1fr; }
+  .ncd-insights-grid { grid-template-columns: 1fr; }
+  .ncd-hero-card { flex-direction: column; }
+  .ncd-cascade-row { grid-template-columns: 130px 1fr 140px; }
+  .ncd-source-tag { display: none; }
+  .ncd-cascade-wrap  { flex-direction: column; }
+  .ncd-dial-legend   { width: 100%; }
+}

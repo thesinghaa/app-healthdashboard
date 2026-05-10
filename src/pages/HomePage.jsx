@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { DIVISIONS, STATUS_CONFIG } from '../data/programs';
+import DecorativeIcons from '../components/DecorativeIcons';
+import DivisionOverlay from '../components/DivisionOverlay';
 
 function getSummary() {
   let total = 0, red = 0, yellow = 0, green = 0;
@@ -15,36 +17,47 @@ function getSummary() {
   return { total, red, yellow, green };
 }
 
+const BODY_CLASS = {
+  rch:  'rch-body',
+  ndcp: 'ndcp-body',
+  ncd:  'ncd-body',
+  hss:  'hss-body',
+};
+
+const STATUS_TEXT = { red: 'Critical', yellow: 'Caution', green: 'On Track' };
+
+const STATUS_CLASS = {
+  red:    'status-critical',
+  yellow: 'status-caution',
+  green:  'status-on-track',
+};
+
 export default function HomePage({ onSelectProgram }) {
   const rootRef = useRef(null);
   const summary = getSummary();
+
+  /* ── Division overlay state ───────────────────────────────────────── */
+  const [overlay, setOverlay] = useState(null); // { division, expandFrom: DOMRect }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      // Header slides down
-      tl.from('.home-header', { y: -40, opacity: 0, duration: 0.5 })
-        // Brand name rises up
-        .from('.home-state-name', { y: 16, opacity: 0, duration: 0.55 }, '-=0.25')
-        .from('.home-state-sub',  { y: 10, opacity: 0, duration: 0.45 }, '-=0.35')
-        // Stat pills pop in with stagger
-        .from('.hs-pill', { y: 12, opacity: 0, duration: 0.4, stagger: 0.07 }, '-=0.3')
-        // Legend fades in
-        .from('.hl-item', { x: 10, opacity: 0, duration: 0.35, stagger: 0.06 }, '-=0.25')
-        // Division cards stagger up
-        .from('.division-card', { y: 40, opacity: 0, duration: 0.55, stagger: 0.12 }, '-=0.1')
-        // Programme tiles stagger inside cards
-        .from('.prog-card', { y: 14, opacity: 0, duration: 0.35, stagger: 0.025 }, '-=0.35');
+      tl.from('.glass-navbar', { y: -32, opacity: 0, duration: 0.55 })
+        .from('.home-state-name', { y: 12, opacity: 0, duration: 0.45 }, '-=0.25')
+        .from('.home-state-sub',  { y: 8,  opacity: 0, duration: 0.38 }, '-=0.30')
+        .from('.hs-pill', { y: 10, opacity: 0, duration: 0.38, stagger: 0.07 }, '-=0.25')
+        .from('.hl-item', { x: 8,  opacity: 0, duration: 0.32, stagger: 0.06 }, '-=0.20')
+        .from('.bento-card', { y: 28, opacity: 0, duration: 0.50, stagger: 0.09 }, '-=0.10');
 
-      // Subtle continuous pulse on critical stat value
       gsap.to('.hs-red .hs-val', {
-        opacity: 0.65, duration: 1.4, repeat: -1, yoyo: true, ease: 'power1.inOut', delay: 1.8,
+        opacity: 0.65, duration: 1.4, repeat: -1, yoyo: true, ease: 'power1.inOut', delay: 1.5,
       });
     }, rootRef);
     return () => ctx.revert();
   }, []);
 
+  /* Programme row → DetailPage */
   const handleProgramClick = (program, division) => {
     gsap.to(rootRef.current, {
       opacity: 0, y: -12, duration: 0.26, ease: 'power2.in',
@@ -52,99 +65,213 @@ export default function HomePage({ onSelectProgram }) {
     });
   };
 
+  /* Card header → Division overlay */
+  const handleDivisionSelect = (division, rect) => {
+    setOverlay({ division, expandFrom: rect });
+  };
+
+  /* Back from overlay → restore dashboard */
+  const handleOverlayBack = () => {
+    setOverlay(null);
+  };
+
+  /* Programme clicked inside overlay → DetailPage */
+  const handleOverlayProgram = (program, division) => {
+    gsap.to(rootRef.current, {
+      opacity: 0, y: -12, duration: 0.26, ease: 'power2.in',
+      onComplete: () => {
+        setOverlay(null);
+        onSelectProgram(program, division);
+      },
+    });
+  };
+
   return (
     <div className="home-root" ref={rootRef}>
 
-      {/* ── Compact header ──────────────────────────────────────────── */}
-      <div className="home-header">
-        <div className="home-header-inner">
+      {/* Layer 0: background gradient */}
+      <div className="home-bg-gradient" />
 
-          <div className="home-brand">
-            <span className="home-state-name">Arunachal Pradesh</span>
-            <span className="home-state-sub">
-              National Health Mission · Programme Dashboard · NFHS-5 &amp; NPCC Apr 2026
-            </span>
+      {/* Layer 1: decorative medical icons */}
+      <DecorativeIcons />
+
+      {/* Layer 2: frosted glass wash */}
+      <div className="page-glass-overlay" />
+
+      {/* Layer 3: dashboard content */}
+      <div className="home-content">
+
+        {/* Header with teal waves + floating glass pill */}
+        <div className="home-header">
+          <div className="header-waves">
+            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.55 }}>
+              <path d="M0,80 C240,110 480,40 720,70 C960,100 1200,50 1440,80 L1440,130 L0,130 Z" fill="#7EDDD0"/>
+            </svg>
+            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.45 }}>
+              <path d="M0,95 C180,55 360,115 540,85 C720,55 900,105 1080,78 C1260,52 1380,96 1440,88 L1440,130 L0,130 Z" fill="#2DC4AD"/>
+            </svg>
+            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.35 }}>
+              <path d="M0,108 C300,75 600,120 900,98 C1100,80 1300,110 1440,102 L1440,130 L0,130 Z" fill="#0E9E8A"/>
+            </svg>
+            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.25 }}>
+              <path d="M0,118 C360,95 720,125 1080,112 C1260,105 1380,120 1440,118 L1440,130 L0,130 Z" fill="#0A7B6C"/>
+            </svg>
           </div>
 
-          <div className="home-summary">
-            <div className="hs-pill hs-total">
-              <span className="hs-val">{summary.total}</span>
-              <span className="hs-lbl">Programmes</span>
-            </div>
-            <div className="hs-pill hs-red">
-              <span className="hs-val">{summary.red}</span>
-              <span className="hs-lbl">Critical</span>
-            </div>
-            <div className="hs-pill hs-yellow">
-              <span className="hs-val">{summary.yellow}</span>
-              <span className="hs-lbl">Caution</span>
-            </div>
-            <div className="hs-pill hs-green">
-              <span className="hs-val">{summary.green}</span>
-              <span className="hs-lbl">On Track</span>
+          <div className="home-header-inner">
+            <div className="glass-navbar">
+              <div className="home-brand">
+                <span className="home-state-name">Arunachal Pradesh</span>
+                <span className="home-state-sub">
+                  National Health Mission · Programme Dashboard · NFHS-5 &amp; NPCC Apr 2026
+                </span>
+              </div>
+
+              <div className="home-summary">
+                <div className="hs-pill hs-total">
+                  <span className="hs-val">{summary.total}</span>
+                  <span className="hs-lbl">Programmes</span>
+                </div>
+                <div className="hs-pill hs-red">
+                  <span className="hs-val">{summary.red}</span>
+                  <span className="hs-lbl">Critical</span>
+                </div>
+                <div className="hs-pill hs-yellow">
+                  <span className="hs-val">{summary.yellow}</span>
+                  <span className="hs-lbl">Caution</span>
+                </div>
+                <div className="hs-pill hs-green">
+                  <span className="hs-val">{summary.green}</span>
+                  <span className="hs-lbl">On Track</span>
+                </div>
+              </div>
+
+              <div className="home-legend">
+                <span className="hl-item"><span className="hl-dot hl-red" />Immediate Attention</span>
+                <span className="hl-item"><span className="hl-dot hl-yellow" />Under Review</span>
+                <span className="hl-item"><span className="hl-dot hl-green" />On Track</span>
+              </div>
             </div>
           </div>
-
-          <div className="home-legend">
-            <span className="hl-item"><span className="hl-dot hl-red" />Immediate Attention</span>
-            <span className="hl-item"><span className="hl-dot hl-yellow" />Under Review</span>
-            <span className="hl-item"><span className="hl-dot hl-green" />On Track</span>
-          </div>
-
         </div>
+
+        {/* Bento grid */}
+        <div className="home-grid">
+          <div className="dashboard-grid">
+            {DIVISIONS.map(div => (
+              <BentoCard
+                key={div.id}
+                division={div}
+                onProgramClick={handleProgramClick}
+                onSelectDivision={handleDivisionSelect}
+              />
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      {/* ── Divisions grid ──────────────────────────────────────────── */}
-      <div className="home-grid">
-        <div className="divisions-grid">
-          {DIVISIONS.map(div => (
-            <DivisionCard key={div.id} division={div} onProgramClick={handleProgramClick} />
-          ))}
-        </div>
-      </div>
+      {/* Division expand overlay — rendered on top of dashboard */}
+      {overlay && (
+        <DivisionOverlay
+          division={overlay.division}
+          expandFrom={overlay.expandFrom}
+          onBack={handleOverlayBack}
+          onSelectProgram={handleOverlayProgram}
+        />
+      )}
 
     </div>
   );
 }
 
-function DivisionCard({ division, onProgramClick }) {
+function BentoCard({ division, onProgramClick, onSelectDivision }) {
+  const cardRef = useRef(null);
+
   const sorted = [...division.programs].sort(
     (a, b) => STATUS_CONFIG[a.status].order - STATUS_CONFIG[b.status].order,
   );
   const counts = { red: 0, yellow: 0, green: 0 };
   division.programs.forEach(p => counts[p.status]++);
+  const bodyClass = BODY_CLASS[division.id] || 'rch-body';
+  const isHSS = division.id === 'hss';
+  const isRCH = division.id === 'rch';
+
+  const handleExpand = (e) => {
+    e.stopPropagation();
+    const rect = cardRef.current.getBoundingClientRect();
+    onSelectDivision(division, {
+      top: rect.top, left: rect.left, width: rect.width, height: rect.height,
+    });
+  };
 
   return (
-    <div className="division-card">
-      <div className="division-header">
-        <div className="div-tag-wrap">
-          <span className="div-tag">{division.label}</span>
-          <span className="div-name">{division.fullName}</span>
+    <div ref={cardRef} className={`bento-card card-${division.id}`}>
+
+      {/* ── Header ───────────────────────────────────────────────── */}
+      <div className="card-header">
+        <span className="card-wm" aria-hidden="true">{division.label}</span>
+        <div className="card-accent-bar" aria-hidden="true" />
+
+        <div className="card-header-body">
+          <div className="card-header-row1">
+            <span className="div-mono-tag">{division.label}</span>
+            <span className="div-name">{division.fullName}</span>
+            <div className="div-counts">
+              {counts.red    > 0 && <span className="count-pill cp-red">{counts.red}</span>}
+              {counts.yellow > 0 && <span className="count-pill cp-yellow">{counts.yellow}</span>}
+              {counts.green  > 0 && <span className="count-pill cp-green">{counts.green}</span>}
+            </div>
+          </div>
         </div>
-        <div className="div-counts">
-          {counts.red    > 0 && <span className="count-pill cp-red">{counts.red} critical</span>}
-          {counts.yellow > 0 && <span className="count-pill cp-yellow">{counts.yellow} caution</span>}
-          {counts.green  > 0 && <span className="count-pill cp-green">{counts.green} on track</span>}
-        </div>
+
+        <button
+          className="div-expand-btn"
+          onClick={handleExpand}
+          title={`Expand ${division.fullName}`}
+          aria-label={`Expand ${division.fullName}`}
+        >
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M1 5V1H5"           stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 8V12H8"         stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M1 1L5.5 5.5"       stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+            <path d="M12 12L7.5 7.5"     stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+          </svg>
+        </button>
       </div>
 
-      <div className="prog-grid">
-        {sorted.map(prog => (
-          <button
-            key={prog.id}
-            className={`prog-card s-${prog.status}`}
-            onClick={() => onProgramClick(prog, division)}
-            title={`View ${prog.name} indicators and priority actions`}
-          >
-            <div className="prog-card-row">
-              <span className="prog-name">{prog.name}</span>
-              <span className="prog-arrow">→</span>
-            </div>
-            {prog.statusReason && (
-              <span className="prog-reason">{prog.statusReason}</span>
-            )}
-          </button>
-        ))}
+      {/* ── Programme rows ────────────────────────────────────────── */}
+      <div className={`card-body ${bodyClass}`}>
+        {sorted.map(prog => {
+          const featured = isRCH && prog.status === 'green';
+          return (
+            <button
+              key={prog.id}
+              className={`programme-row ${STATUS_CLASS[prog.status]}${featured ? ' row-featured' : ''}`}
+              onClick={() => onProgramClick(prog, division)}
+              title={`View ${prog.name} indicators and priority actions`}
+            >
+              {isHSS && (
+                <svg className="hss-cross-bg" width="60" height="60" viewBox="0 0 80 80">
+                  <rect x="30" y="5" width="20" height="70" rx="4" fill="currentColor"/>
+                  <rect x="5"  y="30" width="70" height="20" rx="4" fill="currentColor"/>
+                </svg>
+              )}
+              <div className="prog-name-row">
+                <span className="programme-title">{prog.name}</span>
+                <span className={`status-label sl-${prog.status}`}>
+                  {STATUS_TEXT[prog.status]}
+                </span>
+              </div>
+              {prog.keyMetric && (
+                <span className="prog-key-metric">{prog.keyMetric}</span>
+              )}
+              {prog.statusReason && (
+                <span className="programme-desc">{prog.statusReason}</span>
+              )}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

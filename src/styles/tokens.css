@@ -1,59 +1,71 @@
 /* ─────────────────────────────────────────────────────────────────
-   tokens.css — Design tokens
+   tokens.css — Design tokens (teal + yellow + navy)
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Page & surface */
-  --bg:       #F4F6F9;   /* cool neutral page background */
-  --w1:       #FFFFFF;   /* card face */
-  --w2:       #F8FAFC;   /* subtle hover / row tint */
-  --w3:       #F1F5F9;   /* section strip */
-  --w4:       #E2E8F0;   /* borders */
-  --w5:       #CBD5E1;   /* strong border / scrollbar */
+  /* Teal spectrum */
+  --teal-dark:  #0A7B6C;
+  --teal-mid:   #0E9E8A;
+  --teal-light: #2DC4AD;
+  --teal-pale:  #7EDDD0;
 
-  /* Keep ocean tokens as aliases so detail.css doesn't break */
-  --ocean-light: #F1F5F9;
-  --ocean-mid:   #CBD5E1;
-  --ocean-deep:  #94A3B8;
-  --ocean-glass: rgba(148,163,184,0.10);
+  /* Yellow accent */
+  --yellow:       #F5C518;
+  --yellow-hover: #E0B000;
 
-  /* Navy brand */
-  --navy:       #1E293B;
-  --navy-mid:   #334155;
-  --navy-light: #475569;
+  /* Navy */
+  --navy-dark: #1A1F36;
+  --navy-mid:  #2D3561;
 
-  /* Gold accent — keep for Playfair headings */
-  --gold:     #B45309;
-  --gold-mid: #D97706;
+  /* Page surfaces */
+  --bg:          #F7FAFA;
+  --off-white:   #FFFFFF;
+  --cloud-gray:  #E8ECF0;
+
+  /* Glass pill */
+  --w1:          rgba(255,255,255,0.72);
+  --w2:          rgba(255,255,255,0.50);
+  --w3:          rgba(255,255,255,0.30);
+  --w4:          rgba(255,255,255,0.82);
+  --w5:          rgba(14,158,138,0.55);
+
+  /* Aliases kept for detail.css compat */
+  --ocean-light: rgba(14,158,138,0.12);
+  --ocean-mid:   #0E9E8A;
+  --ocean-deep:  #0A7B6C;
+  --ocean-glass: rgba(14,158,138,0.08);
+  --navy:        #1A1F36;
+  --gold:        #F5C518;
+  --gold-mid:    #E0B000;
 
   /* Ink */
-  --ink:       #0F172A;
-  --ink-mid:   #1E293B;
+  --ink:       #1A1F36;
+  --ink-mid:   #2D3561;
   --ink-light: #475569;
-  --ink-faint: #94A3B8;
+  --ink-faint: #6B7280;
 
-  /* Status — precise, muted */
+  /* Status */
   --red-dot:  #C0392B;
-  --red-bdr:  rgba(192,57,43,0.25);
+  --red-bdr:  #FECACA;
   --red-txt:  #C0392B;
-  --red-bg:   #FDF2F2;
+  --red-bg:   #FEF2F2;
 
-  --yel-dot:  #B7770D;
-  --yel-bdr:  rgba(183,119,13,0.25);
+  --yel-dot:  #F5C518;
+  --yel-bdr:  #FDE68A;
   --yel-txt:  #B7770D;
   --yel-bg:   #FFFBEB;
 
-  --grn-dot:  #1A7F5A;
-  --grn-bdr:  rgba(26,127,90,0.25);
-  --grn-txt:  #1A7F5A;
-  --grn-bg:   #F0FDF8;
+  --grn-dot:  #0E9E8A;
+  --grn-bdr:  #99F6E4;
+  --grn-txt:  #0A7B6C;
+  --grn-bg:   #F0FDFA;
 
-  /* Shadows — single-layer, no color tinting */
-  --sh:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
-  --shm: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  /* Shadows */
+  --sh:  0 2px 16px rgba(10,123,108,0.10), 0 1px 4px rgba(26,31,54,0.07);
+  --shm: 0 8px 32px rgba(10,123,108,0.16), 0 2px 8px rgba(26,31,54,0.10);
 
-  /* Radii — consistent */
-  --r:  6px;
-  --rm: 10px;
-  --rl: 10px;   /* same as rm — no mixing */
+  /* Radii */
+  --r:  8px;
+  --rm: 14px;
+  --rl: 18px;
 }

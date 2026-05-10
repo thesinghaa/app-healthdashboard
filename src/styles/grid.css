@@ -1,160 +1,330 @@
 /* ─────────────────────────────────────────────────────────────────
-   grid.css — Programme grid
+   grid.css — Bento layout & card design system
+   Viewport-locked: everything visible at 1440×900, zero scroll.
    ───────────────────────────────────────────────────────────────── */
 
-/* ── Divisions grid ─────────────────────────────────────────────── */
-.divisions-grid {
+/* ── Outer grid ──────────────────────────────────────────────────── */
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  width: 100%;
-}
-
-/* ── Division card ──────────────────────────────────────────────── */
-.division-card {
-  background: var(--w1);
-  border-radius: var(--rm);
-  border: 1px solid var(--w4);
-  box-shadow: var(--sh);
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-.division-card:hover {
-  box-shadow: var(--shm);
-  transform: translateY(-2px);
-}
-
-/* ── Division header ────────────────────────────────────────────── */
-.division-header {
-  padding: 16px 20px 14px;
-  border-bottom: 1px solid var(--w4);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--w1);
-  border-radius: var(--rm) var(--rm) 0 0;
-}
-.div-tag-wrap { flex: 1; display: flex; align-items: center; gap: 10px; }
-.div-tag {
-  background: var(--navy);
-  color: #FFFFFF;
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 4px 10px;
-  border-radius: 4px;
-  flex-shrink: 0;
-  text-transform: uppercase;
-}
-.div-name {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink);
-}
-.div-counts { display: flex; gap: 6px; flex-shrink: 0; }
-.count-pill {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 20px;
-}
-.cp-red    { color: var(--red-txt);  background: var(--red-bg);  border: 1px solid var(--red-bdr); }
-.cp-yellow { color: var(--yel-txt);  background: var(--yel-bg);  border: 1px solid var(--yel-bdr); }
-.cp-green  { color: var(--grn-txt);  background: var(--grn-bg);  border: 1px solid var(--grn-bdr); }
-
-/* ── Programme list inside each card ───────────────────────────── */
-.prog-grid {
-  padding: 14px 16px 16px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-content: start;
-  gap: 8px;
-  background: var(--w1);
-  border-radius: 0 0 var(--rm) var(--rm);
-}
-
-/* ── Programme tile ─────────────────────────────────────────────── */
-.prog-card {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 14px 10px;
-  border-radius: var(--r);
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  text-align: left;
-  width: 100%;
-  border: 1px solid var(--w4);
-  border-left: 3px solid transparent;
-  background: var(--w1);
-  transition: background 0.15s ease, box-shadow 0.15s ease;
-  position: relative;
+  grid-template-columns: 1.6fr 1fr 0.8fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 2px 8px 14px;
+  align-items: stretch;
+  justify-items: stretch;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
-.prog-card:hover { background: var(--w2); }
 
-/* Status left-border — applied consistently to every tile */
-.s-red    { border-left-color: var(--red-dot); }
-.s-yellow { border-left-color: var(--yel-dot); }
-.s-green  { border-left-color: var(--grn-dot); }
+/* ── Grid placement ─────────────────────────────────────────────── */
+.card-rch  { grid-column: 1;   grid-row: 1; }
+.card-ndcp { grid-column: 2/4; grid-row: 1; }
+.card-ncd  { grid-column: 1/3; grid-row: 2; }
+.card-hss  { grid-column: 3;   grid-row: 2; }
 
-/* Remove top colour bar pseudo-element */
-.prog-card::before { display: none; }
+/* ── Division chip colours (chip only — nowhere else) ───────────── */
+.card-rch  { --chip: #0F766E; }
+.card-ndcp { --chip: #7C3AED; }
+.card-ncd  { --chip: #DC2626; }
+.card-hss  { --chip: #1D4ED8; }
 
-/* ── Compact card row: name + arrow ─────────────────────────────── */
-.prog-card-row {
+/* ── Section card — neutral elevated panel ──────────────────────── */
+.bento-card {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.06),
+    0 4px 12px rgba(0,0,0,0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  transition: box-shadow 0.2s ease;
+}
+
+/* ── Card header ────────────────────────────────────────────────── */
+.bento-card .card-header {
+  position: relative;
+  padding: 10px 14px;
+  border-bottom: 1px solid #F3F4F6;
+  background: #FFFFFF;
+  border-radius: 14px 14px 0 0;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   gap: 8px;
-  margin-bottom: 3px;
+  overflow: hidden;
 }
 
-.prog-arrow {
-  font-size: 14px;
-  color: var(--ink-faint);
+/* Watermark */
+.card-wm {
+  position: absolute;
+  right: 10px;
+  bottom: -4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: #9CA3AF;
+  opacity: 0.05;
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -2px;
+  user-select: none;
+  z-index: 0;
+}
+
+/* 3px vertical accent bar matching chip colour */
+.card-accent-bar {
+  width: 3px;
+  min-width: 3px;
+  height: 20px;
+  border-radius: 2px;
+  background: var(--chip);
   flex-shrink: 0;
-  opacity: 0.3;
-  transition: opacity 0.15s ease, transform 0.15s ease;
 }
-.prog-card:hover .prog-arrow { opacity: 1; transform: translateX(2px); }
 
-.prog-name {
-  font-family: 'Inter', sans-serif;
+.card-header-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header-row1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Section label chip — solid, muted brand colour */
+.div-mono-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  background: var(--chip);
+  padding: 3px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  line-height: 1.6;
+}
+
+/* Section full name */
+.div-name {
+  font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   font-weight: 600;
-  line-height: 1.35;
-  color: var(--ink);
+  color: #111827;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+  white-space: normal;
+  word-break: break-word;
 }
-.s-red    .prog-name { color: var(--ink); }
-.s-yellow .prog-name { color: var(--ink); }
-.s-green  .prog-name { color: var(--ink); }
 
-.prog-reason {
-  font-family: 'Inter', sans-serif;
-  font-size: 11.5px;
-  font-weight: 400;
+/* Status count pills in header */
+.div-counts {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.count-pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 999px;
   line-height: 1.5;
-  color: var(--ink-light);
+  flex-shrink: 0;
 }
-.s-red    .prog-reason { color: var(--ink-light); }
-.s-yellow .prog-reason { color: var(--ink-light); }
-.s-green  .prog-reason { color: var(--ink-light); }
+.cp-red    { color: #B91C1C; background: #FEE2E2; }
+.cp-yellow { color: #92400E; background: #FEF9C3; }
+.cp-green  { color: #166534; background: #DCFCE7; }
 
-/* ── Footnote ───────────────────────────────────────────────────── */
-.grid-footnote {
-  margin: 24px 0 0;
-  font-size: 12px;
-  color: var(--ink-faint);
-  line-height: 1.75;
-  padding-top: 16px;
-  border-top: 1px solid var(--w4);
+/* Expand button */
+.div-expand-btn {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  color: #9CA3AF;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.div-expand-btn:hover {
+  background: var(--chip);
+  border-color: var(--chip);
+  color: #FFFFFF;
+}
+.div-expand-btn:active { opacity: 0.75; }
+
+/* ── Card body ───────────────────────────────────────────────────── */
+.card-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 10px 10px 10px;
+  display: grid;
+  gap: 8px;
+  align-content: stretch;
+  background: #F8FAFC;
 }
 
-/* ── Old section styles kept for compatibility ──────────────────── */
-.grid-section { padding: 28px 32px 32px; }
-.grid-header  { display: none; }
+/* Per-section grid column + row counts */
+.rch-body  { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, 1fr); gap: 6px; }
+.ndcp-body { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 6px; }
+.ncd-body  { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: repeat(4, 1fr); gap: 5px; }
+.hss-body  { grid-template-columns: 1fr; grid-template-rows: repeat(2, 1fr); gap: 10px; }
+
+.rch-body .row-featured { grid-column: 1 / -1; }
+
+/* ── Programme card — neutral elevated tile ──────────────────────── */
+.programme-row {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 10px 12px;
+  height: 100%;
+  min-height: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: flex-start;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.03);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+/* Status — NO coloured borders. Badge only. */
+.status-critical,
+.status-caution,
+.status-on-track { border-left: none; }
+
+.programme-row:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  transform: translateY(-1px);
+  border-color: #D1D5DB;
+  z-index: 1;
+}
+
+/* ── Card header row: title + badge ─────────────────────────────── */
+.prog-name-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+/* Programme name */
+.programme-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status badge pill — top right, semantic colour only here */
+.status-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.sl-red    { background: #FEE2E2; color: #B91C1C; }
+.sl-yellow { background: #FEF9C3; color: #92400E; }
+.sl-green  { background: #DCFCE7; color: #166534; }
+
+/* Headline metric — colour is semantic signal here */
+.prog-key-metric {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.status-critical .prog-key-metric { color: #B91C1C; }
+.status-caution  .prog-key-metric { color: #92400E; }
+.status-on-track .prog-key-metric { color: #166534; }
+
+/* Description */
+.programme-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #6B7280;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── NCD — 3-column, 4 rows — tighter ──────────────────────────── */
+.ncd-body .programme-row   { padding: 8px 10px; gap: 3px; }
+.ncd-body .programme-title { font-size: 11.5px; }
+.ncd-body .prog-key-metric { font-size: 10.5px; }
+.ncd-body .programme-desc  { font-size: 10px; -webkit-line-clamp: 1; }
+.ncd-body .status-label    { font-size: 9px; padding: 1px 6px; }
+
+/* ── HSS — 2 large rows ─────────────────────────────────────────── */
+.card-hss .programme-row {
+  padding: 14px 16px;
+  justify-content: center;
+}
+.card-hss .programme-title  { font-size: 14px; font-weight: 700; white-space: normal; }
+.card-hss .prog-key-metric  { font-size: 12.5px; white-space: normal; }
+.card-hss .programme-desc   { font-size: 12px; -webkit-line-clamp: 3; }
+
+/* HSS decorative cross */
+.hss-cross-bg {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.025;
+  color: #9CA3AF;
+}
+
+/* ── Legacy compat ───────────────────────────────────────────────── */
+.grid-footnote { font-size: 13px; color: #6B7280; }
+.grid-section  { padding: 16px; }
+.grid-header   { display: none; }
