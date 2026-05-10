@@ -10,12 +10,11 @@ import { ResponsiveHeatMap }   from '@nivo/heatmap';
 import { ICR_MONTHLY, ICR_CUMULATIVE, PREGNANCY_NCD } from '../data/ncdData';
 import '../styles/ncd.css';
 
-/* ── Google Sheets config ─────────────────────────────────────────── */
-const SHEET_ID    = '1vsCSdPZpBK5SQw9gppRLEEKDLhj19DHk';
-const API_KEY     = import.meta.env.VITE_SHEETS_API_KEY ?? '';
-const SHEET_NAME  = 'Sheet1';
+/* ── Sheet config (no API key — public CSV export, works on any domain) ── */
+const SHEET_ID       = '1vsCSdPZpBK5SQw9gppRLEEKDLhj19DHk';
 const DATA_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1vsCSdPZpBK5SQw9gppRLEEKDLhj19DHk/edit?usp=sharing&ouid=108879603367948604821&rtpof=true&sd=true';
-const TARGET_POP  = 55235; // total 30+ target population — update if sheet provides this
+const CSV_URL        = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Sheet1`;
+const TARGET_POP     = 55235;
 
 const DISTRICTS = [
   'Changlang','Dibang Valley','East Kameng','Anjaw','East Siang',
@@ -47,33 +46,47 @@ function toMonthShort(val) {
   return MONTH_MAP[k] ?? k.slice(0, 3).replace(/^\w/, c => c.toUpperCase());
 }
 
+/* ── Minimal CSV parser (handles quoted fields with commas) ──────── */
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  return lines.map(line => {
+    const cols = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    cols.push(cur.trim());
+    return cols;
+  });
+}
+
 /* ── Keyword matcher on Data Item Name ───────────────────────────── */
 function matchMetric(name) {
   const n = String(name ?? '').toLowerCase();
-  if (n.includes('enrol') || n.includes('register'))                            return 'enrolled';
-  if (n.includes('cbac'))                                                       return 'cbac';
-  if (n.includes('fully') && n.includes('screen'))                              return 'fullyScreened';
-  if (n.includes('partial') && n.includes('screen'))                            return 'partialScreened';
-  if (n.includes('cervical'))                                                   return 'referredCervical';
-  if ((n.includes('secondary') || n.includes('2nd')) && n.includes('refer'))   return 'referredSecondary';
-  if (n.includes('refer'))                                                      return 'referredScreen';
-  if (n.includes('screen') || n.includes('1st'))                               return 'screened1st';
-  if (n.includes('exam'))                                                       return 'examined';
-  if (n.includes('diagn'))                                                      return 'diagnosed';
-  if (n.includes('treat'))                                                      return 'underTreatment';
-  if (n.includes('follow'))                                                     return 'followUp';
+  if (n.includes('enrol') || n.includes('register'))                          return 'enrolled';
+  if (n.includes('cbac'))                                                     return 'cbac';
+  if (n.includes('fully') && n.includes('screen'))                            return 'fullyScreened';
+  if (n.includes('partial') && n.includes('screen'))                          return 'partialScreened';
+  if (n.includes('cervical'))                                                 return 'referredCervical';
+  if ((n.includes('secondary') || n.includes('2nd')) && n.includes('refer')) return 'referredSecondary';
+  if (n.includes('refer'))                                                    return 'referredScreen';
+  if (n.includes('screen') || n.includes('1st'))                             return 'screened1st';
+  if (n.includes('exam'))                                                     return 'examined';
+  if (n.includes('diagn'))                                                    return 'diagnosed';
+  if (n.includes('treat'))                                                    return 'underTreatment';
+  if (n.includes('follow'))                                                   return 'followUp';
   return null;
 }
 
-/* ── Fetch and parse new sheet structure ─────────────────────────── */
+/* ── Fetch CSV and parse ─────────────────────────────────────────── */
 async function fetchNcdData() {
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${encodeURIComponent(SHEET_NAME)}?key=${API_KEY}`;
-  const res = await fetch(url);
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error(body?.error?.message ?? `HTTP ${res.status}`);
-  }
-  const { values = [] } = await res.json();
+  const res = await fetch(CSV_URL);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = await res.text();
+  const values = parseCSV(text);
   if (values.length < 2) throw new Error('Empty sheet');
 
   const headers = values[0].map(h => String(h ?? '').trim());
@@ -831,7 +844,6 @@ export default function NCDDetailPage({ onBack }) {
 
   /* ── Live data fetch ─────────────────────────────────────────────── */
   useEffect(() => {
-    if (!API_KEY) return;
     fetchNcdData()
       .then(({ monthly: m, cumulative: c }) => {
         if (m.length)        setMonthly(m);
