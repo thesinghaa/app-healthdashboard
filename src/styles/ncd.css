@@ -661,10 +661,186 @@
   .ncd-content { padding: 20px 20px 40px; }
   .ncd-topbar-inner { padding: 12px 20px; }
   .ncd-two-col { grid-template-columns: 1fr; }
-  .ncd-insights-grid { grid-template-columns: 1fr; }
-  .ncd-hero-card { flex-direction: column; }
-  .ncd-cascade-row { grid-template-columns: 130px 1fr 140px; }
   .ncd-source-tag { display: none; }
-  .ncd-cascade-wrap  { flex-direction: column; }
-  .ncd-dial-legend   { width: 100%; }
+  .hmis-tabs { gap: 6px; }
+  .hmis-kpi-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HMIS Dashboard — new classes
+   ══════════════════════════════════════════════════════════════════ */
+
+.hmis-section {
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0);    }
+}
+
+/* ── Topbar badges / links ───────────────────────────────────────── */
+.hmis-live-badge {
+  font-size: 10px; font-weight: 700; font-family: 'Inter', sans-serif;
+  background: rgba(14,158,138,0.12); color: #0A7B6C;
+  border: 1px solid rgba(14,158,138,0.30); border-radius: 20px;
+  padding: 3px 10px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.hmis-error-badge {
+  font-size: 10px; font-weight: 600; font-family: 'Inter', sans-serif;
+  color: #C0392B; opacity: 0.75;
+}
+.hmis-sheet-link {
+  font-size: 11px; font-weight: 600; font-family: 'Inter', sans-serif;
+  background: rgba(14,158,138,0.10); color: #0A7B6C;
+  border: 1px solid rgba(14,158,138,0.30); border-radius: 6px;
+  padding: 4px 12px; text-decoration: none; white-space: nowrap;
+}
+.hmis-sheet-link:hover { background: rgba(14,158,138,0.18); }
+
+/* ── Category tabs ───────────────────────────────────────────────── */
+.hmis-tabs-section {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.hmis-tabs {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.hmis-tab {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 14px 7px 8px;
+  border: 1.5px solid #E2E8F0; border-radius: 8px;
+  background: #FFFFFF; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+  color: #64748B;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+}
+.hmis-tab:hover { border-color: #CBD5E1; color: #1E293B; }
+.hmis-tab-active { font-weight: 700; }
+.hmis-tab-id {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.08em;
+  background: #CBD5E1; color: #FFFFFF;
+  padding: 2px 6px; border-radius: 4px;
+  transition: background 0.18s;
+}
+.hmis-tab-label { white-space: nowrap; }
+
+/* ── Year pills ──────────────────────────────────────────────────── */
+.hmis-year-pills { display: flex; gap: 6px; }
+.hmis-year-pill {
+  font-size: 11px; font-weight: 600; font-family: 'Inter', sans-serif;
+  padding: 5px 12px; border-radius: 20px;
+  border: 1.5px solid #E2E8F0; background: #FFFFFF; color: #64748B;
+  cursor: pointer; transition: all 0.15s;
+}
+.hmis-year-active { color: #FFFFFF !important; }
+
+/* ── Category heading ────────────────────────────────────────────── */
+.hmis-cat-header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px; background: #FFFFFF; border-radius: 10px;
+  border-left: 4px solid #0A7B6C;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.hmis-cat-id {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+  color: #FFFFFF; padding: 4px 10px; border-radius: 6px;
+  white-space: nowrap;
+}
+.hmis-cat-name {
+  font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+  color: #1E293B;
+}
+.hmis-cat-sub {
+  font-family: 'Inter', sans-serif; font-size: 11px; color: #94A3B8;
+  margin-top: 2px;
+}
+
+/* ── KPI cards ───────────────────────────────────────────────────── */
+.hmis-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.hmis-kpi-card {
+  background: #FFFFFF; border-radius: 10px;
+  padding: 18px 20px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border: 1px solid #F1F5F9;
+}
+.hmis-kpi-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px; font-weight: 700; line-height: 1;
+  margin-bottom: 6px;
+}
+.hmis-kpi-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 600; color: #475569; line-height: 1.35;
+}
+.hmis-kpi-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: #CBD5E1; margin-top: 6px;
+}
+
+/* ── All indicators table ────────────────────────────────────────── */
+.hmis-table { border-top: 1px solid #F1F5F9; }
+.hmis-table-head {
+  display: grid; grid-template-columns: 72px 1fr 110px;
+  gap: 12px; padding: 8px 16px;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: #94A3B8;
+  background: #F8FAFC; border-bottom: 1px solid #F1F5F9;
+}
+.hmis-table-row {
+  display: grid; grid-template-columns: 72px 1fr 110px;
+  gap: 12px; padding: 10px 16px; align-items: center;
+  border-bottom: 1px solid #F8FAFC;
+  transition: background 0.12s;
+}
+.hmis-table-row:hover { background: #F8FAFC; }
+.hmis-row-kpi { background: #FAFFFE; }
+.hmis-row-secondary { opacity: 0.75; }
+.hmis-code-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  padding: 3px 7px; border-radius: 4px;
+  display: inline-block; white-space: nowrap;
+}
+.hmis-row-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; color: #334155; line-height: 1.4;
+}
+.hmis-row-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 700;
+  text-align: right;
+}
+.hmis-col-right { text-align: right; }
+
+/* ── Loading & error states ──────────────────────────────────────── */
+.hmis-loading {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 48px 24px;
+  font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8;
+}
+.hmis-spinner {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2.5px solid #E2E8F0; border-top-color: #0A7B6C;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hmis-error-card {
+  padding: 28px 24px; background: #FDF2F2; border-radius: 10px;
+  border: 1px solid rgba(192,57,43,0.20);
+}
+.hmis-error-title {
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+  color: #C0392B; margin-bottom: 6px;
+}
+.hmis-error-msg {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: #C0392B; opacity: 0.7; margin-bottom: 8px;
+}
+.hmis-error-hint {
+  font-family: 'Inter', sans-serif; font-size: 12px; color: #94A3B8;
 }
