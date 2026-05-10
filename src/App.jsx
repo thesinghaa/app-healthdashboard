@@ -8,8 +8,8 @@ export default function App() {
   const [view, setView] = useState({ page: 'home', program: null, division: null });
 
   const goToDetail = (program, division) => {
-    if (division && division.id === 'ncd') {
-      setView({ page: 'ncd', program, division });
+    if (division && division.id === 'rch') {
+      setView({ page: 'rch', program, division });
       window.scrollTo(0, 0);
     } else {
       setView({ page: 'detail', program, division });
@@ -21,8 +21,8 @@ export default function App() {
     setView({ page: 'home', program: null, division: null });
   };
 
-  if (view.page === 'ncd') {
-    return <NCDDetailPage onBack={goHome} />;
+  if (view.page === 'rch') {
+    return <NCDDetailPage program={view.program} onBack={goHome} />;
   }
 
   return view.page === 'home'

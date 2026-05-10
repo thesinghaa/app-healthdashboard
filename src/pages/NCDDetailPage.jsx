@@ -222,12 +222,25 @@ function fmt(n) {
   return n.toLocaleString();
 }
 
+/* ── RCH programme → default HMIS category ──────────────────────── */
+const PROGRAM_TO_CAT = {
+  'maternal-health': 'M1',
+  'jsy':             'M2',
+  'cac':             'M3',
+  'pcpndt':          'M4',
+  'child-health':    'M4',
+  'immunization':    'M9',
+  'adolescent-health':'M5',
+  'family-planning': 'M8',
+  'nutrition':       'M5',
+};
+
 /* ── Main page ───────────────────────────────────────────────────── */
-export default function NCDDetailPage({ onBack }) {
+export default function NCDDetailPage({ program, onBack }) {
   const wrapRef = useRef(null);
 
   const [rawRows,    setRawRows]    = useState(null);
-  const [activeCat,  setActiveCat]  = useState('M1');
+  const [activeCat,  setActiveCat]  = useState(PROGRAM_TO_CAT[program?.id] ?? 'M1');
   const [activeYear, setActiveYear] = useState('2025');
   const [isLive,     setIsLive]     = useState(false);
   const [fetchError, setFetchError] = useState(null);
@@ -282,8 +295,10 @@ export default function NCDDetailPage({ onBack }) {
             <span className="back-chevron">←</span> Back to Overview
           </button>
           <div className="detail-breadcrumb">
-            <span className="ncd-badge">HMIS</span>
-            <span className="detail-prog-name">Programme Data — All Districts</span>
+            <span className="ncd-badge" style={{ background: '#266b6e' }}>RCH</span>
+            <span className="detail-prog-name">
+              {program?.name ? `${program.name} — HMIS Data` : 'RCH Programme Data'}
+            </span>
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:10 }}>
             {isLive && (
@@ -516,8 +531,8 @@ export default function NCDDetailPage({ onBack }) {
       </div>
 
       <footer className="detail-footer">
-        Source: HMIS Monthly Data — Arunachal Pradesh, {activeYear}.
-        Categories: M1 Ante Natal Care · M2 Deliveries · M3 C-Sections · M4 Pregnancy &amp; Newborn ·
+        Source: HMIS Monthly Data — Arunachal Pradesh, {activeYear}. RCH Programme categories:
+        M1 Ante Natal Care · M2 Deliveries · M3 C-Sections · M4 Pregnancy &amp; Newborn ·
         M5 Anaemia Mukt Bharat · M8 Family Planning · M9 Child Immunisation.
         Ministry of Health &amp; Family Welfare, Govt. of India.
       </footer>
