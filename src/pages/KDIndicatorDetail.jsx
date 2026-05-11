@@ -552,49 +552,134 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
                   HMIS · {years.at(-1)} cumulative · all districts
                 </span>
               </div>
-              {(() => {
-                const sunLabels  = ['Arunachal Pradesh', ...distData.map(d => d.district)];
-                const sunParents = ['', ...distData.map(() => 'Arunachal Pradesh')];
-                const sunValues  = [
-                  distData.reduce((s, d) => s + d.value, 0),
-                  ...distData.map(d => d.value),
-                ];
-                const distTrace = {
-                  type: 'sunburst',
-                  labels: sunLabels,
-                  parents: sunParents,
-                  values: sunValues,
-                  branchvalues: 'total',
-                  marker: {
-                    colorscale: [
-                      [0, `${stColor}40`],
-                      [1, stColor],
-                    ],
-                    colors: sunValues,
-                    coloraxis: 'coloraxis',
-                  },
-                  hovertemplate: '<b>%{label}</b><br>%{value:,}<extra></extra>',
-                  textfont: { family: "'Inter', sans-serif", size: 11 },
-                  insidetextorientation: 'radial',
-                  leaf: { opacity: 0.9 },
-                };
-                const distLayout = {
-                  paper_bgcolor: 'transparent',
-                  plot_bgcolor:  'transparent',
-                  margin: { t: 10, b: 10, l: 10, r: 10 },
-                  height: 380,
-                  coloraxis: { showscale: false },
-                };
-                return (
-                  <Plot
-                    data={[distTrace]}
-                    layout={distLayout}
-                    config={{ displayModeBar: false, responsive: true }}
-                    style={{ width: '100%' }}
-                    useResizeHandler
-                  />
-                );
-              })()}
+
+              <div className="dist-two-col">
+
+                {/* ── Sunburst ── */}
+                {(() => {
+                  const stateTotal = distData.reduce((s, d) => s + d.value, 0);
+                  const sunLabels  = ['Arunachal Pradesh', ...distData.map(d => d.district)];
+                  const sunParents = ['', ...distData.map(() => 'Arunachal Pradesh')];
+                  const sunValues  = [stateTotal, ...distData.map(d => d.value)];
+                  const distTrace = {
+                    type: 'sunburst',
+                    labels: sunLabels,
+                    parents: sunParents,
+                    values: sunValues,
+                    branchvalues: 'total',
+                    marker: {
+                      colorscale: [[0, `${stColor}30`], [1, stColor]],
+                      colors: sunValues,
+                      coloraxis: 'coloraxis',
+                      line: { color: '#ffffff', width: 1.5 },
+                    },
+                    hovertemplate: '<b>%{label}</b><br>%{value:,} · %{percentRoot:.1%} of state<extra></extra>',
+                    textfont: { family: "'Inter', sans-serif", size: 11, color: '#ffffff' },
+                    insidetextorientation: 'radial',
+                    leaf: { opacity: 0.92 },
+                  };
+                  const distLayout = {
+                    paper_bgcolor: 'transparent',
+                    plot_bgcolor:  'transparent',
+                    margin: { t: 6, b: 6, l: 6, r: 6 },
+                    height: 380,
+                    coloraxis: { showscale: false },
+                  };
+                  return (
+                    <div className="dist-chart-wrap">
+                      <Plot
+                        data={[distTrace]}
+                        layout={distLayout}
+                        config={{ displayModeBar: false, responsive: true }}
+                        style={{ width: '100%' }}
+                        useResizeHandler
+                      />
+                    </div>
+                  );
+                })()}
+
+                {/* ── Insight panel ── */}
+                {(() => {
+                  const stateTotal   = distData.reduce((s, d) => s + d.value, 0);
+                  const top3         = distData.slice(0, 3);
+                  const bottom3      = [...distData].sort((a,b) => a.value - b.value).slice(0, 3);
+                  const top3Share    = Math.round((top3.reduce((s,d)=>s+d.value,0)/stateTotal)*100);
+                  const topDist      = distData[0];
+                  const topShare     = Math.round((topDist.value/stateTotal)*100);
+                  const allDistricts = DISTRICTS.length;
+                  const reporting    = distData.length;
+                  const noData       = DISTRICTS.filter(d => !distData.find(r => r.district === d));
+
+                  /* Simple interpretive sentence */
+                  const concentration = top3Share >= 50
+                    ? `The top 3 districts account for ${top3Share}% of the state total, indicating significant geographic concentration.`
+                    : `Cases are relatively spread across districts — the top 3 account for ${top3Share}% of the state total.`;
+
+                  return (
+                    <div className="dist-insight-panel">
+
+                      {/* State total */}
+                      <div className="dist-insight-block">
+                        <div className="dist-insight-label">State Total ({years.at(-1)})</div>
+                        <div className="dist-insight-value" style={{ color: stColor }}>
+                          {fmt(stateTotal)}
+                        </div>
+                        <div className="dist-insight-sub">
+                          {reporting} of {allDistricts} districts reporting
+                        </div>
+                      </div>
+
+                      {/* Top districts */}
+                      <div className="dist-insight-block">
+                        <div className="dist-insight-label">Highest Reporting Districts</div>
+                        <div className="dist-rank-list">
+                          {top3.map((d, i) => (
+                            <div key={d.district} className="dist-rank-row">
+                              <span className="dist-rank-no" style={{ color: stColor }}>#{i+1}</span>
+                              <span className="dist-rank-name">{d.district}</span>
+                              <span className="dist-rank-val">{fmt(d.value)}</span>
+                              <span className="dist-rank-pct">
+                                {Math.round((d.value/stateTotal)*100)}%
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Lowest districts */}
+                      <div className="dist-insight-block">
+                        <div className="dist-insight-label">Lowest Reporting Districts</div>
+                        <div className="dist-rank-list">
+                          {bottom3.map((d, i) => (
+                            <div key={d.district} className="dist-rank-row">
+                              <span className="dist-rank-no" style={{ color: '#DC2626' }}>↓</span>
+                              <span className="dist-rank-name">{d.district}</span>
+                              <span className="dist-rank-val">{fmt(d.value)}</span>
+                              <span className="dist-rank-pct">
+                                {Math.round((d.value/stateTotal)*100)}%
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Narrative */}
+                      <div className="dist-insight-narrative">
+                        <strong>{topDist.district}</strong> leads with{' '}
+                        <strong>{fmt(topDist.value)}</strong> ({topShare}% of state total).{' '}
+                        {concentration}
+                        {noData.length > 0 && (
+                          <> <span className="dist-no-data-note">
+                            No data: {noData.slice(0,3).join(', ')}{noData.length > 3 ? ` +${noData.length-3} more` : ''}.
+                          </span></>
+                        )}
+                      </div>
+
+                    </div>
+                  );
+                })()}
+
+              </div>
             </div>
           </div>
         )}

@@ -1849,3 +1849,124 @@
   .kdi-nfhs-row { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 4px; }
   .kdi-nfhs-vals { flex-wrap: wrap; }
 }
+
+/* ── District Performance — two-column layout ────────────────────── */
+.dist-two-col {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  align-items: start;
+}
+.dist-chart-wrap {
+  min-width: 0;
+}
+
+/* ── Insight panel ───────────────────────────────────────────────── */
+.dist-insight-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 4px 0;
+}
+.dist-insight-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dist-insight-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+.dist-insight-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.dist-insight-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+/* ── Rank list ───────────────────────────────────────────────────── */
+.dist-rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1.5px solid #E8ECF0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dist-rank-row {
+  display: grid;
+  grid-template-columns: 24px 1fr 52px 36px;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid #F1F5F9;
+  background: #ffffff;
+  transition: background 0.15s;
+}
+.dist-rank-row:last-child { border-bottom: none; }
+.dist-rank-row:hover { background: #F8FAFC; }
+.dist-rank-no {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+}
+.dist-rank-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dist-rank-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  text-align: right;
+}
+.dist-rank-pct {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #94A3B8;
+  text-align: right;
+}
+
+/* ── Narrative text ──────────────────────────────────────────────── */
+.dist-insight-narrative {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #374151;
+  padding: 14px 16px;
+  background: #F8FAFC;
+  border-left: 3px solid #E2E8F0;
+  border-radius: 0 8px 8px 0;
+}
+.dist-no-data-note {
+  color: #94A3B8;
+  font-size: 12px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .dist-two-col { grid-template-columns: 1fr; }
+  .dist-insight-panel { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+  .dist-insight-block { min-width: 200px; }
+}
+@media (max-width: 580px) {
+  .dist-insight-panel { flex-direction: column; }
+  .dist-insight-value { font-size: 30px; }
+}
