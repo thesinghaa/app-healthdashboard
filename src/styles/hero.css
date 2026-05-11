@@ -50,6 +50,7 @@
   overflow: hidden;
   background: linear-gradient(135deg, #e8f6f4 0%, #d4eeea 50%, #bfe3de 100%);
   padding: 4px 0;
+  height: 80px;
   display: flex;
   align-items: center;
 }
