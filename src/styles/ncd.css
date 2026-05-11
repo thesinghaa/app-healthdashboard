@@ -1984,3 +1984,173 @@
   .dist-insight-panel { flex-direction: column; }
   .dist-insight-value { font-size: 30px; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   FY 2025-26 Performance card — redesigned
+   ════════════════════════════════════════════════════════════════════ */
+
+.perf-card {
+  background: #ffffff;
+  border: 1px solid #E8ECF0;
+  border-left: 5px solid #0A7B6C; /* overridden inline by status color */
+  border-radius: 14px;
+  padding: 26px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  box-shadow: 0 2px 16px rgba(26,31,54,0.06), 0 1px 4px rgba(26,31,54,0.04);
+}
+
+/* Header */
+.perf-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.perf-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.2px;
+}
+.perf-status-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Stat columns */
+.perf-stats {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+}
+.perf-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-right: 32px;
+}
+.perf-stat--featured {
+  flex: 1;
+}
+.perf-stat-divider {
+  width: 1px;
+  height: 56px;
+  background: #E8ECF0;
+  flex-shrink: 0;
+  margin-right: 32px;
+  align-self: center;
+}
+.perf-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #94A3B8;
+}
+.perf-stat-target {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 38px;
+  font-weight: 800;
+  color: #334155;
+  line-height: 1;
+  letter-spacing: -1.5px;
+}
+.perf-stat-ach {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.perf-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+/* Progress bar */
+.perf-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.perf-progress-track {
+  position: relative;
+  height: 8px;
+  background: #F1F5F9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.perf-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-width: 3px;
+  opacity: 0.80;
+}
+.perf-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.perf-prog-ach-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+.perf-prog-pct {
+  font-weight: 500;
+  opacity: 0.70;
+}
+.perf-prog-target-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #94A3B8;
+  letter-spacing: 0.02em;
+}
+
+/* Fraction row */
+.perf-fraction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #F1F5F9;
+  flex-wrap: wrap;
+}
+.perf-fraction-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #94A3B8;
+}
+.perf-fraction-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A1F36;
+}
+.perf-fraction-sep {
+  font-size: 20px;
+  color: #CBD5E1;
+  margin: 0 4px;
+  font-weight: 300;
+}

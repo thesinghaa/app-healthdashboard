@@ -306,6 +306,16 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
   const st       = kdStatus(indicator ?? {});
   const stColor  = S_COLOR[st];
 
+  const gapVal = (indicator?.achievement != null && indicator?.target != null)
+    ? (indicator.lowerIsBetter
+      ? indicator.target - indicator.achievement
+      : indicator.achievement - indicator.target)
+    : null;
+
+  const pct = (!indicator?.lowerIsBetter && indicator?.achievement != null && indicator?.target != null && indicator.target > 0)
+    ? Math.min((indicator.achievement / indicator.target) * 100, 100)
+    : null;
+
   /* HMIS fetch */
   useEffect(() => {
     if (!indicator?.hmisCode) return;
@@ -421,41 +431,81 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
           </div>
         </div>
 
-        {/* ── Target vs Achievement details — shown first so headline number leads ── */}
+        {/* ── FY 2025-26 Performance — redesigned ─────────────────────── */}
         <div className="kdi-section">
-          <div className="ncd-card">
-            <div className="ncd-card-header">
-              <h3>FY 2025-26 Performance</h3>
+          <div className="perf-card" style={{ borderLeftColor: stColor }}>
+
+            {/* Header */}
+            <div className="perf-card-header">
+              <span className="perf-card-title">FY 2025-26 Performance</span>
+              <span className="perf-status-badge" style={{ background: S_BG[st], color: stColor }}>
+                {S_LABEL[st]}
+              </span>
             </div>
-            <div className="kdi-numbers">
-              <div className="kdi-number-block">
-                <div className="kdi-num-label">Target</div>
-                <div className="kdi-target-num">
+
+            {/* Stat columns */}
+            <div className="perf-stats">
+              <div className="perf-stat">
+                <div className="perf-stat-label">Target</div>
+                <div className="perf-stat-val perf-stat-target">
                   {indicator?.targetLabel ?? (indicator?.target != null ? `${indicator.target}${indicator?.unit ?? ''}` : '—')}
                 </div>
               </div>
-              <div className="kdi-number-block" style={{ flex: 1 }}>
-                <div className="kdi-num-label">Achievement (FY 2025-26)</div>
-                <div className="kdi-ach-num" style={{ color: stColor }}>
+
+              <div className="perf-stat-divider" />
+
+              <div className="perf-stat perf-stat--featured">
+                <div className="perf-stat-label">Achievement</div>
+                <div className="perf-stat-ach" style={{ color: stColor }}>
                   {indicator?.achievedLabel ?? (indicator?.achievement != null ? `${indicator.achievement}${indicator?.unit ?? ''}` : '—')}
                 </div>
               </div>
-              <div className="kdi-number-block">
-                <div className="kdi-num-label">Status</div>
-                <div className="kdi-status-chip" style={{ background: S_BG[st], color: stColor }}>
-                  {S_LABEL[st]}
+
+              {gapVal != null && (
+                <>
+                  <div className="perf-stat-divider" />
+                  <div className="perf-stat">
+                    <div className="perf-stat-label">{gapVal >= 0 ? 'Surplus' : 'Deficit'}</div>
+                    <div className="perf-stat-val" style={{ color: gapVal >= 0 ? '#059669' : stColor }}>
+                      {gapVal >= 0 ? '+' : ''}{gapVal.toFixed(1)}{indicator?.unit ?? ''}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Progress bar */}
+            {pct != null && (
+              <div className="perf-progress-wrap">
+                <div className="perf-progress-track">
+                  <div
+                    className="perf-progress-fill"
+                    style={{ width: `${pct}%`, background: stColor }}
+                  />
+                </div>
+                <div className="perf-progress-labels">
+                  <span className="perf-prog-ach-label" style={{ color: stColor }}>
+                    {indicator?.achievedLabel ?? `${indicator.achievement}${indicator?.unit ?? ''}`}
+                    <span className="perf-prog-pct"> · {pct.toFixed(1)}% of target</span>
+                  </span>
+                  <span className="perf-prog-target-label">
+                    Target {indicator?.targetLabel ?? `${indicator.target}${indicator?.unit ?? ''}`}
+                  </span>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Numerator / Denominator */}
             {indicator?.numerator != null && indicator?.denominator != null && (
-              <div className="kdi-count-row">
-                <span className="kdi-count-label">Numerator</span>
-                <span className="kdi-count-val">{fmt(indicator.numerator)}</span>
-                <span className="kdi-count-sep">/</span>
-                <span className="kdi-count-label">Denominator</span>
-                <span className="kdi-count-val">{fmt(indicator.denominator)}</span>
+              <div className="perf-fraction">
+                <span className="perf-fraction-label">Numerator</span>
+                <span className="perf-fraction-val">{fmt(indicator.numerator)}</span>
+                <span className="perf-fraction-sep">/</span>
+                <span className="perf-fraction-label">Denominator</span>
+                <span className="perf-fraction-val">{fmt(indicator.denominator)}</span>
               </div>
             )}
+
           </div>
         </div>
 
