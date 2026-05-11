@@ -9,7 +9,7 @@
   grid-template-columns: 1.6fr 1fr 0.8fr;
   grid-template-rows: 1fr 1.12fr;
   column-gap: 12px;
-  row-gap: 8px;
+  row-gap: 12px;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -28,7 +28,7 @@
 /*   the glass effect stays calm and non-alarming.                   */
 .card-rch  { --chip: #0F766E; --chip-rgb: 15,118,110;  }
 .card-ndcp { --chip: #7C3AED; --chip-rgb: 124,58,237;  }
-.card-ncd  { --chip: #DC2626; --chip-rgb: 109,40,217;  }
+.card-ncd  { --chip: #6D28D9; --chip-rgb: 109,40,217;  }
 .card-hss  { --chip: #1D4ED8; --chip-rgb: 29,78,216;   }
 
 /* ── Section card — Apple-style glass panel ─────────────────────── */
@@ -287,9 +287,9 @@
 .prog-key-metric {
   display: block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11.5px;
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -314,14 +314,14 @@
 /* ── RCH — 2-column, 5 rows — compact but metrics visible ─────── */
 .rch-body .programme-row   { padding: 7px 10px; gap: 2px; }
 .rch-body .programme-title { font-size: 11.5px; }
-.rch-body .prog-key-metric { font-size: 10.5px; display: block; }
+.rch-body .prog-key-metric { font-size: 12px; display: block; }
 .rch-body .programme-desc  { display: none; }
 .rch-body .status-label    { font-size: 9.5px; padding: 1px 6px; }
 
 /* ── NCD — 3-column, 4 rows — minimum readable for projector ───── */
 .ncd-body .programme-row   { padding: 8px 10px; gap: 3px; }
 .ncd-body .programme-title { font-size: 12px; }
-.ncd-body .prog-key-metric { font-size: 11.5px; }
+.ncd-body .prog-key-metric { font-size: 13px; }
 .ncd-body .programme-desc  { display: none; }
 .ncd-body .status-label    { font-size: 10px; padding: 2px 7px; }
 
@@ -331,7 +331,7 @@
   justify-content: center;
 }
 .card-hss .programme-title  { font-size: 14px; font-weight: 700; white-space: normal; }
-.card-hss .prog-key-metric  { font-size: 12.5px; white-space: normal; }
+.card-hss .prog-key-metric  { font-size: 15px; font-weight: 700; white-space: normal; }
 .card-hss .programme-desc   { font-size: 12px; -webkit-line-clamp: 3; }
 
 /* HSS decorative cross */
