@@ -201,9 +201,9 @@
 }
 
 /* Per-section grid column + row counts */
-.rch-body  { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, 1fr); gap: 6px; }
+.rch-body  { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, 1fr); gap: 6px; overflow-y: auto; max-height: 100%; }
 .ndcp-body { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 6px; }
-.ncd-body  { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: repeat(4, 1fr); gap: 5px; }
+.ncd-body  { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: repeat(4, 1fr); gap: 5px; overflow-y: auto; max-height: 100%; }
 .hss-body  { grid-template-columns: 1fr; grid-template-rows: repeat(2, 1fr); gap: 10px; }
 
 .rch-body .row-featured { grid-column: 1 / -1; }
@@ -319,7 +319,7 @@
 .rch-body .status-label    { font-size: 9.5px; padding: 1px 6px; }
 
 /* ── NCD — 3-column, 4 rows — minimum readable for projector ───── */
-.ncd-body .programme-row   { padding: 8px 10px; gap: 3px; }
+.ncd-body .programme-row   { padding: 5px 10px; gap: 3px; }
 .ncd-body .programme-title { font-size: 12px; }
 .ncd-body .prog-key-metric { font-size: 13px; }
 .ncd-body .programme-desc  { display: none; }
