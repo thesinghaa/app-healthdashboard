@@ -9,7 +9,7 @@
   grid-template-columns: 1.6fr 1fr 0.8fr;
   grid-template-rows: 1fr 1fr;
   column-gap: 10px;
-  row-gap: 8px;
+  row-gap: 10px;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -63,7 +63,7 @@
 /* ── Card header ────────────────────────────────────────────────── */
 .bento-card .card-header {
   position: relative;
-  padding: 7px 14px;
+  padding: 10px 14px;
   border-bottom: 1px solid #F3F4F6;
   background: #FFFFFF;
   border-radius: 14px 14px 0 0;
@@ -193,7 +193,7 @@
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 6px 8px 8px;
+  padding: 9px 8px 9px;
   display: grid;
   gap: 6px;
   align-content: stretch;
@@ -215,7 +215,7 @@
   background: #FFFFFF;
   border: 1px solid #E5E7EB;
   border-radius: 10px;
-  padding: 6px 10px;
+  padding: 9px 10px;
   height: 100%;
   min-height: 0;
   cursor: pointer;
@@ -312,14 +312,14 @@
 }
 
 /* ── RCH — 2-column, 5 rows — compact but metrics visible ─────── */
-.rch-body .programme-row   { padding: 5px 8px; gap: 2px; }
+.rch-body .programme-row   { padding: 8px 8px; gap: 2px; }
 .rch-body .programme-title { font-size: 11.5px; }
 .rch-body .prog-key-metric { font-size: 12px; display: block; }
 .rch-body .programme-desc  { display: none; }
 .rch-body .status-label    { font-size: 9.5px; padding: 1px 6px; }
 
 /* ── NCD — 3-column, 4 rows — minimum readable for projector ───── */
-.ncd-body .programme-row   { padding: 4px 8px; gap: 3px; }
+.ncd-body .programme-row   { padding: 7px 8px; gap: 3px; }
 .ncd-body .programme-title { font-size: 12px; }
 .ncd-body .prog-key-metric { font-size: 13px; }
 .ncd-body .programme-desc  { display: none; }
@@ -327,7 +327,7 @@
 
 /* ── HSS — 2 large rows ─────────────────────────────────────────── */
 .card-hss .programme-row {
-  padding: 10px 14px;
+  padding: 13px 14px;
   justify-content: center;
 }
 .card-hss .programme-title  { font-size: 14px; font-weight: 700; white-space: normal; }
