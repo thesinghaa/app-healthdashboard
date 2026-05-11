@@ -134,53 +134,67 @@
   line-height: 1;
 }
 
-/* ── Summary stat pills ─────────────────────────────────────────── */
+/* ── Summary stat bar — single connected strip ──────────────────── */
 .home-summary {
   display: flex;
   align-items: stretch;
-  gap: 10px;
   flex: 1;
   justify-content: center;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.80);
+  border-radius: 50px;
+  overflow: hidden;
+  max-width: 520px;
 }
 
-/* All pills: fixed width so every capsule is the same size */
+/* Each segment: number + label in a row */
 .hs-pill {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 96px;
-  flex-shrink: 0;
-  padding: 7px 0;
-  border-radius: 50px;
-  font-weight: 700;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  gap: 8px;
+  flex: 1;
+  padding: 8px 12px;
+  position: relative;
+  transition: filter 0.15s ease;
 }
-.hs-pill:hover { transform: translateY(-1px); box-shadow: var(--shm); }
+.hs-pill:hover { filter: brightness(0.94); }
+
+/* Divider between segments */
+.hs-pill + .hs-pill::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(0,0,0,0.10);
+}
 
 .hs-val {
   font-family: 'JetBrains Mono', monospace;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
-  margin-bottom: 3px;
 }
 .hs-lbl {
   font-family: 'Inter', sans-serif;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.7px;
+  line-height: 1.2;
 }
 
-/* Solid coloured pill backgrounds */
+/* Segment backgrounds and colours */
 .hs-total  { background: var(--navy-dark); }
 .hs-total  .hs-val { color: #FFFFFF; }
-.hs-total  .hs-lbl { color: rgba(255,255,255,0.75); }
+.hs-total  .hs-lbl { color: rgba(255,255,255,0.72); }
 
-.hs-red    { background: var(--red-bg); border: 1px solid var(--red-bdr); }
+.hs-red    { background: var(--red-bg); }
 .hs-red    .hs-val { color: var(--red-txt); }
-.hs-red    .hs-lbl { color: var(--red-txt); opacity: 0.75; }
+.hs-red    .hs-lbl { color: var(--red-txt); opacity: 0.78; }
 
 .hs-yellow { background: var(--yellow); }
 .hs-yellow .hs-val { color: var(--navy-dark); }
