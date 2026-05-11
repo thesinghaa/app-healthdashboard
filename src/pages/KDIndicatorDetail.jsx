@@ -612,19 +612,15 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
                   const sunParents = ['', ...distData.map(() => 'Arunachal Pradesh')];
                   const sunValues  = [stateTotal, ...distData.map(d => d.value)];
 
-                  /* Per-segment opacity heatmap: 60% → 100% of status colour.
-                     Avoids the near-invisible transparent segments from hex alpha. */
-                  const maxDist = Math.max(...distData.map(d => d.value));
-                  const minDist = Math.min(...distData.map(d => d.value));
-                  const dRange  = maxDist - minDist || 1;
-                  const [sr, sg, sb] = stColor.slice(1).match(/.{2}/g).map(h => parseInt(h, 16));
+                  /* Categorical palette — 15 vivid colours, all dark enough for white text */
+                  const DIST_PALETTE = [
+                    '#0A7B6C','#0891B2','#1D4ED8','#7C3AED','#BE185D',
+                    '#047857','#0369A1','#6D28D9','#C2410C','#0E7490',
+                    '#065F46','#1E40AF','#5B21B6','#9D174D','#92400E',
+                  ];
                   const distColors = [
-                    'rgba(15,23,42,0.88)',   /* root centre — deep navy anchor */
-                    ...distData.map(d => {
-                      const t  = (d.value - minDist) / dRange;
-                      const op = (0.62 + t * 0.38).toFixed(2);
-                      return `rgba(${sr},${sg},${sb},${op})`;
-                    }),
+                    '#0F172A',   /* root centre — deep navy */
+                    ...distData.map((_, i) => DIST_PALETTE[i % DIST_PALETTE.length]),
                   ];
 
                   const distTrace = {
@@ -635,10 +631,10 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
                     branchvalues: 'total',
                     marker: {
                       colors: distColors,
-                      line: { color: 'rgba(255,255,255,0.90)', width: 2 },
+                      line: { color: '#ffffff', width: 2.5 },
                     },
                     hovertemplate: '<b>%{label}</b><br>%{value:,} · %{percentRoot:.1%} of state<extra></extra>',
-                    texttemplate: '%{label}<br>%{percentRoot:.1%}',
+                    textinfo: 'label+percent root',
                     textfont: { family: "'Inter', sans-serif", size: 13, color: '#ffffff' },
                     insidetextorientation: 'auto',
                     leaf: { opacity: 1 },
@@ -647,7 +643,7 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
                     paper_bgcolor: 'transparent',
                     plot_bgcolor:  'transparent',
                     margin: { t: 6, b: 6, l: 6, r: 6 },
-                    height: 380,
+                    height: 400,
                   };
                   return (
                     <div className="dist-chart-wrap">
