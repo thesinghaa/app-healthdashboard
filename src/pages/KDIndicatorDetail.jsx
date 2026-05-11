@@ -378,11 +378,7 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
     return () => ctx.revert();
   }, [indicator?.no]);
 
-  const handleBack = () => {
-    gsap.to(wrapRef.current, {
-      opacity: 0, y: -12, duration: 0.24, ease: 'power2.in', onComplete: onBack,
-    });
-  };
+  const handleBack = () => onBack();
 
   const YEAR_COLORS = ['#0A7B6C', '#B45309', '#7C3AED'];
 

@@ -233,12 +233,7 @@ export default function KDProgrammePage({ program, division, onBack, onSelectInd
     return () => ctx.revert();
   }, [program?.id, division?.id]);
 
-  const handleBack = () => {
-    gsap.to(wrapRef.current, {
-      opacity: 0, y: -12, duration: 0.25, ease: 'power2.in',
-      onComplete: onBack,
-    });
-  };
+  const handleBack = () => onBack();
 
   return (
     <div className="ncd-root" ref={wrapRef}>

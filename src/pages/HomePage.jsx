@@ -56,12 +56,9 @@ export default function HomePage({ onSelectProgram }) {
     return () => ctx.revert();
   }, []);
 
-  /* Programme row → DetailPage */
+  /* Programme row → DetailPage (flip handled by App) */
   const handleProgramClick = (program, division) => {
-    gsap.to(rootRef.current, {
-      opacity: 0, y: -12, duration: 0.26, ease: 'power2.in',
-      onComplete: () => onSelectProgram(program, division),
-    });
+    onSelectProgram(program, division);
   };
 
   /* Card header → Division overlay */
@@ -74,15 +71,10 @@ export default function HomePage({ onSelectProgram }) {
     setOverlay(null);
   };
 
-  /* Programme clicked inside overlay → DetailPage */
+  /* Programme clicked inside overlay → DetailPage (flip handled by App) */
   const handleOverlayProgram = (program, division) => {
-    gsap.to(rootRef.current, {
-      opacity: 0, y: -12, duration: 0.26, ease: 'power2.in',
-      onComplete: () => {
-        setOverlay(null);
-        onSelectProgram(program, division);
-      },
-    });
+    setOverlay(null);
+    onSelectProgram(program, division);
   };
 
   return (

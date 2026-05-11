@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
+import { gsap } from 'gsap';
 import './styles/index.css';
 import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
@@ -7,71 +8,107 @@ import KDIndicatorDetail from './pages/KDIndicatorDetail';
 
 export default function App() {
   const [view, setView] = useState({
-    page: 'home',
-    program: null,
-    division: null,
-    indicator: null,
+    page: 'home', program: null, division: null, indicator: null,
   });
 
-  const goToDetail = (program, division) => {
-    // All divisions now have KD data — always go to kd-list
-    setView({ page: 'kd-list', program, division, indicator: null });
-    window.scrollTo(0, 0);
-  };
+  const pageRef  = useRef(null);
+  const sheenRef = useRef(null);
+  const viewRef  = useRef(view);
+  viewRef.current = view;
 
-  const goToIndicator = (indicator) => {
-    setView((prev) => ({ ...prev, page: 'kd-indicator', indicator }));
-    window.scrollTo(0, 0);
-  };
+  /* ── Glassmorphism flip transition ───────────────────────────────
+     1. Current page rotates away on Y axis (0 → 90deg)
+     2. Frosted glass sheen peaks at the edge-on midpoint
+     3. State swaps while page is invisible (at 90deg)
+     4. New page flips in from -90deg → 0
+  ─────────────────────────────────────────────────────────────── */
+  const flipTo = useCallback((newView) => {
+    const page  = pageRef.current;
+    const sheen = sheenRef.current;
+    if (!page) { setView(newView); return; }
 
-  const goHome = () => {
-    setView({ page: 'home', program: null, division: null, indicator: null });
-    window.scrollTo(0, 0);
-  };
+    gsap.killTweensOf([page, sheen]);
 
-  const goBack = () => {
-    if (view.page === 'kd-indicator') {
-      setView((prev) => ({ ...prev, page: 'kd-list', indicator: null }));
-      window.scrollTo(0, 0);
-    } else if (view.page === 'kd-list' || view.page === 'detail') {
-      goHome();
+    const tl = gsap.timeline({ defaults: { transformOrigin: '50% 50%' } });
+
+    /* Exit: page sweeps right, sheen rises */
+    tl.to(page,  { rotateY: 90, scale: 0.97, duration: 0.30, ease: 'power2.in' }, 0)
+      .to(sheen, { opacity: 1,               duration: 0.22, ease: 'power2.in' }, 0)
+
+    /* Midpoint: swap content */
+      .add(() => setView(newView), 0.30)
+
+    /* Entry: new page sweeps in from left, sheen drops */
+      .fromTo(page,
+        { rotateY: -90, scale: 0.97 },
+        { rotateY: 0, scale: 1, duration: 0.32, ease: 'power2.out' },
+        0.30,
+      )
+      .to(sheen, { opacity: 0, duration: 0.24, ease: 'power2.out' }, 0.30);
+
+  }, []);
+
+  const goToDetail = useCallback((program, division) => {
+    flipTo({ page: 'kd-list', program, division, indicator: null });
+  }, [flipTo]);
+
+  const goToIndicator = useCallback((indicator) => {
+    flipTo({ ...viewRef.current, page: 'kd-indicator', indicator });
+  }, [flipTo]);
+
+  const goHome = useCallback(() => {
+    flipTo({ page: 'home', program: null, division: null, indicator: null });
+  }, [flipTo]);
+
+  const goBack = useCallback(() => {
+    const cur = viewRef.current;
+    if (cur.page === 'kd-indicator') {
+      flipTo({ ...cur, page: 'kd-list', indicator: null });
     } else {
       goHome();
     }
-  };
+  }, [flipTo, goHome]);
 
-  if (view.page === 'home') {
-    return <HomePage onSelectProgram={goToDetail} />;
-  }
-
-  if (view.page === 'kd-list') {
+  const renderPage = () => {
+    if (view.page === 'home') {
+      return <HomePage onSelectProgram={goToDetail} />;
+    }
+    if (view.page === 'kd-list') {
+      return (
+        <KDProgrammePage
+          program={view.program}
+          division={view.division}
+          onBack={goHome}
+          onSelectIndicator={goToIndicator}
+        />
+      );
+    }
+    if (view.page === 'kd-indicator') {
+      return (
+        <KDIndicatorDetail
+          indicator={view.indicator}
+          program={view.program}
+          division={view.division}
+          onBack={goBack}
+        />
+      );
+    }
     return (
-      <KDProgrammePage
+      <DetailPage
         program={view.program}
         division={view.division}
         onBack={goHome}
-        onSelectIndicator={goToIndicator}
       />
     );
-  }
+  };
 
-  if (view.page === 'kd-indicator') {
-    return (
-      <KDIndicatorDetail
-        indicator={view.indicator}
-        program={view.program}
-        division={view.division}
-        onBack={goBack}
-      />
-    );
-  }
-
-  // 'detail' — legacy fallback, kept for any non-KD programmes
   return (
-    <DetailPage
-      program={view.program}
-      division={view.division}
-      onBack={goHome}
-    />
+    <div className="flip-stage">
+      <div className="flip-page" ref={pageRef}>
+        {renderPage()}
+      </div>
+      {/* Frosted glass sheen — visible only during the flip midpoint */}
+      <div className="glass-flip-sheen" ref={sheenRef} />
+    </div>
   );
 }
