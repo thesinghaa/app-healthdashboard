@@ -1660,3 +1660,192 @@
 /* ── Plotly override — remove plotly toolbar chrome ─────────────── */
 .js-plotly-plot .plotly .modebar { display: none !important; }
 .js-plotly-plot .plotly-notifier { display: none !important; }
+
+/* ══════════════════════════════════════════════════════════════════
+   KDIndicatorDetail — Design refresh: bold/matte-black, larger fonts
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Meta strip layout ───────────────────────────────────────────── */
+.kdi-meta-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.kdi-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Indicator name & statement ──────────────────────────────────── */
+.kdi-name {
+  font-size: 30px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.22;
+  letter-spacing: -0.3px;
+}
+.kdi-statement {
+  font-size: 15px;
+  line-height: 1.78;
+  color: #374151;
+}
+.kdi-no-badge { font-size: 13px; font-weight: 800; }
+.kdi-type-pill { font-size: 10.5px; letter-spacing: 0.10em; }
+.kdi-source-tag { font-size: 11px; }
+
+/* ── Card header stronger ────────────────────────────────────────── */
+.ncd-card-header h3 {
+  font-size: 17px;
+  color: #111827;
+}
+.ncd-card-note { font-size: 12px; }
+
+/* ── Numbers card — target / achievement / status ────────────────── */
+.kdi-num-label {
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  color: #64748B;
+}
+.kdi-target-num {
+  font-size: 42px;
+  color: #0F172A;
+  letter-spacing: -1px;
+}
+.kdi-ach-num {
+  font-size: 50px;
+  letter-spacing: -1.5px;
+}
+.kdi-status-chip {
+  font-size: 13px;
+  padding: 7px 20px;
+  border-radius: 24px;
+  letter-spacing: 0.07em;
+}
+.kdi-count-label {
+  font-size: 11px;
+  color: #475569;
+  letter-spacing: 0.07em;
+}
+.kdi-count-val {
+  font-size: 18px;
+  color: #0F172A;
+  font-weight: 800;
+}
+.kdi-count-sep { font-size: 22px; color: #CBD5E1; }
+
+/* ── NFHS table header ───────────────────────────────────────────── */
+.kdi-nfhs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 0 10px;
+  border-bottom: 2px solid #111827;
+  margin-bottom: 2px;
+}
+.kdi-nfhs-head-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #475569;
+  flex: 1;
+}
+.kdi-nfhs-head-vals {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.kdi-nfhs-head-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  min-width: 64px;
+  text-align: center;
+}
+.kdi-nfhs-head-val.h4 { color: #64748B; }
+.kdi-nfhs-head-val.h5 { color: #065F46; }
+.kdi-nfhs-head-arrow {
+  display: inline-block;
+  width: 16px;
+}
+.kdi-nfhs-head-change {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+  min-width: 68px;
+  text-align: right;
+}
+
+/* ── NFHS table rows ─────────────────────────────────────────────── */
+.kdi-nfhs-row {
+  padding: 15px 6px;
+  border-bottom: 1px solid #E8ECF0;
+  border-radius: 6px;
+}
+.kdi-nfhs-row:nth-child(even) {
+  background: #F8FAFC;
+}
+.kdi-nfhs-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.5;
+}
+
+/* ── NFHS value pills ────────────────────────────────────────────── */
+.nfhs-val {
+  font-size: 14.5px;
+  font-weight: 700;
+  min-width: 64px;
+  text-align: center;
+  padding: 4px 12px;
+  border-radius: 7px;
+  letter-spacing: 0.01em;
+}
+.nfhs-val.nfhs4 {
+  color: #334155;
+  background: #F1F5F9;
+}
+.nfhs-val.nfhs5 {
+  color: #065F46;
+  background: #ECFDF5;
+}
+.nfhs-arrow { font-size: 16px; color: #94A3B8; }
+.nfhs-diff {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 7px;
+  min-width: 68px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.nfhs-source-note {
+  font-size: 11.5px;
+  margin-top: 18px;
+  padding-top: 12px;
+  color: #64748B;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .kdi-name { font-size: 24px; }
+  .kdi-target-num { font-size: 34px; }
+  .kdi-ach-num { font-size: 40px; }
+  .kdi-nfhs-head { display: none; }
+}
+@media (max-width: 580px) {
+  .kdi-name { font-size: 20px; }
+  .kdi-nfhs-row { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 4px; }
+  .kdi-nfhs-vals { flex-wrap: wrap; }
+}

@@ -396,11 +396,13 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
         {/* ── KD meta strip ────────────────────────────────────────── */}
         <div className="kdi-section">
           <div className="kdi-meta-strip">
-            <span className="kdi-no-badge" style={{ background:`${stColor}18`, color:stColor }}>
-              KD {indicator?.no}
-            </span>
-            <span className="kdi-type-pill">{indicator?.type}</span>
-            <span className="kdi-source-tag">Source: {indicator?.source}</span>
+            <div className="kdi-meta-top">
+              <span className="kdi-no-badge" style={{ background:`${stColor}18`, color:stColor }}>
+                KD {indicator?.no}
+              </span>
+              <span className="kdi-type-pill">{indicator?.type}</span>
+              <span className="kdi-source-tag">Source: {indicator?.source}</span>
+            </div>
             <div className="kdi-name">{indicator?.indicator}</div>
             {indicator?.statement && (
               <div className="kdi-statement">{indicator.statement}</div>
@@ -430,6 +432,9 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
         {/* ── Target vs Achievement details ────────────────────────── */}
         <div className="kdi-section">
           <div className="ncd-card">
+            <div className="ncd-card-header">
+              <h3>FY 2025-26 Performance</h3>
+            </div>
             <div className="kdi-numbers">
               <div className="kdi-number-block">
                 <div className="kdi-num-label">Target</div>
@@ -592,6 +597,16 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
                 <span className="ncd-card-note">NFHS-4 (2015-16) vs NFHS-5 (2019-21) · Arunachal Pradesh</span>
               </div>
               <div className="kdi-nfhs-table">
+                {/* Table header */}
+                <div className="kdi-nfhs-head">
+                  <div className="kdi-nfhs-head-label">Indicator</div>
+                  <div className="kdi-nfhs-head-vals">
+                    <span className="kdi-nfhs-head-val h4">NFHS-4</span>
+                    <span className="kdi-nfhs-head-arrow" />
+                    <span className="kdi-nfhs-head-val h5">NFHS-5</span>
+                    <span className="kdi-nfhs-head-change">Change</span>
+                  </div>
+                </div>
                 {nfhsRows.map((d, i) => {
                   const diff = d.nfhs4 != null && d.nfhs5 != null
                     ? (d.nfhs5 - d.nfhs4).toFixed(1) : null;
@@ -610,7 +625,10 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
                           {d.nfhs5 != null ? `${d.nfhs5}${d.unit}` : '—'}
                         </span>
                         {diff != null && (
-                          <span className="nfhs-diff" style={{ color: diffColor }}>
+                          <span className="nfhs-diff" style={{
+                            color: diffColor,
+                            background: improved == null ? '#F8FAFC' : improved ? '#ECFDF5' : '#FEF2F2',
+                          }}>
                             {improved ? '↑' : '↓'} {parseFloat(diff) > 0 ? '+' : ''}{diff}{d.unit}
                           </span>
                         )}
