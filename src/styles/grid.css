@@ -297,12 +297,12 @@
   overflow: hidden;
 }
 
-/* ── NCD — 3-column, 4 rows — tighter ──────────────────────────── */
+/* ── NCD — 3-column, 4 rows — minimum readable for projector ───── */
 .ncd-body .programme-row   { padding: 8px 10px; gap: 3px; }
-.ncd-body .programme-title { font-size: 11.5px; }
-.ncd-body .prog-key-metric { font-size: 10.5px; }
-.ncd-body .programme-desc  { font-size: 10px; -webkit-line-clamp: 1; }
-.ncd-body .status-label    { font-size: 9px; padding: 1px 6px; }
+.ncd-body .programme-title { font-size: 12px; }
+.ncd-body .prog-key-metric { font-size: 11.5px; }
+.ncd-body .programme-desc  { display: none; }
+.ncd-body .status-label    { font-size: 10px; padding: 2px 7px; }
 
 /* ── HSS — 2 large rows ─────────────────────────────────────────── */
 .card-hss .programme-row {
@@ -328,3 +328,20 @@
 .grid-footnote { font-size: 13px; color: #6B7280; }
 .grid-section  { padding: 16px; }
 .grid-header   { display: none; }
+
+/* ── Division card urgency tinting — projector-readable status signal ── */
+.bento-card--urgent {
+  border-left: 4px solid rgba(220, 38, 38, 0.80);
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.06),
+    0 4px 12px rgba(220,38,38,0.12);
+}
+.bento-card--warning {
+  border-left: 4px solid rgba(217, 119, 6, 0.70);
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.06),
+    0 4px 12px rgba(217,119,6,0.08);
+}
+.bento-card--ok {
+  border-left: 4px solid rgba(5, 150, 105, 0.50);
+}

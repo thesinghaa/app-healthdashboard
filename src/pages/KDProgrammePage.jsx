@@ -123,6 +123,80 @@ function KDRow({ kd, onSelectIndicator }) {
   );
 }
 
+/* ── Critical KDs callout ────────────────────────────────────────── */
+function CriticalKDs({ kds }) {
+  const gapKds = kds.filter(k => kdStatus(k) === 'gap');
+  if (gapKds.length === 0) return null;
+
+  return (
+    <div className="kd-prog-section">
+      <div className="kd-section-eyebrow">Requires Immediate Attention</div>
+      <div style={{
+        background: '#FEF2F2',
+        border: '1.5px solid rgba(220,38,38,0.25)',
+        borderLeft: '4px solid #DC2626',
+        borderRadius: 10,
+        padding: '12px 16px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 8,
+      }}>
+        {gapKds.map(kd => (
+          <div key={kd.no} style={{
+            display: 'flex',
+            alignItems: 'baseline',
+            gap: 12,
+            flexWrap: 'wrap',
+          }}>
+            <span style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 11,
+              fontWeight: 700,
+              color: '#DC2626',
+              background: 'rgba(220,38,38,0.10)',
+              padding: '2px 8px',
+              borderRadius: 6,
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}>
+              KD {kd.no}
+            </span>
+            <span style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 13,
+              fontWeight: 600,
+              color: '#1A1F36',
+              flex: 1,
+              minWidth: 180,
+            }}>
+              {kd.indicator}
+            </span>
+            <span style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 12,
+              color: '#6B7280',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}>
+              Target: {kd.targetLabel ?? (kd.target != null ? `${kd.target}${kd.unit}` : '—')}
+            </span>
+            <span style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 12,
+              fontWeight: 700,
+              color: '#DC2626',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}>
+              Achieved: {kd.achievedLabel ?? (kd.achievement != null ? `${kd.achievement}${kd.unit}` : '—')}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── Main component ──────────────────────────────────────────────── */
 export default function KDProgrammePage({ program, division, onBack, onSelectIndicator }) {
   const wrapRef = useRef(null);
@@ -203,16 +277,16 @@ export default function KDProgrammePage({ program, division, onBack, onSelectInd
           </div>
         </div>
 
-        {/* NFHS strip */}
-        <NfhsStrip nfhsData={program?.nfhsData} />
-
-        {/* KD summary chips */}
+        {/* KD summary chips — performance first so the official sees gap count immediately */}
         {kds.length > 0 && (
           <div className="kd-prog-section">
             <div className="kd-section-eyebrow">Performance Summary — FY 2025-26</div>
             <SummaryChips kds={kds} />
           </div>
         )}
+
+        {/* Critical KDs callout — only rendered when gap KDs exist */}
+        <CriticalKDs kds={kds} />
 
         {/* KD indicator table */}
         <div className="kd-prog-section">
@@ -250,6 +324,9 @@ export default function KDProgrammePage({ program, division, onBack, onSelectInd
             </div>
           )}
         </div>
+
+        {/* NFHS strip — baseline context, after table so it doesn't interrupt the performance view */}
+        <NfhsStrip nfhsData={program?.nfhsData} />
 
       </div>
 

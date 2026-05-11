@@ -206,7 +206,7 @@ function BentoCard({ division, onProgramClick, onSelectDivision }) {
   };
 
   return (
-    <div ref={cardRef} className={`bento-card card-${division.id}`}>
+    <div ref={cardRef} className={`bento-card card-${division.id} ${counts.red >= 2 ? 'bento-card--urgent' : counts.red === 1 ? 'bento-card--warning' : 'bento-card--ok'}`}>
 
       {/* ── Header ───────────────────────────────────────────────── */}
       <div className="card-header">

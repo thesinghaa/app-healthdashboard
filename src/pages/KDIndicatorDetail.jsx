@@ -421,26 +421,7 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
           </div>
         </div>
 
-        {/* ════════════════════════════════════════════════════════════
-            PLOTLY ACHIEVEMENT SUNBURST
-            ════════════════════════════════════════════════════════════ */}
-        <div className="kdi-section">
-          <div className="ncd-card kdi-dial-card">
-            <div className="ncd-card-header">
-              <h3>Achievement Overview — FY 2025-26</h3>
-              <span className="ncd-card-note">
-                Inner ring: time periods (FY 25-26 / NFHS-5 / NFHS-4)&ensp;&middot;&ensp;Outer ring: achieved vs gap
-              </span>
-            </div>
-            <PlotlyAchievementChart
-              indicator={indicator}
-              status={st}
-              nfhsRows={nfhsRows}
-            />
-          </div>
-        </div>
-
-        {/* ── Target vs Achievement details ────────────────────────── */}
+        {/* ── Target vs Achievement details — shown first so headline number leads ── */}
         <div className="kdi-section">
           <div className="ncd-card">
             <div className="ncd-card-header">
@@ -478,6 +459,25 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
           </div>
         </div>
 
+        {/* ════════════════════════════════════════════════════════════
+            PLOTLY ACHIEVEMENT SUNBURST — contextual view after headline numbers
+            ════════════════════════════════════════════════════════════ */}
+        <div className="kdi-section">
+          <div className="ncd-card kdi-dial-card">
+            <div className="ncd-card-header">
+              <h3>Achievement Overview — FY 2025-26</h3>
+              <span className="ncd-card-note">
+                Inner ring: time periods (FY 25-26 / NFHS-5 / NFHS-4)&ensp;&middot;&ensp;Outer ring: achieved vs gap
+              </span>
+            </div>
+            <PlotlyAchievementChart
+              indicator={indicator}
+              status={st}
+              nfhsRows={nfhsRows}
+            />
+          </div>
+        </div>
+
         {/* ── HMIS Monthly Trend ────────────────────────────────────── */}
         {indicator?.hmisCode && (
           <div className="kdi-section">
@@ -504,7 +504,7 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
               )}
 
               {!hmisLoading && !hmisError && trendData.length > 0 && (
-                <ResponsiveContainer width="100%" height={240}>
+                <ResponsiveContainer width="100%" height={320}>
                   <AreaChart data={trendData} margin={{ top: 8, right: 24, left: 0, bottom: 4 }}>
                     <defs>
                       {years.map((yr, i) => (
