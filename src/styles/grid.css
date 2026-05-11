@@ -297,6 +297,13 @@
   overflow: hidden;
 }
 
+/* ── RCH — 2-column, 5 rows — compact but metrics visible ─────── */
+.rch-body .programme-row   { padding: 7px 10px; gap: 2px; }
+.rch-body .programme-title { font-size: 11.5px; }
+.rch-body .prog-key-metric { font-size: 10.5px; display: block; }
+.rch-body .programme-desc  { display: none; }
+.rch-body .status-label    { font-size: 9.5px; padding: 1px 6px; }
+
 /* ── NCD — 3-column, 4 rows — minimum readable for projector ───── */
 .ncd-body .programme-row   { padding: 8px 10px; gap: 3px; }
 .ncd-body .programme-title { font-size: 12px; }
