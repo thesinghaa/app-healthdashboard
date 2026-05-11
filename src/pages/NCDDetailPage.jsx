@@ -5,6 +5,7 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
 import '../styles/ncd.css';
+import KDDetailPage from './KDDetailPage';
 
 /* ── Sheet config ────────────────────────────────────────────────── */
 const SHEET_ID       = '1vsCSdPZpBK5SQw9gppRLEEKDLhj19DHk';
@@ -244,6 +245,7 @@ export default function NCDDetailPage({ program, onBack }) {
   const [activeYear, setActiveYear] = useState('2025');
   const [isLive,     setIsLive]     = useState(false);
   const [fetchError, setFetchError] = useState(null);
+  const [selectedIndicator, setSelectedIndicator] = useState(null);
 
   useEffect(() => {
     fetchSheetData()
@@ -284,6 +286,20 @@ export default function NCDDetailPage({ program, onBack }) {
   /* Trend chart: up to 3 key items */
   const trendItems = keyItems.slice(0, 3);
   const CHART_COLORS = ['#0A7B6C','#B45309','#7C3AED'];
+
+  /* ── 4th layer: render KD detail page when indicator is selected ─ */
+  if (selectedIndicator) {
+    return (
+      <KDDetailPage
+        indicator={selectedIndicator}
+        catCfg={catCfg}
+        rawRows={rawRows}
+        activeYear={activeYear}
+        program={program}
+        onBack={() => setSelectedIndicator(null)}
+      />
+    );
+  }
 
   return (
     <div className="ncd-root" ref={wrapRef}>
@@ -461,20 +477,22 @@ export default function NCDDetailPage({ program, onBack }) {
             <div className="ncd-card">
               <div className="ncd-card-header">
                 <h3>All Indicators — {catCfg.fullName}</h3>
-                <span className="ncd-card-note">State total · {activeYear} · click row to see districts</span>
+                <span className="ncd-card-note">State total · {activeYear} · click row for KD targets &amp; NFHS</span>
               </div>
               <div className="hmis-table">
                 <div className="hmis-table-head">
                   <span>Code</span>
                   <span>Indicator</span>
                   <span className="hmis-col-right">State Total</span>
+                  <span style={{ minWidth: 24 }}></span>
                 </div>
                 {keyItems.map(item => {
                   const val = processed.annual[item.code] ?? 0;
                   return (
                     <div
                       key={item.code}
-                      className={`hmis-table-row ${item.isKpi ? 'hmis-row-kpi' : ''}`}
+                      className={`hmis-table-row hmis-row-clickable ${item.isKpi ? 'hmis-row-kpi' : ''}`}
+                      onClick={() => setSelectedIndicator({ code: item.code, label: item.label, catId: catCfg.id })}
                     >
                       <span className="hmis-code-pill" style={{ background: catCfg.color + '18', color: catCfg.color }}>
                         {item.code}
@@ -483,6 +501,7 @@ export default function NCDDetailPage({ program, onBack }) {
                       <span className="hmis-row-val" style={{ color: catCfg.color }}>
                         {val.toLocaleString()}
                       </span>
+                      <span className="hmis-row-drill">→</span>
                     </div>
                   );
                 })}
@@ -492,7 +511,11 @@ export default function NCDDetailPage({ program, onBack }) {
                   .filter(([code]) => !keyItems.find(k => k.code === code))
                   .sort((a, b) => b[1] - a[1])
                   .map(([code, val]) => (
-                    <div key={code} className="hmis-table-row hmis-row-secondary">
+                    <div
+                      key={code}
+                      className="hmis-table-row hmis-row-secondary hmis-row-clickable"
+                      onClick={() => setSelectedIndicator({ code, label: processed.names[code] ?? code, catId: catCfg.id })}
+                    >
                       <span className="hmis-code-pill" style={{ background: '#F1F5F9', color: '#64748B' }}>
                         {code}
                       </span>
@@ -500,6 +523,7 @@ export default function NCDDetailPage({ program, onBack }) {
                       <span className="hmis-row-val" style={{ color: '#475569' }}>
                         {val.toLocaleString()}
                       </span>
+                      <span className="hmis-row-drill">→</span>
                     </div>
                   ))
                 }
