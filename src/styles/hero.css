@@ -236,10 +236,10 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  padding: 12px;
+  padding: 16px 14px;
   box-sizing: border-box;
-  display: grid;
-  align-content: center;
+  display: flex;
+  align-items: stretch;
 }
 
 /* Decorative icon float animation */
