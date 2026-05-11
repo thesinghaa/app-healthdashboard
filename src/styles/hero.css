@@ -50,7 +50,7 @@
   overflow: hidden;
   background: linear-gradient(135deg, #e8f6f4 0%, #d4eeea 50%, #bfe3de 100%);
   padding: 4px 0;
-  height: 80px;
+  height: 72px;
   display: flex;
   align-items: center;
 }
@@ -237,7 +237,7 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  padding: 16px 14px;
+  padding: 8px 14px 14px 14px;
   box-sizing: border-box;
   display: flex;
   align-items: stretch;
