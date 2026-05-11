@@ -7,9 +7,9 @@
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1.6fr 1fr 0.8fr;
-  grid-template-rows: 1fr 1.18fr;
-  column-gap: 10px;
-  row-gap: 10px;
+  grid-template-rows: 1fr 1.22fr;
+  column-gap: 14px;
+  row-gap: 14px;
   padding: 0;
   align-items: stretch;
   justify-items: stretch;
