@@ -235,8 +235,10 @@
 /* ── Grid area — locked height, no scroll ───────────────────────── */
 .home-grid {
   overflow: hidden;
-  padding: 10px 14px;
+  padding: 14px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Decorative icon float animation */
