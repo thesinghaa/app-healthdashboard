@@ -239,6 +239,7 @@
   padding: 12px;
   box-sizing: border-box;
   display: grid;
+  align-content: center;
 }
 
 /* Decorative icon float animation */
