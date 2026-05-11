@@ -101,7 +101,7 @@ function KDRow({ kd, onSelectIndicator }) {
 
   return (
     <div
-      className="kd-table-row"
+      className={`kd-table-row${st === 'gap' ? ' kd-table-row--gap' : ''}`}
       onClick={() => onSelectIndicator(kd)}
       role="button"
       tabIndex={0}

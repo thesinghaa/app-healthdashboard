@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { DIVISIONS, STATUS_CONFIG } from '../data/programs';
-import DecorativeIcons from '../components/DecorativeIcons';
 import DivisionOverlay from '../components/DivisionOverlay';
 
 function getSummary() {
@@ -89,16 +88,10 @@ export default function HomePage({ onSelectProgram }) {
   return (
     <div className="home-root" ref={rootRef}>
 
-      {/* Layer 0: background gradient */}
+      {/* Layer 0: background dot grid */}
       <div className="home-bg-gradient" />
 
-      {/* Layer 1: decorative medical icons */}
-      <DecorativeIcons />
-
-      {/* Layer 2: frosted glass wash */}
-      <div className="page-glass-overlay" />
-
-      {/* Layer 3: dashboard content */}
+      {/* Layer 1: dashboard content */}
       <div className="home-content">
 
         {/* Header with teal waves + floating glass pill */}
@@ -122,9 +115,8 @@ export default function HomePage({ onSelectProgram }) {
             <div className="glass-navbar">
               <div className="home-brand">
                 <span className="home-state-name">Arunachal Pradesh</span>
-                <span className="home-state-sub">
-                  National Health Mission · Programme Dashboard · NFHS-5 &amp; NPCC Apr 2026
-                </span>
+                <span className="home-state-sub">National Health Mission · Programme Performance Review</span>
+                <span className="home-data-ref">NFHS-5 (2019–21) · HMIS FY 2025-26 · NPCC April 2026</span>
               </div>
 
               <div className="home-summary">

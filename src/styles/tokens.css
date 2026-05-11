@@ -44,15 +44,15 @@
   --ink-light: #475569;
   --ink-faint: #6B7280;
 
-  /* Status */
-  --red-dot:  #C0392B;
+  /* Status — single authoritative values, used everywhere */
+  --red-dot:  #DC2626;
   --red-bdr:  #FECACA;
-  --red-txt:  #C0392B;
+  --red-txt:  #DC2626;
   --red-bg:   #FEF2F2;
 
-  --yel-dot:  #F5C518;
+  --yel-dot:  #D97706;
   --yel-bdr:  #FDE68A;
-  --yel-txt:  #B7770D;
+  --yel-txt:  #D97706;
   --yel-bg:   #FFFBEB;
 
   --grn-dot:  #0E9E8A;

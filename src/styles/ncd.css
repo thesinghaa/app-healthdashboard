@@ -1328,6 +1328,20 @@
 }
 .kd-table-row:last-child { border-bottom: none; }
 
+/* Gap-status rows — permanent left-accent so officials can scan without reading every dot */
+.kd-table-row--gap {
+  background: rgba(220, 38, 38, 0.028);
+  border-left-color: rgba(220, 38, 38, 0.55);
+}
+.kd-table-row--gap:hover,
+.kd-table-row--gap:focus {
+  background: rgba(220, 38, 38, 0.055);
+  border-left-color: rgba(220, 38, 38, 0.80);
+}
+.kd-table-row--gap .kd-ind-name {
+  font-weight: 700;
+}
+
 .kd-num-badge {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;

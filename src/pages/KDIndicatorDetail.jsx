@@ -631,7 +631,7 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
 
                       {/* Top districts */}
                       <div className="dist-insight-block">
-                        <div className="dist-insight-label">Highest Reporting Districts</div>
+                        <div className="dist-insight-label">Leading Districts</div>
                         <div className="dist-rank-list">
                           {top3.map((d, i) => (
                             <div key={d.district} className="dist-rank-row">
@@ -648,7 +648,7 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
 
                       {/* Lowest districts */}
                       <div className="dist-insight-block">
-                        <div className="dist-insight-label">Lowest Reporting Districts</div>
+                        <div className="dist-insight-label">Districts Needing Attention</div>
                         <div className="dist-rank-list">
                           {bottom3.map((d, i) => (
                             <div key={d.district} className="dist-rank-row">

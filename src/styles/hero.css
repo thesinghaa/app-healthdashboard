@@ -11,11 +11,13 @@
   position: relative;
 }
 
-/* Layer 0: neutral grey page background — white cards pop against this */
+/* Layer 0: neutral page background with subtle dot grid */
 .home-bg-gradient {
   position: fixed;
   inset: 0;
-  background: #F8FAFC;
+  background-color: #F8FAFC;
+  background-image: radial-gradient(circle, rgba(14,158,138,0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
   z-index: 0;
   pointer-events: none;
 }
@@ -29,16 +31,7 @@
   overflow: hidden;
 }
 
-/* Layer 2: neutral wash over decorative icons */
-.page-glass-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  background: rgba(241, 245, 249, 0.50);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  pointer-events: none;
-}
+/* Layer 2: reserved (page-glass-overlay removed — dot grid needs no suppression) */
 
 /* Layer 3: actual dashboard content */
 .home-content {
@@ -130,6 +123,15 @@
   color: var(--ink-faint);
   letter-spacing: 0.8px;
   text-transform: uppercase;
+}
+.home-data-ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--teal-dark);
+  opacity: 0.65;
+  letter-spacing: 0.03em;
+  line-height: 1;
 }
 
 /* ── Summary stat pills ─────────────────────────────────────────── */
