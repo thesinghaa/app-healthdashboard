@@ -8,9 +8,9 @@
   display: grid;
   grid-template-columns: 1.6fr 1fr 0.8fr;
   grid-template-rows: 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 10px;
-  padding: 2px 8px 14px;
+  column-gap: 8px;
+  row-gap: 8px;
+  padding: 2px 6px 6px;
   align-items: stretch;
   justify-items: stretch;
   flex: 1;
@@ -25,33 +25,36 @@
 .card-hss  { grid-column: 3;   grid-row: 2; }
 
 /* ── Division chip colours + RGB tuples for gradient borders ─────── */
+/*   --chip-rgb drives the glass border gradient, independent of     */
+/*   the badge chip colour. NCD uses violet border (not red) so      */
+/*   the glass effect stays calm and non-alarming.                   */
 .card-rch  { --chip: #0F766E; --chip-rgb: 15,118,110;  }
 .card-ndcp { --chip: #7C3AED; --chip-rgb: 124,58,237;  }
-.card-ncd  { --chip: #DC2626; --chip-rgb: 220,38,38;   }
+.card-ncd  { --chip: #DC2626; --chip-rgb: 109,40,217;  }
 .card-hss  { --chip: #1D4ED8; --chip-rgb: 29,78,216;   }
 
 /* ── Section card — Apple-style glass panel ─────────────────────── */
-/*   Gradient border: padding-box stays opaque white;               */
-/*   border-box shows chip-coloured glass gradient (top-left lit).  */
+/*   padding-box: opaque white fill keeps content readable.          */
+/*   border-box:  chip-tinted gradient — bright white top-left,      */
+/*                flows through the card's colour, fades to clear.   */
 .bento-card {
   position: relative;
   background:
     linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)) padding-box,
     linear-gradient(
-      140deg,
-      rgba(255,255,255,0.95)               0%,
-      rgba(var(--chip-rgb,14,158,138),0.50) 18%,
-      rgba(255,255,255,0.20)               50%,
-      rgba(var(--chip-rgb,14,158,138),0.08) 100%
+      145deg,
+      rgba(255,255,255,0.96)               0%,
+      rgba(var(--chip-rgb,14,158,138),0.48) 20%,
+      rgba(255,255,255,0.18)               52%,
+      rgba(var(--chip-rgb,14,158,138),0.07) 100%
     ) border-box;
-  border: 1.5px solid transparent;
+  border: 1px solid transparent;
   border-radius: 14px;
   box-shadow:
     0 2px 8px  rgba(0,0,0,0.06),
     0 6px 20px rgba(0,0,0,0.04),
-    /* top glass catch — light hitting the upper rim */
     inset 0 1px 0 rgba(255,255,255,1.00),
-    inset 1px 0 0 rgba(255,255,255,0.65);
+    inset 1px 0 0 rgba(255,255,255,0.60);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -349,57 +352,55 @@
 .grid-section  { padding: 16px; }
 .grid-header   { display: none; }
 
-/* ── Status urgency — glass border shifts to status colour ──────── */
+/* ── Status urgency — glass border accent, violet replaces red ───── */
+/*   Violet (109,40,217) signals attention without alarming red.      */
 .bento-card--urgent {
   background:
     linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)) padding-box,
     linear-gradient(
-      140deg,
-      rgba(255,255,255,0.92)    0%,
-      rgba(220,38,38,0.72)     14%,
-      rgba(220,38,38,0.22)     48%,
-      rgba(220,38,38,0.06)    100%
+      145deg,
+      rgba(255,255,255,0.96)    0%,
+      rgba(109,40,217,0.60)    18%,
+      rgba(109,40,217,0.18)    50%,
+      rgba(109,40,217,0.05)   100%
     ) border-box;
   box-shadow:
     0 2px 8px  rgba(0,0,0,0.06),
-    0 6px 28px rgba(220,38,38,0.13),
-    0 0 0 1px  rgba(220,38,38,0.08),
+    0 6px 24px rgba(109,40,217,0.12),
     inset 0 1px 0 rgba(255,255,255,1.00),
-    inset 4px 0 0 rgba(220,38,38,0.72);
+    inset 4px 0 0 rgba(109,40,217,0.60);
 }
 
 .bento-card--warning {
   background:
     linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)) padding-box,
     linear-gradient(
-      140deg,
-      rgba(255,255,255,0.92)    0%,
-      rgba(217,119,6,0.65)     14%,
-      rgba(217,119,6,0.20)     48%,
-      rgba(217,119,6,0.05)    100%
+      145deg,
+      rgba(255,255,255,0.96)    0%,
+      rgba(180,83,9,0.55)      18%,
+      rgba(180,83,9,0.16)      50%,
+      rgba(180,83,9,0.04)     100%
     ) border-box;
   box-shadow:
     0 2px 8px  rgba(0,0,0,0.06),
-    0 6px 24px rgba(217,119,6,0.10),
-    0 0 0 1px  rgba(217,119,6,0.07),
+    0 6px 22px rgba(180,83,9,0.10),
     inset 0 1px 0 rgba(255,255,255,1.00),
-    inset 4px 0 0 rgba(217,119,6,0.65);
+    inset 4px 0 0 rgba(180,83,9,0.55);
 }
 
 .bento-card--ok {
   background:
     linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)) padding-box,
     linear-gradient(
-      140deg,
-      rgba(255,255,255,0.92)    0%,
-      rgba(5,150,105,0.50)     14%,
-      rgba(5,150,105,0.15)     48%,
+      145deg,
+      rgba(255,255,255,0.96)    0%,
+      rgba(5,150,105,0.45)     18%,
+      rgba(5,150,105,0.13)     50%,
       rgba(5,150,105,0.04)    100%
     ) border-box;
   box-shadow:
     0 2px 8px  rgba(0,0,0,0.06),
     0 6px 20px rgba(5,150,105,0.08),
-    0 0 0 1px  rgba(5,150,105,0.06),
     inset 0 1px 0 rgba(255,255,255,1.00),
-    inset 4px 0 0 rgba(5,150,105,0.52);
+    inset 4px 0 0 rgba(5,150,105,0.48);
 }
