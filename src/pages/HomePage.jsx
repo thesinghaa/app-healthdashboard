@@ -115,8 +115,7 @@ export default function HomePage({ onSelectProgram }) {
             <div className="glass-navbar">
               <div className="home-brand">
                 <span className="home-state-name">Arunachal Pradesh</span>
-                <span className="home-state-sub">National Health Mission · Programme Performance Review</span>
-                <span className="home-data-ref">NFHS-5 (2019–21) · HMIS FY 2025-26 · NPCC April 2026</span>
+                <span className="home-state-sub">Health Dashboard Demo</span>
               </div>
 
               <div className="home-summary">
