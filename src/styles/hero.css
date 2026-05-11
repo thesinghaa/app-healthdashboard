@@ -39,9 +39,8 @@
   z-index: 3;
   flex: 1;
   min-height: 0;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Header wave container ──────────────────────────────────────── */
@@ -233,12 +232,16 @@
 .hl-green  { background: var(--grn-dot); }
 
 /* ── Grid area — locked height, no scroll ───────────────────────── */
+/* navbar computed height: 4+7+51+7+4 = 73px (legend col, DM Sans 11px×1.2 LH) */
 .home-grid {
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
   padding: 14px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  height: calc(100vh - 73px);
+  display: grid;
+  align-content: center;
 }
 
 /* Decorative icon float animation */
