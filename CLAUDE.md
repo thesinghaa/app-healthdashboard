@@ -4,6 +4,31 @@ This file gives any Claude session immediate context on the project so you can c
 
 ---
 
+## SELF-UPDATE PROTOCOL — TOP PRIORITY
+
+**Every Claude session working on this project MUST update this file before ending.**
+
+At the close of each session, Claude must:
+1. Review what changed during the session (new components, data mappings, CSS classes, routes, design decisions, bug fixes, deferred items)
+2. Reflect those changes in the relevant sections of this file — update existing entries or add new ones
+3. Commit the updated CLAUDE.md with the same session's final commit, or as a standalone commit:
+   ```
+   git add CLAUDE.md && git commit --author="AryanSinghpif <aryan.singh@pahleindia.org>" -m "docs: update CLAUDE.md with session changes"
+   ```
+4. Push to main
+
+**Do not end a session without updating this file.** This is the highest-priority rule in the project — it ensures every future session has accurate context without needing conversation history.
+
+What to update:
+- New or changed components / pages
+- New data fields or mappings added to kdData.js
+- New CSS classes or design tokens
+- Deferred work items
+- Decisions made (e.g. "chose Plotly over custom SVG because...")
+- Any hard rules that emerged from user feedback
+
+---
+
 ## What this project is
 
 **Setu** is a React + Vite health-policy dashboard for the **Pahlé India Foundation (PIF)**, tracking NHM Arunachal Pradesh programme performance. It is deployed on Vercel via GitHub auto-deploy (push to `main` → live).
