@@ -1,4 +1,4 @@
-# Setu — PIF Health Dashboard (CLAUDE.md)
+# AP Health Dashboard — NHM Arunachal Pradesh Demo (CLAUDE.md)
 
 This file gives any Claude session immediate context on the project so you can contribute without needing prior conversation history.
 
@@ -31,7 +31,7 @@ What to update:
 
 ## What this project is
 
-**Setu** is a React + Vite health-policy dashboard for the **Pahlé India Foundation (PIF)**, tracking NHM Arunachal Pradesh programme performance. It is deployed on Vercel via GitHub auto-deploy (push to `main` → live).
+A React + Vite **demo health dashboard** tracking NHM Arunachal Pradesh programme performance. Built for **Pahlé India Foundation (PIF)**. Deployed on Vercel via GitHub auto-deploy (push to `main` → live).
 
 Live repo: `https://github.com/AryanSinghpif/app-healthdashboard`
 
