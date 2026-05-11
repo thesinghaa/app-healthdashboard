@@ -49,7 +49,7 @@
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #e8f6f4 0%, #d4eeea 50%, #bfe3de 100%);
-  padding: 6px 0;
+  padding: 4px 0;
   display: flex;
   align-items: center;
 }
@@ -234,9 +234,9 @@
 /* ── Grid area — locked height, no scroll ───────────────────────── */
 .home-grid {
   flex: 1;
-  min-height: 0;                          /* allows flex child to shrink below content */
-  overflow: hidden;                       /* hard stop — no scroll ever */
-  padding: 2px 20px 12px;
+  min-height: 0;
+  overflow: hidden;
+  padding: 6px 14px 10px;
   width: 100%;
   box-sizing: border-box;
   display: flex;

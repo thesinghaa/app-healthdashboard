@@ -7,10 +7,10 @@
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1.6fr 1fr 0.8fr;
-  grid-template-rows: 1fr 1fr;
-  column-gap: 8px;
-  row-gap: 8px;
-  padding: 2px 6px 6px;
+  grid-template-rows: 1fr 1.18fr;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 0;
   align-items: stretch;
   justify-items: stretch;
   flex: 1;
