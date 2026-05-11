@@ -129,7 +129,18 @@ function PlotlyAchievementChart({ indicator, status, nfhsRows }) {
   const n5Pct    = nfhs5Row?.nfhs5 != null ? Math.min(Math.max(nfhs5Row.nfhs5, 0), 100) : null;
   const n4Pct    = nfhs4Row?.nfhs4 != null ? Math.min(Math.max(nfhs4Row.nfhs4, 0), 100) : null;
 
-  const stColor = S_COLOR[status] || S_COLOR.neutral;
+  /* Per-status vivid palette: deep branch colour + bright leaf colour */
+  const ACH_PAL = {
+    achieved: { branch: '#047857', leaf: '#10B981', empty: '#6EE7B7' },
+    close:    { branch: '#B45309', leaf: '#F59E0B', empty: '#FCD34D' },
+    gap:      { branch: '#BE123C', leaf: '#F43F5E', empty: '#FCA5A5' },
+    neutral:  { branch: '#475569', leaf: '#64748B', empty: '#CBD5E1' },
+  };
+  const pal = ACH_PAL[status] || ACH_PAL.neutral;
+
+  /* NFHS fixed palettes — electric blue + vivid violet */
+  const N5 = { branch: '#1D4ED8', leaf: '#3B82F6', empty: '#93C5FD' };
+  const N4 = { branch: '#6D28D9', leaf: '#A855F7', empty: '#D8B4FE' };
 
   /* Center annotation values */
   const centerVal = achievement != null
@@ -143,12 +154,12 @@ function PlotlyAchievementChart({ indicator, status, nfhsRows }) {
   let ids, labels, parents, values, colors, hovertemplates;
 
   if (n5Pct == null) {
-    /* Simplified single-ring: just FY branch */
+    /* Single-ring: just FY branch */
     ids     = ['root', 'fy-a', 'fy-r'];
     labels  = ['', `${achPct.toFixed(1)}%`, ''];
     parents = ['', 'root', 'root'];
     values  = [100, achPct, 100 - achPct];
-    colors  = ['rgba(0,0,0,0)', stColor, '#E2E8F0'];
+    colors  = ['rgba(0,0,0,0)', pal.leaf, pal.empty];
     hovertemplates = [
       '<extra></extra>',
       `<b>FY 2025-26 Achieved</b><br>${indicator?.achievedLabel ?? centerVal}<extra></extra>`,
@@ -173,10 +184,10 @@ function PlotlyAchievementChart({ indicator, status, nfhsRows }) {
     ];
     colors = [
       'rgba(0,0,0,0)',
-      stColor, '#60A5FA', '#94A3B8',
-      stColor, '#E2E8F0',
-      '#60A5FA', '#E2E8F0',
-      '#94A3B8', '#E2E8F0',
+      pal.branch, N5.branch, N4.branch,   /* inner ring — deep anchor tones  */
+      pal.leaf,   pal.empty,              /* FY: vivid achieved + warm empty  */
+      N5.leaf,    N5.empty,               /* N5: electric blue + sky empty    */
+      N4.leaf,    N4.empty,               /* N4: vivid violet + lavender empty */
     ];
     hovertemplates = [
       '<extra></extra>',
@@ -199,27 +210,27 @@ function PlotlyAchievementChart({ indicator, status, nfhsRows }) {
     parents,
     values,
     branchvalues: 'total',
-    marker: { colors },
+    marker: { colors, line: { color: '#ffffff', width: 2 } },
     hovertemplate: hovertemplates,
-    textfont: { family: "'Inter', sans-serif", size: 13 },
+    textfont: { family: "'Inter', sans-serif", size: 13, color: '#ffffff' },
     insidetextorientation: 'radial',
-    leaf: { opacity: 0.92 },
+    leaf: { opacity: 1 },
   };
 
   const layout = {
     paper_bgcolor: 'transparent',
     plot_bgcolor:  'transparent',
     margin: { t: 10, b: 10, l: 10, r: 10 },
-    height: 420,
+    height: 440,
     annotations: [{
       x: 0.5, y: 0.5,
       xref: 'paper', yref: 'paper',
-      text: `<b>${centerVal}</b><br><span style="font-size:11px;color:#94A3B8">${targetStr}</span>`,
+      text: `<b>${centerVal}</b><br><span style="font-size:12px;color:#64748B">${targetStr}</span>`,
       showarrow: false,
       font: {
         family: "'JetBrains Mono', monospace",
-        size: 28,
-        color: achNorm != null ? stColor : '#CBD5E1',
+        size: 30,
+        color: achNorm != null ? pal.branch : '#CBD5E1',
       },
       align: 'center',
     }],
@@ -239,12 +250,12 @@ function PlotlyAchievementChart({ indicator, status, nfhsRows }) {
       {/* Legend row */}
       <div className="sb-legend">
         <div className="sb-leg-item">
-          <span className="sb-leg-swatch" style={{ background: stColor }} />
+          <span className="sb-leg-swatch" style={{ background: pal.leaf }} />
           <span><strong>FY 2025-26:</strong> {indicator?.achievedLabel ?? '—'}</span>
         </div>
         {n5Pct != null && (
           <div className="sb-leg-item">
-            <span className="sb-leg-swatch" style={{ background: '#60A5FA' }} />
+            <span className="sb-leg-swatch" style={{ background: N5.leaf }} />
             <span><strong>NFHS-5:</strong> {nfhs5Row?.nfhs5}{nfhs5Row?.unit}&ensp;
               <span className="sb-leg-caption">{nfhs5Row?.label?.slice(0, 46)}</span>
             </span>
@@ -252,7 +263,7 @@ function PlotlyAchievementChart({ indicator, status, nfhsRows }) {
         )}
         {n4Pct != null && (
           <div className="sb-leg-item">
-            <span className="sb-leg-swatch" style={{ background: '#94A3B8' }} />
+            <span className="sb-leg-swatch" style={{ background: N4.leaf }} />
             <span><strong>NFHS-4:</strong> {nfhs4Row?.nfhs4}{nfhs4Row?.unit}</span>
           </div>
         )}
