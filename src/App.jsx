@@ -17,10 +17,9 @@ export default function App() {
   viewRef.current = view;
 
   /* ── Glassmorphism flip transition ───────────────────────────────
-     1. Current page rotates away on Y axis (0 → 90deg)
-     2. Frosted glass sheen peaks at the edge-on midpoint
-     3. State swaps while page is invisible (at 90deg)
-     4. New page flips in from -90deg → 0
+     Phase 1 (0.35s): page rotates Y 0→90° (edge-on), sheen rises
+     Midpoint: state swaps while page is invisible at 90°
+     Phase 2 (0.38s): page rotates Y -90→0°, sheen drops
   ─────────────────────────────────────────────────────────────── */
   const flipTo = useCallback((newView) => {
     const page  = pageRef.current;
@@ -29,23 +28,30 @@ export default function App() {
 
     gsap.killTweensOf([page, sheen]);
 
-    const tl = gsap.timeline({ defaults: { transformOrigin: '50% 50%' } });
+    /* Sheen rises during exit, drops during entry */
+    gsap.to(sheen, {
+      opacity: 1, duration: 0.28, ease: 'power2.in',
+      onComplete: () =>
+        gsap.to(sheen, { opacity: 0, duration: 0.32, ease: 'power2.out', delay: 0.05 }),
+    });
 
-    /* Exit: page sweeps right, sheen rises */
-    tl.to(page,  { rotateY: 90, scale: 0.97, duration: 0.30, ease: 'power2.in' }, 0)
-      .to(sheen, { opacity: 1,               duration: 0.22, ease: 'power2.in' }, 0)
-
-    /* Midpoint: swap content */
-      .add(() => setView(newView), 0.30)
-
-    /* Entry: new page sweeps in from left, sheen drops */
-      .fromTo(page,
-        { rotateY: -90, scale: 0.97 },
-        { rotateY: 0, scale: 1, duration: 0.32, ease: 'power2.out' },
-        0.30,
-      )
-      .to(sheen, { opacity: 0, duration: 0.24, ease: 'power2.out' }, 0.30);
-
+    /* Exit — rotate page away */
+    gsap.to(page, {
+      rotateY: 90,
+      scale: 0.96,
+      duration: 0.35,
+      ease: 'power2.in',
+      transformOrigin: '50% 50%',
+      onComplete: () => {
+        /* Swap content while page is edge-on (invisible) */
+        setView(newView);
+        /* Entry — new content rotates in */
+        gsap.fromTo(page,
+          { rotateY: -90, scale: 0.96 },
+          { rotateY: 0, scale: 1, duration: 0.38, ease: 'power2.out', transformOrigin: '50% 50%' },
+        );
+      },
+    });
   }, []);
 
   const goToDetail = useCallback((program, division) => {
