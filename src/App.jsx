@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import './styles/index.css';
 import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
+import DivisionPage from './pages/DivisionPage';
 import KDProgrammePage from './pages/KDProgrammePage';
 import KDIndicatorDetail from './pages/KDIndicatorDetail';
 
@@ -35,8 +36,13 @@ export default function App() {
     });
   }, []);
 
+  const goToDivision = useCallback((division) => {
+    transitionTo({ page: 'division', program: null, division, indicator: null, origin: 'home' });
+  }, [transitionTo]);
+
   const goToDetail = useCallback((program, division) => {
-    transitionTo({ page: 'kd-list', program, division, indicator: null });
+    const origin = viewRef.current.page;
+    transitionTo({ page: 'kd-list', program, division, indicator: null, origin });
   }, [transitionTo]);
 
   const goToIndicator = useCallback((indicator) => {
@@ -51,6 +57,8 @@ export default function App() {
     const cur = viewRef.current;
     if (cur.page === 'kd-indicator') {
       transitionTo({ ...cur, page: 'kd-list', indicator: null });
+    } else if (cur.page === 'kd-list' && cur.origin === 'division') {
+      transitionTo({ page: 'division', program: null, division: cur.division, indicator: null, origin: 'home' });
     } else {
       goHome();
     }
@@ -58,7 +66,7 @@ export default function App() {
 
   const renderPage = () => {
     if (view.page === 'home') {
-      return <HomePage onSelectProgram={goToDetail} />;
+      return <HomePage onSelectProgram={goToDetail} onSelectDivision={goToDivision} />;
     }
     if (view.page === 'kd-list') {
       return (
@@ -67,6 +75,15 @@ export default function App() {
           division={view.division}
           onBack={goHome}
           onSelectIndicator={goToIndicator}
+        />
+      );
+    }
+    if (view.page === 'division') {
+      return (
+        <DivisionPage
+          division={view.division}
+          onBack={goHome}
+          onSelectProgram={goToDetail}
         />
       );
     }

@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { DIVISIONS, STATUS_CONFIG } from '../data/programs';
-import DivisionOverlay from '../components/DivisionOverlay';
 
 function getSummary() {
   let total = 0, red = 0, yellow = 0, green = 0;
@@ -31,12 +30,9 @@ const STATUS_CLASS = {
   green:  'status-on-track',
 };
 
-export default function HomePage({ onSelectProgram }) {
+export default function HomePage({ onSelectProgram, onSelectDivision }) {
   const rootRef = useRef(null);
   const summary = getSummary();
-
-  /* ── Division overlay state ───────────────────────────────────────── */
-  const [overlay, setOverlay] = useState(null); // { division, expandFrom: DOMRect }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -56,26 +52,8 @@ export default function HomePage({ onSelectProgram }) {
     return () => ctx.revert();
   }, []);
 
-  /* Programme row → DetailPage (flip handled by App) */
-  const handleProgramClick = (program, division) => {
-    onSelectProgram(program, division);
-  };
-
-  /* Card header → Division overlay */
-  const handleDivisionSelect = (division, rect) => {
-    setOverlay({ division, expandFrom: rect });
-  };
-
-  /* Back from overlay → restore dashboard */
-  const handleOverlayBack = () => {
-    setOverlay(null);
-  };
-
-  /* Programme clicked inside overlay → DetailPage (flip handled by App) */
-  const handleOverlayProgram = (program, division) => {
-    setOverlay(null);
-    onSelectProgram(program, division);
-  };
+  const handleProgramClick = (program, division) => onSelectProgram(program, division);
+  const handleDivisionSelect = (division) => onSelectDivision(division);
 
   return (
     <div className="home-root" ref={rootRef}>
@@ -145,7 +123,7 @@ export default function HomePage({ onSelectProgram }) {
                 key={div.id}
                 division={div}
                 onProgramClick={handleProgramClick}
-                onSelectDivision={handleDivisionSelect}
+                onSelectDivision={(division) => handleDivisionSelect(division)}
               />
             ))}
           </div>
@@ -153,22 +131,11 @@ export default function HomePage({ onSelectProgram }) {
 
       </div>
 
-      {/* Division expand overlay — rendered on top of dashboard */}
-      {overlay && (
-        <DivisionOverlay
-          division={overlay.division}
-          expandFrom={overlay.expandFrom}
-          onBack={handleOverlayBack}
-          onSelectProgram={handleOverlayProgram}
-        />
-      )}
-
     </div>
   );
 }
 
 function BentoCard({ division, onProgramClick, onSelectDivision }) {
-  const cardRef = useRef(null);
 
   const sorted = [...division.programs].sort(
     (a, b) => STATUS_CONFIG[a.status].order - STATUS_CONFIG[b.status].order,
@@ -181,14 +148,11 @@ function BentoCard({ division, onProgramClick, onSelectDivision }) {
 
   const handleExpand = (e) => {
     e.stopPropagation();
-    const rect = cardRef.current.getBoundingClientRect();
-    onSelectDivision(division, {
-      top: rect.top, left: rect.left, width: rect.width, height: rect.height,
-    });
+    onSelectDivision(division);
   };
 
   return (
-    <div ref={cardRef} className={`bento-card card-${division.id} ${counts.red >= 2 ? 'bento-card--urgent' : counts.red === 1 ? 'bento-card--warning' : 'bento-card--ok'}`}>
+    <div className={`bento-card card-${division.id} ${counts.red >= 2 ? 'bento-card--urgent' : counts.red === 1 ? 'bento-card--warning' : 'bento-card--ok'}`}>
 
       {/* ── Header ───────────────────────────────────────────────── */}
       <div className="card-header">
