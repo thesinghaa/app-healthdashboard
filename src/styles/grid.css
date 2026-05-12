@@ -9,9 +9,9 @@
   grid-template-columns: 1.6fr 1fr 0.8fr;
   grid-template-rows: 1fr 1fr;
   column-gap: 10px;
-  row-gap: 8px;
+  row-gap: 10px;
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow: hidden;
 }
 

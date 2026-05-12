@@ -240,7 +240,7 @@
   padding: 12px;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 /* Decorative icon float animation */
