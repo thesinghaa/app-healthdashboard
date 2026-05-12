@@ -42,7 +42,7 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
         .from('.home-state-name', { y: 12, opacity: 0, duration: 0.45 }, '-=0.25')
         .from('.home-state-sub',  { y: 8,  opacity: 0, duration: 0.38 }, '-=0.30')
         .from('.hs-pill', { y: 10, opacity: 0, duration: 0.38, stagger: 0.07 }, '-=0.25')
-        .from('.home-meta', { x: 8, opacity: 0, duration: 0.32 }, '-=0.20')
+        .from('.hl-item', { x: 8,  opacity: 0, duration: 0.32, stagger: 0.06 }, '-=0.20')
         .from('.bento-card', { y: 28, opacity: 0, duration: 0.50, stagger: 0.09 }, '-=0.10');
 
       gsap.to('.hs-red .hs-val', {
@@ -107,9 +107,10 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
                 </div>
               </div>
 
-              <div className="home-meta">
-                <span className="home-meta-label">Data source</span>
-                <span className="home-meta-value">HMIS · NFHS-5 · Apr 2026</span>
+              <div className="home-legend">
+                <span className="hl-item"><span className="hl-dot hl-red" />Immediate Attention</span>
+                <span className="hl-item"><span className="hl-dot hl-yellow" />Under Review</span>
+                <span className="hl-item"><span className="hl-dot hl-green" />On Track</span>
               </div>
             </div>
           </div>
