@@ -1342,16 +1342,6 @@
   font-weight: 700;
 }
 
-.kd-num-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  display: inline-block;
-  text-align: center;
-}
 .kd-ind-name {
   font-family: 'Inter', sans-serif;
   font-size: 12.5px;

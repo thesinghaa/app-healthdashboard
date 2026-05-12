@@ -107,9 +107,6 @@ function KDRow({ kd, onSelectIndicator }) {
       tabIndex={0}
       onKeyDown={e => e.key === 'Enter' && onSelectIndicator(kd)}
     >
-      <div className="kd-num-badge" style={{ background: `${color}18`, color }}>
-        KD {kd.no}
-      </div>
       <div className="kd-ind-name">{kd.indicator}</div>
       <div className="kd-target-val">
         {kd.targetLabel ?? (kd.target !== null ? `${kd.target}${kd.unit}` : '—')}
@@ -148,19 +145,6 @@ function CriticalKDs({ kds }) {
             gap: 12,
             flexWrap: 'wrap',
           }}>
-            <span style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: 11,
-              fontWeight: 700,
-              color: '#DC2626',
-              background: 'rgba(220,38,38,0.10)',
-              padding: '2px 8px',
-              borderRadius: 6,
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-            }}>
-              KD {kd.no}
-            </span>
             <span style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 13,
@@ -295,7 +279,6 @@ export default function KDProgrammePage({ program, division, onBack, onSelectInd
             <div className="kd-table">
               {/* Table header */}
               <div className="kd-table-head">
-                <div>KD #</div>
                 <div>Indicator</div>
                 <div>Target</div>
                 <div>Achievement</div>
