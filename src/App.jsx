@@ -11,69 +11,50 @@ export default function App() {
     page: 'home', program: null, division: null, indicator: null,
   });
 
-  const pageRef  = useRef(null);
-  const sheenRef = useRef(null);
-  const viewRef  = useRef(view);
+  const pageRef = useRef(null);
+  const viewRef = useRef(view);
   viewRef.current = view;
 
-  /* ── Glassmorphism flip transition ───────────────────────────────
-     Phase 1 (0.35s): page rotates Y 0→90° (edge-on), sheen rises
-     Midpoint: state swaps while page is invisible at 90°
-     Phase 2 (0.38s): page rotates Y -90→0°, sheen drops
-  ─────────────────────────────────────────────────────────────── */
-  const flipTo = useCallback((newView) => {
-    const page  = pageRef.current;
-    const sheen = sheenRef.current;
+  /* ── Zoom transition (scale + fade) ─────────────────────────────── */
+  const transitionTo = useCallback((newView) => {
+    const page = pageRef.current;
     if (!page) { setView(newView); return; }
 
-    gsap.killTweensOf([page, sheen]);
+    gsap.killTweensOf(page);
 
-    /* Sheen rises during exit, drops during entry */
-    gsap.to(sheen, {
-      opacity: 1, duration: 0.28, ease: 'power2.in',
-      onComplete: () =>
-        gsap.to(sheen, { opacity: 0, duration: 0.32, ease: 'power2.out', delay: 0.05 }),
-    });
-
-    /* Exit — rotate page away */
     gsap.to(page, {
-      rotateY: 90,
-      scale: 0.96,
-      duration: 0.35,
-      ease: 'power2.in',
-      transformOrigin: '50% 50%',
+      scale: 0.95, opacity: 0,
+      duration: 0.20, ease: 'power2.in',
       onComplete: () => {
-        /* Swap content while page is edge-on (invisible) */
         setView(newView);
-        /* Entry — new content rotates in */
         gsap.fromTo(page,
-          { rotateY: -90, scale: 0.96 },
-          { rotateY: 0, scale: 1, duration: 0.38, ease: 'power2.out', transformOrigin: '50% 50%' },
+          { scale: 1.04, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.30, ease: 'power3.out' },
         );
       },
     });
   }, []);
 
   const goToDetail = useCallback((program, division) => {
-    flipTo({ page: 'kd-list', program, division, indicator: null });
-  }, [flipTo]);
+    transitionTo({ page: 'kd-list', program, division, indicator: null });
+  }, [transitionTo]);
 
   const goToIndicator = useCallback((indicator) => {
-    flipTo({ ...viewRef.current, page: 'kd-indicator', indicator });
-  }, [flipTo]);
+    transitionTo({ ...viewRef.current, page: 'kd-indicator', indicator });
+  }, [transitionTo]);
 
   const goHome = useCallback(() => {
-    flipTo({ page: 'home', program: null, division: null, indicator: null });
-  }, [flipTo]);
+    transitionTo({ page: 'home', program: null, division: null, indicator: null });
+  }, [transitionTo]);
 
   const goBack = useCallback(() => {
     const cur = viewRef.current;
     if (cur.page === 'kd-indicator') {
-      flipTo({ ...cur, page: 'kd-list', indicator: null });
+      transitionTo({ ...cur, page: 'kd-list', indicator: null });
     } else {
       goHome();
     }
-  }, [flipTo, goHome]);
+  }, [transitionTo, goHome]);
 
   const renderPage = () => {
     if (view.page === 'home') {
@@ -113,8 +94,6 @@ export default function App() {
       <div className="flip-page" ref={pageRef}>
         {renderPage()}
       </div>
-      {/* Frosted glass sheen — visible only during the flip midpoint */}
-      <div className="glass-flip-sheen" ref={sheenRef} />
     </div>
   );
 }
