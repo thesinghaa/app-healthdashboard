@@ -139,8 +139,8 @@ function PlotlyAchievementChart({ indicator, status, nfhsRows }) {
   const pal = ACH_PAL[status] || ACH_PAL.neutral;
 
   /* NFHS fixed palettes — electric blue + vivid violet */
-  const N5 = { branch: '#1D4ED8', leaf: '#3B82F6', empty: '#93C5FD' };
-  const N4 = { branch: '#6D28D9', leaf: '#A855F7', empty: '#D8B4FE' };
+  const N5 = { branch: '#C2410C', leaf: '#FF5500', empty: '#FED7AA' };
+  const N4 = { branch: '#B45309', leaf: '#D97706', empty: '#FDE68A' };
 
   /* Center annotation values */
   const centerVal = achievement != null
@@ -380,7 +380,7 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
 
   const handleBack = () => onBack();
 
-  const YEAR_COLORS = ['#0A7B6C', '#B45309', '#7C3AED'];
+  const YEAR_COLORS = ['#FF5500', '#B45309', '#C2410C'];
 
   return (
     <div className="ncd-root" ref={wrapRef}>
@@ -610,8 +610,8 @@ export default function KDIndicatorDetail({ indicator, program, division, onBack
 
                   /* Categorical palette — 15 vivid colours, all dark enough for white text */
                   const DIST_PALETTE = [
-                    '#0A7B6C','#0891B2','#1D4ED8','#7C3AED','#BE185D',
-                    '#047857','#0369A1','#6D28D9','#C2410C','#0E7490',
+                    '#FF5500','#C2410C','#B45309','#92400E','#BE185D',
+                    '#D97706','#F59E0B','#FB923C','#C2410C','#7C3AED',
                     '#065F46','#1E40AF','#5B21B6','#9D174D','#92400E',
                   ];
                   const distColors = [

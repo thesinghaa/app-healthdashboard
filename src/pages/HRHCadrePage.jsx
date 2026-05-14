@@ -6,7 +6,7 @@ import Plot from 'react-plotly.js';
 import { STATUS_CONFIG } from '../data/programs';
 
 /* ── Palette ─────────────────────────────────────────────────────── */
-const C_REG  = '#0E9E8A';
+const C_REG  = '#FF5500';
 const C_CTRL = '#F59E0B';
 const C_GAP  = '#CBD5E1';
 
@@ -111,7 +111,7 @@ function AchievementGauge({ ach, tgt, barColor }) {
       bgcolor: '#F8FAF9',
       borderwidth: 0,
       steps: [
-        { range: [0, tgt ?? 100],   color: 'rgba(14,158,138,0.07)'  },
+        { range: [0, tgt ?? 100],   color: 'rgba(255,85,0,0.07)'  },
         { range: [tgt ?? 100, 100], color: 'rgba(200,220,212,0.15)' },
       ],
       threshold: tgt != null ? {
@@ -280,7 +280,7 @@ function NCDSpecialistBar() {
   }, []);
 
   const colors = NCD_SPECIALISTS.map(d =>
-    d.pct >= 100 ? '#0E9E8A' : d.pct >= 70 ? '#F59E0B' : '#E53E3E'
+    d.pct >= 100 ? '#FF5500' : d.pct >= 70 ? '#F59E0B' : '#E53E3E'
   );
   const data = [{
     type: 'bar', orientation: 'h',
@@ -344,7 +344,7 @@ function SmallDonut({ labels, values, colors, title }) {
 
   return (
     <div>
-      <div style={{ textAlign: 'center', fontSize: 12, fontWeight: 700, color: '#0A7B6C', marginBottom: 8 }}>
+      <div style={{ textAlign: 'center', fontSize: 12, fontWeight: 700, color: '#FF5500', marginBottom: 8 }}>
         {title}
       </div>
       <Plot data={data} layout={layout} config={PLOTLY_CONFIG}
@@ -372,7 +372,7 @@ export default function HRHCadrePage({ program, division, onBack }) {
   const ctrlFill = ctrlA > 0 ? Math.round(ctrlIP / ctrlA * 100) : null;
   const barColor = program.status === 'red'    ? '#E53E3E'
                  : program.status === 'yellow' ? '#D97706'
-                 :                               '#0E9E8A';
+                 :                               '#FF5500';
 
   const staffingData = [];
   if (regS  > 0) staffingData.push({ category: 'Regular',     sanctioned: regS,  inPlace: regIP  });

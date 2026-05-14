@@ -198,7 +198,7 @@
 .hs-yellow .hs-val { color: var(--navy-dark); }
 .hs-yellow .hs-lbl { color: var(--navy-dark); opacity: 0.75; }
 
-.hs-green  { background: var(--teal-mid); }
+.hs-green  { background: var(--org); }
 .hs-green  .hs-val { color: #FFFFFF; }
 .hs-green  .hs-lbl { color: rgba(255,255,255,0.80); }
 

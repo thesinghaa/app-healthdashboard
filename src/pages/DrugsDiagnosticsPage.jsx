@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Plot from 'react-plotly.js';
 
-const C_TEAL  = '#0E9E8A';
+const C_ORG   = '#FF5500';
 const C_AMBER = '#F59E0B';
 const C_RED   = '#E53E3E';
 const C_NAVY  = '#1A1F36';
@@ -167,7 +167,7 @@ function NQASBar() {
     {
       type: 'bar', orientation: 'h', name: 'Certified',
       y: facs, x: certified,
-      marker: { color: C_TEAL },
+      marker: { color: C_ORG },
       text: ready ? NQAS_DATA.map(d => d.certified > 0 ? `${d.certified} certified` : '') : [],
       textposition: 'inside',
       insidetextanchor: 'middle',
@@ -332,8 +332,8 @@ export default function DrugsDiagnosticsPage({ division, onBack }) {
             </div>
             <StockBar />
             <div className="dd2-stat-row">
-              <div className="dd2-stat"><span style={{ color: C_TEAL }}>EDL 2024</span><span>notified</span></div>
-              <div className="dd2-stat"><span style={{ color: C_TEAL }}>30</span><span>warehouses</span></div>
+              <div className="dd2-stat"><span style={{ color: C_ORG }}>EDL 2024</span><span>notified</span></div>
+              <div className="dd2-stat"><span style={{ color: C_ORG }}>30</span><span>warehouses</span></div>
               <div className="dd2-stat"><span style={{ color: C_AMBER }}>86</span><span>active RCs</span></div>
               <div className="dd2-stat"><span style={{ color: C_RED }}>5 / 86</span><span>on DVDMS</span></div>
             </div>
@@ -353,8 +353,8 @@ export default function DrugsDiagnosticsPage({ division, onBack }) {
         </div>
 
         {/* ── NQAS ─────────────────────────────────────────── */}
-        <div className="dd2-section-hdr" style={{ borderLeftColor: C_TEAL }}>
-          <span style={{ color: C_TEAL }}>National Quality Assurance Standards (NQAS)</span>
+        <div className="dd2-section-hdr" style={{ borderLeftColor: C_ORG }}>
+          <span style={{ color: C_ORG }}>National Quality Assurance Standards (NQAS)</span>
           <span className="dd2-section-src">NHM NPCC 2025-26</span>
         </div>
 
@@ -377,15 +377,15 @@ export default function DrugsDiagnosticsPage({ division, onBack }) {
               <span className="detail-card-note">Assessors, certifications &amp; active programmes</span>
             </div>
             <div className="dd2-quality-grid">
-              <div className="dd2-qitem dd2-qitem--teal">
+              <div className="dd2-qitem dd2-qitem--org">
                 <div className="dd2-qval">99</div>
                 <div className="dd2-qlbl">Internal Assessors trained</div>
               </div>
-              <div className="dd2-qitem dd2-qitem--teal">
+              <div className="dd2-qitem dd2-qitem--org">
                 <div className="dd2-qval">19</div>
                 <div className="dd2-qlbl">External Assessors</div>
               </div>
-              <div className="dd2-qitem dd2-qitem--teal">
+              <div className="dd2-qitem dd2-qitem--org">
                 <div className="dd2-qval">87</div>
                 <div className="dd2-qlbl">Internal assessments done</div>
               </div>
@@ -406,8 +406,8 @@ export default function DrugsDiagnosticsPage({ division, onBack }) {
         </div>
 
         {/* ── IPHS ─────────────────────────────────────────── */}
-        <div className="dd2-section-hdr" style={{ borderLeftColor: '#7C3AED' }}>
-          <span style={{ color: '#7C3AED' }}>IPHS Compliance</span>
+        <div className="dd2-section-hdr" style={{ borderLeftColor: '#B45309' }}>
+          <span style={{ color: '#B45309' }}>IPHS Compliance</span>
           <span className="dd2-section-src">IPHS Dashboard · March 2026</span>
         </div>
 

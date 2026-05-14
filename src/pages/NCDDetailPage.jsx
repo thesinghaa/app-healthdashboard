@@ -25,10 +25,10 @@ const MONTH_SHORT  = ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan
 
 /* ── Category config ─────────────────────────────────────────────── */
 const CATEGORIES = [
-  { id: 'M1', label: 'ANC',           fullName: 'Ante Natal Care',           color: '#0A7B6C' },
+  { id: 'M1', label: 'ANC',           fullName: 'Ante Natal Care',           color: '#FF5500' },
   { id: 'M2', label: 'Deliveries',    fullName: 'Deliveries',                color: '#059669' },
   { id: 'M3', label: 'C-Sections',   fullName: 'Caesarean Deliveries',       color: '#B45309' },
-  { id: 'M4', label: 'Outcomes',      fullName: 'Pregnancy & Newborn',        color: '#7C3AED' },
+  { id: 'M4', label: 'Outcomes',      fullName: 'Pregnancy & Newborn',        color: '#B45309' },
   { id: 'M5', label: 'Anaemia',       fullName: 'Anaemia Mukt Bharat',        color: '#C0392B' },
   { id: 'M8', label: 'Fam. Planning', fullName: 'Family Planning',            color: '#1E40AF' },
   { id: 'M9', label: 'Immunisation',  fullName: 'Child Immunisation',         color: '#0891B2' },
@@ -285,7 +285,7 @@ export default function NCDDetailPage({ program, onBack }) {
 
   /* Trend chart: up to 3 key items */
   const trendItems = keyItems.slice(0, 3);
-  const CHART_COLORS = ['#0A7B6C','#B45309','#7C3AED'];
+  const CHART_COLORS = ['#FF5500','#B45309','#C2410C'];
 
   /* ── 4th layer: render KD detail page when indicator is selected ─ */
   if (selectedIndicator) {

@@ -21,7 +21,7 @@ const STATUS_CLS  = { red: 'sl-red',   yellow: 'sl-yellow', green: 'sl-green' };
 const DIV_CHIP = {
   rch:  '#FF5500',
   ndcp: '#C2410C',
-  ncd:  '#0A7B6C',
+  ncd:  '#92400E',
   hss:  '#B45309',
   hrh:  '#1A1610',
 };
@@ -209,10 +209,10 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
               <path d="M0,95 C180,55 360,115 540,85 C720,55 900,105 1080,78 C1260,52 1380,96 1440,88 L1440,130 L0,130 Z" fill="#2DC4AD"/>
             </svg>
             <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.35 }}>
-              <path d="M0,108 C300,75 600,120 900,98 C1100,80 1300,110 1440,102 L1440,130 L0,130 Z" fill="#0E9E8A"/>
+              <path d="M0,108 C300,75 600,120 900,98 C1100,80 1300,110 1440,102 L1440,130 L0,130 Z" fill="#FF5500"/>
             </svg>
             <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.25 }}>
-              <path d="M0,118 C360,95 720,125 1080,112 C1260,105 1380,120 1440,118 L1440,130 L0,130 Z" fill="#0A7B6C"/>
+              <path d="M0,118 C360,95 720,125 1080,112 C1260,105 1380,120 1440,118 L1440,130 L0,130 Z" fill="rgba(255,85,0,0.65)"/>
             </svg>
           </div>
           <div className="home-header-inner">
@@ -283,7 +283,7 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
                   );
                   const counts = { red: 0, yellow: 0, green: 0 };
                   div.programs.forEach(p => counts[p.status]++);
-                  const chip = DIV_CHIP[div.id] || '#0E9E8A';
+                  const chip = DIV_CHIP[div.id] || '#FF5500';
                   const visible = sorted.filter(matchesProg);
 
                   return (
@@ -324,7 +324,7 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
                         )}
                         {visible.map((prog, idx) => {
                           const meta = PROG_META[prog.id] || { code: prog.name, label: prog.name };
-                          const barColor = prog.status === 'red' ? '#E53E3E' : prog.status === 'yellow' ? '#D97706' : '#0E9E8A';
+                          const barColor = prog.status === 'red' ? '#E53E3E' : prog.status === 'yellow' ? '#D97706' : '#FF5500';
                           return (
                             <button
                               key={prog.id}

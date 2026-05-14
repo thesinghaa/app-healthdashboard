@@ -27,7 +27,7 @@
 /*   the glass effect stays calm and non-alarming.                   */
 .card-rch  { --chip: #FF5500; --chip-rgb: 255,85,0;    }
 .card-ndcp { --chip: #C2410C; --chip-rgb: 194,65,12;   }
-.card-ncd  { --chip: #0A7B6C; --chip-rgb: 10,123,108;  }
+.card-ncd  { --chip: #92400E; --chip-rgb: 146,64,14;   }
 .card-hss  { --chip: #B45309; --chip-rgb: 180,83,9;    }
 
 /* ── Section card — flat warm panel ─────────────────────────────── */
@@ -42,7 +42,15 @@
   flex-direction: column;
   min-height: 0;
   height: 100%;
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  transition: box-shadow 0.25s ease, transform 0.18s ease, border-color 0.25s ease;
+}
+.bento-card:hover {
+  border-color: rgba(255,85,0,0.28);
+  box-shadow:
+    0 0 0 1.5px rgba(255,85,0,0.15),
+    0 8px 32px rgba(255,85,0,0.13),
+    0 2px 10px rgba(26,22,16,0.08);
+  transform: translateY(-2px);
 }
 
 /* ── Card header ────────────────────────────────────────────────── */
@@ -221,7 +229,7 @@
 /* Status — left border accent per status */
 .status-critical { border-left: 3px solid #E53E3E; }
 .status-caution  { border-left: 3px solid #D69E2E; }
-.status-on-track { border-left: 3px solid #0E9E8A; }
+.status-on-track { border-left: 3px solid var(--org); }
 
 .programme-row:hover {
   box-shadow: 0 4px 14px rgba(0,0,0,0.10);
@@ -275,7 +283,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
   font-weight: 600;
-  color: #0E9E8A;
+  color: var(--org);
   line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
@@ -337,7 +345,7 @@
 /* ── Status urgency — subtle border tint only ────────────────────── */
 .bento-card--urgent  { border-color: rgba(109,40,217,0.28); }
 .bento-card--warning { border-color: rgba(180,83,9,0.22);   }
-.bento-card--ok      { border-color: rgba(5,150,105,0.22);  }
+.bento-card--ok      { border-color: rgba(255,85,0,0.20);  }
 
 /* ═══════════════════════════════════════════════════════════════════
    Carousel — single full-screen division card at a time
@@ -381,7 +389,7 @@
 }
 
 .cdot--active {
-  background: #0E9E8A;
+  background: var(--org);
   transform: scale(1.35);
 }
 
@@ -430,7 +438,7 @@
   box-shadow:
     0 2px 10px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  color: #0A7B6C;
+  color: var(--org);
   font-size: 20px;
   line-height: 1;
   display: flex;
@@ -487,7 +495,7 @@
 .cc-header {
   padding: 18px 22px 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.45);
-  border-left: 4px solid #0E9E8A;
+  border-left: 4px solid var(--org);
   flex-shrink: 0;
   display: flex;
   align-items: flex-start;
@@ -563,9 +571,9 @@
 
 .cc-search:focus {
   background: rgba(255, 255, 255, 0.90);
-  border-color: rgba(14, 158, 138, 0.60);
+  border-color: rgba(255, 85, 0, 0.55);
   box-shadow:
-    0 0 0 4px rgba(14, 158, 138, 0.14),
+    0 0 0 4px rgba(255, 85, 0, 0.14),
     0 4px 20px rgba(0, 0, 0, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 1);
 }
@@ -672,7 +680,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
   font-weight: 700;
-  color: #0E9E8A;
+  color: var(--org);
   letter-spacing: 0.10em;
   text-transform: uppercase;
   flex-shrink: 0;
@@ -694,7 +702,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   font-weight: 600;
-  color: #0E9E8A;
+  color: var(--org);
   white-space: nowrap;
 }
 
@@ -758,9 +766,9 @@
 
 .carousel-search-top .cc-search:focus {
   background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(14, 158, 138, 0.65);
+  border-color: rgba(255, 85, 0, 0.55);
   box-shadow:
-    0 0 0 4px rgba(14, 158, 138, 0.15),
+    0 0 0 4px rgba(255, 85, 0, 0.15),
     0 8px 32px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 1);
 }
@@ -824,7 +832,7 @@
 
 .div-expand-btn:hover {
   background: rgba(255,255,255,0.90);
-  color: #0E9E8A;
+  color: var(--org);
 }
 
 /* ── Programme row number ── */
@@ -832,7 +840,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 15px;
   font-weight: 700;
-  color: #0A7B6C;
+  color: var(--org);
   min-width: 32px;
   flex-shrink: 0;
   line-height: 1;
@@ -856,7 +864,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   font-weight: 600;
-  color: #0E9E8A;
+  color: var(--org);
   white-space: nowrap;
 }
 

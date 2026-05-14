@@ -13,7 +13,7 @@ const NFHS5_COLOR = '#B8793A';
 function HRHDonut({ regular, contractual, gap, total, colors: colorsProp }) {
   const size = 84, r = 30, cx = 42;
   const circ = 2 * Math.PI * r;
-  const colors = colorsProp || ['#0E9E8A', '#D97706', '#CBD5E1'];
+  const colors = colorsProp || ['#FF5500', '#D97706', '#CBD5E1'];
   const segs = [
     { pct: (regular    / total) * 100, color: colors[0] },
     { pct: (contractual / total) * 100, color: colors[1] },
@@ -82,7 +82,7 @@ function HRHSection({ program }) {
   const ctrlA   = program.ctrlApproved ?? 0;
   const regFill  = regS  > 0 ? Math.round(regIP  / regS  * 100) : null;
   const ctrlFill = ctrlA > 0 ? Math.round(ctrlIP / ctrlA * 100) : null;
-  const barColor = program.status === 'red' ? '#E53E3E' : program.status === 'yellow' ? '#D97706' : '#0E9E8A';
+  const barColor = program.status === 'red' ? '#E53E3E' : program.status === 'yellow' ? '#D97706' : '#FF5500';
 
   const staffingData = [];
   if (regS  > 0) staffingData.push({ category: 'Regular',     Sanctioned: regS,  'In Place': regIP  });
@@ -120,7 +120,7 @@ function HRHSection({ program }) {
           {[
             { label: 'Requirement', val: req,     col: '#1A1F36' },
             { label: 'In Place',    val: inPlace,  col: barColor  },
-            { label: 'Gap',         val: gap > 0 ? gap : '—', col: gap > 0 ? '#E53E3E' : '#0E9E8A' },
+            { label: 'Gap',         val: gap > 0 ? gap : '—', col: gap > 0 ? '#E53E3E' : '#FF5500' },
             ...(tgt != null ? [{ label: 'RoP Target', val: `${tgt}%`, col: '#D97706' }] : []),
           ].map(s => (
             <div key={s.label} className="hrh-stat">
@@ -164,7 +164,7 @@ function HRHSection({ program }) {
               gap={gap > 0 ? gap : 0} total={req || 1} />
             <div className="hrh-donut-legend">
               {[
-                { label: `Regular (${regIP})`,      color: '#0E9E8A' },
+                { label: `Regular (${regIP})`,      color: '#FF5500' },
                 { label: `Contractual (${ctrlIP})`, color: '#D97706' },
                 ...(gap > 0 ? [{ label: `Gap (${gap})`, color: '#CBD5E1' }] : []),
               ].map(l => (
@@ -262,7 +262,7 @@ function HRHSection({ program }) {
                 tick={{ fontSize: 11, fill: '#3a3020' }} />
               <Tooltip formatter={v => [`${v}%`, 'Coverage vs IPHS']}
                 contentStyle={{ fontSize: 12, borderRadius: 8 }} />
-              <Bar dataKey="pct" name="Coverage vs IPHS" fill="#4472C4"
+              <Bar dataKey="pct" name="Coverage vs IPHS" fill="#FF5500"
                 radius={[0,3,3,0]} maxBarSize={16}
                 label={{ position: 'right', fontSize: 10, fill: '#475569',
                   formatter: v => `${v}%` }} />
@@ -283,7 +283,7 @@ function HRHSection({ program }) {
             <HRHDonut regular={48} contractual={30} gap={22} total={100} />
             <div className="hrh-ctx-legend">
               {[
-                { l: 'Regular 48%',     c: '#0E9E8A' },
+                { l: 'Regular 48%',     c: '#FF5500' },
                 { l: 'Contractual 30%', c: '#D97706' },
                 { l: 'Gap 22%',         c: '#CBD5E1' },
               ].map(x => (
