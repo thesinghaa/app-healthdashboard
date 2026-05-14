@@ -84,10 +84,10 @@ function StockGauges() {
   const LABELS  = ['DH', 'CHC', 'AAM-PHC', 'AAM-SHC'];
   const COLORS  = [C_RED, C_RED, C_AMBER, C_AMBER];
   const DOMAINS = [
-    { x: [0, 0.45], y: [0.52, 1.0] },
-    { x: [0.55, 1], y: [0.52, 1.0] },
-    { x: [0, 0.45], y: [0.0, 0.48] },
-    { x: [0.55, 1], y: [0.0, 0.48] },
+    { x: [0.03, 0.47], y: [0.54, 0.98] },
+    { x: [0.53, 0.97], y: [0.54, 0.98] },
+    { x: [0.03, 0.47], y: [0.02, 0.46] },
+    { x: [0.53, 0.97], y: [0.02, 0.46] },
   ];
 
   const [vals, setVals] = useState([0, 0, 0, 0]);
@@ -107,11 +107,11 @@ function StockGauges() {
     type: 'indicator',
     mode: 'gauge+number',
     value: vals[i],
-    title: { text: `<b>${name}</b>`, font: { size: 13, color: C_NAVY, family: "'Inter',sans-serif" } },
-    number: { suffix: '%', font: { size: 24, color: COLORS[i], family: "'Playfair Display',Georgia,serif" } },
+    title: { text: `<b>${name}</b>`, font: { size: 14, color: C_NAVY, family: "'Inter',sans-serif" } },
+    number: { suffix: '%', font: { size: 20, color: COLORS[i], family: "'Playfair Display',Georgia,serif" } },
     gauge: {
-      axis: { range: [0, 100], tickfont: { size: 8, color: '#94A3B8' }, nticks: 5, tickcolor: '#E2E8F0' },
-      bar: { color: COLORS[i], thickness: 0.48 },
+      axis: { range: [0, 100], tickfont: { size: 9, color: '#94A3B8' }, nticks: 5, tickcolor: '#E2E8F0' },
+      bar: { color: COLORS[i], thickness: 0.44 },
       bgcolor: '#FAFAFA',
       borderwidth: 0,
       steps: [
@@ -126,19 +126,13 @@ function StockGauges() {
 
   const layout = {
     ...BL,
-    height: 330,
-    margin: { t: 28, b: 16, l: 16, r: 16 },
-    annotations: [{
-      x: 0.5, y: 0.5, xref: 'paper', yref: 'paper',
-      text: 'Stock<br>Availability',
-      showarrow: false,
-      font: { size: 10, color: '#94A3B8', family: "'Inter',sans-serif" },
-    }],
+    height: 420,
+    margin: { t: 32, b: 28, l: 20, r: 20 },
   };
 
   return (
     <Plot data={data} layout={layout} config={PC}
-      useResizeHandler style={{ width: '100%', height: '330px' }} />
+      useResizeHandler style={{ width: '100%', height: '420px' }} />
   );
 }
 
