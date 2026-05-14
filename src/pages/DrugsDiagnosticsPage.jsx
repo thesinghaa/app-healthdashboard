@@ -83,12 +83,6 @@ function StockGauges() {
   const TARGETS = [16.12, 12.20, 24.00, 21.56];
   const LABELS  = ['DH', 'CHC', 'AAM-PHC', 'AAM-SHC'];
   const COLORS  = [C_RED, C_RED, C_AMBER, C_AMBER];
-  const DOMAINS = [
-    { x: [0.03, 0.47], y: [0.54, 0.98] },
-    { x: [0.53, 0.97], y: [0.54, 0.98] },
-    { x: [0.03, 0.47], y: [0.02, 0.46] },
-    { x: [0.53, 0.97], y: [0.02, 0.46] },
-  ];
 
   const [vals, setVals] = useState([0, 0, 0, 0]);
 
@@ -103,36 +97,49 @@ function StockGauges() {
     return () => tw.kill();
   }, []);
 
-  const data = LABELS.map((name, i) => ({
-    type: 'indicator',
-    mode: 'gauge+number',
-    value: vals[i],
-    title: { text: `<b>${name}</b>`, font: { size: 14, color: C_NAVY, family: "'Inter',sans-serif" } },
-    number: { suffix: '%', font: { size: 20, color: COLORS[i], family: "'Playfair Display',Georgia,serif" } },
-    gauge: {
-      axis: { range: [0, 100], tickfont: { size: 9, color: '#94A3B8' }, nticks: 5, tickcolor: '#E2E8F0' },
-      bar: { color: COLORS[i], thickness: 0.44 },
-      bgcolor: '#FAFAFA',
-      borderwidth: 0,
-      steps: [
-        { range: [0,  30], color: 'rgba(248,113,113,0.10)' },
-        { range: [30, 60], color: 'rgba(245,158,11,0.07)'  },
-        { range: [60,100], color: 'rgba(16,185,129,0.06)'  },
-      ],
-      threshold: { line: { color: '#94A3B8', width: 2 }, thickness: 0.72, value: 50 },
-    },
-    domain: DOMAINS[i],
-  }));
-
-  const layout = {
-    ...BL,
-    height: 420,
-    margin: { t: 32, b: 28, l: 20, r: 20 },
-  };
-
   return (
-    <Plot data={data} layout={layout} config={PC}
-      useResizeHandler style={{ width: '100%', height: '420px' }} />
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: '8px 0' }}>
+      {LABELS.map((name, i) => {
+        const data = [{
+          type: 'indicator',
+          mode: 'gauge+number',
+          value: vals[i],
+          title: { text: `<b>${name}</b>`, font: { size: 13, color: C_NAVY, family: "'Inter',sans-serif" } },
+          number: { suffix: '%', font: { size: 22, color: COLORS[i], family: "'Playfair Display',Georgia,serif" } },
+          gauge: {
+            axis: { range: [0, 100], tickfont: { size: 8, color: '#94A3B8' }, nticks: 5, tickcolor: '#E2E8F0' },
+            bar: { color: COLORS[i], thickness: 0.44 },
+            bgcolor: '#FAFAFA',
+            borderwidth: 0,
+            steps: [
+              { range: [0,  30], color: 'rgba(248,113,113,0.10)' },
+              { range: [30, 60], color: 'rgba(245,158,11,0.07)'  },
+              { range: [60,100], color: 'rgba(16,185,129,0.06)'  },
+            ],
+            threshold: { line: { color: '#94A3B8', width: 2 }, thickness: 0.72, value: 50 },
+          },
+          domain: { x: [0, 1], y: [0, 1] },
+        }];
+
+        const layout = {
+          ...BL,
+          height: 190,
+          margin: { t: 24, b: 16, l: 14, r: 14 },
+        };
+
+        return (
+          <div key={name} style={{
+            background: 'rgba(250,250,252,0.7)',
+            borderRadius: 10,
+            border: '1px solid rgba(226,232,240,0.7)',
+            padding: '6px 4px 2px',
+          }}>
+            <Plot data={data} layout={layout} config={PC}
+              useResizeHandler style={{ width: '100%', height: '190px' }} />
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
