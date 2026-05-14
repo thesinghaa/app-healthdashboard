@@ -18,9 +18,9 @@
   --navy-mid:  #2D3561;
 
   /* Page surfaces */
-  --bg:          #F7FAFA;
+  --bg:          #F5F0E8;
   --off-white:   #FFFFFF;
-  --cloud-gray:  #E8ECF0;
+  --cloud-gray:  #E8E0D0;
 
   /* Glass pill */
   --w1:          rgba(255,255,255,0.72);
@@ -45,27 +45,27 @@
   --ink-faint: #6B7280;
 
   /* Status — single authoritative values, used everywhere */
-  --red-dot:  #DC2626;
-  --red-bdr:  #FECACA;
-  --red-txt:  #DC2626;
-  --red-bg:   #FEF2F2;
+  --red-dot:  #E53E3E;
+  --red-bdr:  #FEB2B2;
+  --red-txt:  #E53E3E;
+  --red-bg:   #FFF0F0;
 
-  --yel-dot:  #D97706;
-  --yel-bdr:  #FDE68A;
-  --yel-txt:  #D97706;
+  --yel-dot:  #D69E2E;
+  --yel-bdr:  #FAF089;
+  --yel-txt:  #B7791F;
   --yel-bg:   #FFFBEB;
 
   --grn-dot:  #0E9E8A;
-  --grn-bdr:  #99F6E4;
-  --grn-txt:  #0A7B6C;
-  --grn-bg:   #F0FDFA;
+  --grn-bdr:  #9AE6B4;
+  --grn-txt:  #276749;
+  --grn-bg:   #F0FFF4;
 
   /* Shadows */
-  --sh:  0 2px 16px rgba(10,123,108,0.10), 0 1px 4px rgba(26,31,54,0.07);
-  --shm: 0 8px 32px rgba(10,123,108,0.16), 0 2px 8px rgba(26,31,54,0.10);
+  --sh:  0 2px 8px rgba(0,0,0,0.06);
+  --shm: 0 4px 16px rgba(0,0,0,0.10);
 
   /* Radii */
-  --r:  8px;
-  --rm: 14px;
-  --rl: 18px;
+  --r:  10px;
+  --rm: 10px;
+  --rl: 14px;
 }

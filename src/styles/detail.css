@@ -150,8 +150,8 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 18px;
-  padding-bottom: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--cloud-gray);
 }
 .detail-card-header h3 {
@@ -286,6 +286,517 @@
   border-radius: 3px;
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HRH Current Status section
+   ═══════════════════════════════════════════════════════════════════ */
+
+.hrh-cs-band {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0 4px;
+}
+.hrh-cs-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0A7B6C;
+  background: rgba(14,158,138,0.10);
+  border: 1px solid rgba(14,158,138,0.25);
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+.hrh-cs-src {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+/* Achievement gauge card */
+.hrh-ach-card { padding: 20px 24px; }
+.hrh-ach-top {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.hrh-ach-pct {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 110px;
+}
+.hrh-ach-gauge-wrap { flex: 1; }
+.hrh-ach-track {
+  position: relative;
+  height: 10px;
+  background: rgba(200,220,212,0.40);
+  border-radius: 5px;
+  overflow: visible;
+}
+.hrh-ach-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.hrh-ach-target {
+  position: absolute;
+  top: -5px; bottom: -5px;
+  width: 3px;
+  margin-left: -1.5px;
+  background: rgba(26,31,54,0.50);
+  border-radius: 2px;
+}
+.hrh-ach-sublabels {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+.hrh-ach-tgt-tag {
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(26,31,54,0.60);
+  white-space: nowrap;
+}
+
+/* Stat row */
+.hrh-stat-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hrh-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 80px;
+}
+.hrh-stat-val {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+.hrh-stat-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Workforce composition donut */
+.hrh-donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 4px 4px;
+}
+.hrh-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hrh-dl-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--ink-mid);
+}
+.hrh-dl-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.hrh-dl-total {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+/* Fill rate table */
+.hrh-fill-table {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+}
+.hrh-fill-head {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 90px 70px;
+  gap: 0 8px;
+  padding: 6px 0 8px;
+  border-bottom: 2px solid var(--cloud-gray);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.hrh-fill-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 90px 70px;
+  gap: 0 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cloud-gray);
+  align-items: center;
+  color: var(--ink);
+}
+.hrh-fill-row:last-child { border-bottom: none; }
+.hrh-fill-total {
+  font-weight: 700;
+  background: rgba(14,158,138,0.04);
+  margin: 0 -8px;
+  padding: 10px 8px;
+  border-radius: 6px;
+}
+.ta-r { text-align: right; }
+.hrh-fi-teal { color: #0E9E8A; font-weight: 600; }
+.hrh-fi-red  { color: #E53E3E; font-weight: 500; }
+.hrh-fill-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.hrh-fill-pill--navy {
+  background: #EFF6FF;
+  color: #1E40AF;
+  border: 1px solid #BFDBFE;
+}
+
+/* Productivity note */
+.hrh-prod-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin: 10px 0 0;
+  font-style: italic;
+}
+
+/* State HRH context card */
+.hrh-context-card { padding-bottom: 16px; }
+.hrh-ctx-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 8px;
+}
+/* 3-panel variant used in DetailPage (if ever needed) */
+.hrh-ctx-grid--3 { grid-template-columns: 1fr 1fr 1fr; }
+.hrh-ctx-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  background: rgba(245,240,232,0.50);
+  border-radius: 10px;
+  border: 1px solid var(--cloud-gray);
+}
+.hrh-ctx-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+.hrh-ctx-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0A7B6C;
+  margin-top: 2px;
+}
+.hrh-ctx-prod {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hrh-ctx-prod-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(200,220,212,0.30);
+}
+.hrh-ctx-prod-row:last-child { border-bottom: none; }
+.hrh-ctx-prod-lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--ink-light);
+}
+.hrh-ctx-prod-actual {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #E53E3E;
+}
+.hrh-ctx-prod-std {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+
+/* ── HRH cadre page sections ─────────────────────────────────────── */
+.hrh-cadre-section { margin-bottom: 0; }
+.hrh-gauge-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hrh-donut-wrap--lg {
+  gap: 28px;
+  padding: 16px 8px 8px;
+}
+.hrh-donut-wrap--lg .hrh-dl-item { font-size: 13px; }
+.hrh-donut-wrap--lg .hrh-dl-total { font-size: 11px; }
+
+/* ── Drugs & Diagnostics Page ───────────────────────────────────── */
+.dd-section {
+  margin-bottom: 10px;
+}
+
+/* 3-pillar headline strip */
+.dd-pillar-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+.dd-pillar-card {
+  border: 1px solid;
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.dd-pillar-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-faint);
+  margin-bottom: 4px;
+}
+.dd-pillar-stat {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+.dd-pillar-sub {
+  font-size: 11px;
+  color: var(--ink-mid);
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+/* Section eyebrow band */
+.dd-section-band {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  border-left: 4px solid #D97706;
+  background: rgba(255,255,255,0.55);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+}
+.dd-section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Stock availability pills row */
+.dd-stock-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.dd-stock-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dd-stock-fac {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-mid);
+  min-width: 60px;
+}
+.dd-stock-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* Stat grid */
+.dd-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.dd-stat-tile {
+  background: rgba(248,250,252,0.85);
+  border: 1px solid var(--cloud-gray);
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-align: center;
+}
+.dd-stat-val {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.dd-stat-lbl {
+  font-size: 11px;
+  color: var(--ink-mid);
+  margin-top: 3px;
+  font-weight: 500;
+}
+.dd-stat-sub {
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+/* Challenge box */
+.dd-challenge-box {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 12px;
+}
+.dd-challenge-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #B45309;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+}
+.dd-challenge-item {
+  font-size: 12px;
+  color: #78350F;
+  padding-left: 10px;
+  position: relative;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.dd-challenge-item::before {
+  content: '·';
+  position: absolute;
+  left: 2px;
+  font-weight: 700;
+}
+
+/* Patient-to-test ratio band */
+.dd-ratio-band {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(248,250,252,0.9);
+  border: 1px solid var(--cloud-gray);
+  border-radius: 10px;
+  margin-top: 14px;
+  overflow: hidden;
+}
+.dd-ratio-item {
+  flex: 1;
+  padding: 12px 14px;
+  text-align: center;
+}
+.dd-ratio-val {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.dd-ratio-lbl {
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 3px;
+  line-height: 1.3;
+}
+.dd-ratio-divider {
+  width: 1px;
+  height: 44px;
+  background: var(--cloud-gray);
+  flex-shrink: 0;
+}
+
+/* NQAS summary strip */
+.dd-nqas-summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(14,158,138,0.06);
+  border: 1px solid rgba(14,158,138,0.2);
+  border-radius: 10px;
+}
+.dd-nqas-big {
+  text-align: center;
+  flex-shrink: 0;
+}
+.dd-nqas-pct {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #D97706;
+  line-height: 1;
+}
+.dd-nqas-label {
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 3px;
+  white-space: nowrap;
+}
+.dd-nqas-detail {
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.8;
+}
+.dd-nqas-detail strong {
+  color: var(--navy-dark);
+}
+
+/* IPHS callout note */
+.dd-iphs-callout {
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  padding: 10px 14px;
+  background: rgba(248,250,252,0.85);
+  border-radius: 8px;
+  margin-top: 12px;
+  border: 1px solid var(--cloud-gray);
 }
 
 /* ── Footer ─────────────────────────────────────────────────────── */

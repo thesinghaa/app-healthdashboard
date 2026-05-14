@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
 import DivisionPage from './pages/DivisionPage';
 import KDProgrammePage from './pages/KDProgrammePage';
+import HRHCadrePage from './pages/HRHCadrePage';
+import DrugsDiagnosticsPage from './pages/DrugsDiagnosticsPage';
 import KDIndicatorDetail from './pages/KDIndicatorDetail';
 
 export default function App() {
@@ -69,6 +71,23 @@ export default function App() {
       return <HomePage onSelectProgram={goToDetail} onSelectDivision={goToDivision} />;
     }
     if (view.page === 'kd-list') {
+      if (view.division?.id === 'hrh') {
+        return (
+          <HRHCadrePage
+            program={view.program}
+            division={view.division}
+            onBack={goBack}
+          />
+        );
+      }
+      if (view.division?.id === 'hss' && view.program?.id === 'drugs-diagnostics') {
+        return (
+          <DrugsDiagnosticsPage
+            division={view.division}
+            onBack={goBack}
+          />
+        );
+      }
       return (
         <KDProgrammePage
           program={view.program}
