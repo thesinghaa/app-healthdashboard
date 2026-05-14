@@ -11,8 +11,8 @@ html {
 
 body {
   height: 100%;
-  font-family: 'Inter', sans-serif;
-  background: #F8FAFC;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  background: var(--bg);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
 }
@@ -39,5 +39,5 @@ body {
 
 
 ::-webkit-scrollbar       { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--cloud-gray); }
-::-webkit-scrollbar-thumb { background: var(--teal-mid); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--bg3); }
+::-webkit-scrollbar-thumb { background: var(--org); border-radius: 3px; }

@@ -4,24 +4,21 @@
 
 .detail-root {
   min-height: 100vh;
-  background: linear-gradient(160deg, #F0FAFA 0%, #E8F4F2 40%, #F5F9FF 100%);
-  background-attachment: fixed;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
 }
 
 /* ── Sticky topbar — glass pill style ──────────────────────────── */
 .detail-topbar {
-  background: rgba(255,255,255,0.60);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(245,240,232,0.85);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid rgba(255,255,255,0.80);
-  box-shadow:
-    0 4px 24px rgba(10,123,108,0.10),
-    0 1px 0px rgba(255,255,255,1.00) inset;
+  border-bottom: 1px solid var(--bg3);
+  box-shadow: 0 2px 16px rgba(26,22,16,0.08);
 }
 .detail-topbar-inner {
   max-width: 1420px;
@@ -35,8 +32,8 @@
 .back-btn {
   background: none;
   border: none;
-  color: var(--teal-dark);
-  font-family: 'Inter', sans-serif;
+  color: var(--ink-mid);
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -47,12 +44,12 @@
   transition: color 0.15s;
   flex-shrink: 0;
 }
-.back-btn:hover { color: var(--teal-mid); }
+.back-btn:hover { color: var(--org); }
 .back-chevron   { font-size: 14px; }
 
 .detail-breadcrumb { display: flex; align-items: center; gap: 12px; flex: 1; }
 .detail-div-tag {
-  background: var(--teal-mid);
+  background: var(--org);
   color: #FFFFFF;
   font-size: 9px;
   font-weight: 700;
@@ -138,13 +135,11 @@
 
 /* ── Generic content card ───────────────────────────────────────── */
 .detail-card {
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: var(--off-white);
   border-radius: var(--rl);
   padding: 24px 28px;
   box-shadow: var(--sh);
-  border: 1px solid rgba(255,255,255,0.80);
+  border: 1px solid var(--bg3);
 }
 .detail-card-header {
   display: flex;

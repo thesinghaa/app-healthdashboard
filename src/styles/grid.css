@@ -33,10 +33,10 @@
 /* ── Section card — flat warm panel ─────────────────────────────── */
 .bento-card {
   position: relative;
-  background: #FFFFFF;
-  border: 1px solid #E8E0D0;
+  background: var(--off-white);
+  border: 1px solid var(--bg3);
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: var(--sh);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -49,9 +49,9 @@
 .bento-card .card-header {
   position: relative;
   padding: 10px 14px;
-  border-bottom: 1px solid #E8E0D0;
-  border-left: 4px solid var(--chip, #0E9E8A);
-  background: #FFFFFF;
+  border-bottom: 1px solid var(--bg3);
+  border-left: 4px solid var(--chip, #FF5500);
+  background: var(--off-white);
   border-radius: 10px 10px 0 0;
   flex-shrink: 0;
   display: flex;

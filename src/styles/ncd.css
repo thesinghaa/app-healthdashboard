@@ -5,24 +5,21 @@
 /* ── Page root ─────────────────────────────────────────────────── */
 .ncd-root {
   min-height: 100vh;
-  background: linear-gradient(160deg, #F0FAFA 0%, #E8F4F2 40%, #F5F9FF 100%);
-  background-attachment: fixed;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
 }
 
 /* ── Topbar ────────────────────────────────────────────────────── */
 .ncd-topbar {
-  background: rgba(255,255,255,0.60);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(245,240,232,0.85);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid rgba(255,255,255,0.80);
-  box-shadow:
-    0 4px 24px rgba(10,123,108,0.10),
-    0 1px 0px rgba(255,255,255,1.00) inset;
+  border-bottom: 1px solid var(--bg3);
+  box-shadow: 0 2px 16px rgba(26,22,16,0.08);
 }
 .ncd-topbar-inner {
   max-width: 1420px;
@@ -64,12 +61,12 @@
 
 /* ── Base card ─────────────────────────────────────────────────── */
 .ncd-card {
-  background: rgba(255,255,255,0.88);
-  border: 1.5px solid rgba(14,158,138,0.42);
-  border-top: 3px solid rgba(14,158,138,0.68);
+  background: var(--off-white);
+  border: 1px solid var(--bg3);
+  border-top: 3px solid var(--org);
   border-radius: 16px;
   padding: 24px 28px;
-  box-shadow: 0 8px 32px rgba(10,123,108,0.14);
+  box-shadow: var(--shm);
 }
 .ncd-card-header {
   display: flex;

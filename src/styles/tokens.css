@@ -1,53 +1,54 @@
 /* ─────────────────────────────────────────────────────────────────
-   tokens.css — Design tokens (teal + yellow + navy)
+   tokens.css — Blackmantis palette: warm black · orange · cream
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Teal spectrum */
-  --teal-dark:  #0A7B6C;
-  --teal-mid:   #0E9E8A;
-  --teal-light: #2DC4AD;
-  --teal-pale:  #7EDDD0;
+  /* ── Brand palette (Blackmantis) ──────────────────────────────── */
+  --org:        #FF5500;        /* primary orange accent             */
+  --org2:       #FF7733;        /* lighter orange                    */
+  --org-dim:    rgba(255,85,0,0.10);
+  --org-glow:   rgba(255,85,0,0.18);
 
-  /* Yellow accent */
+  /* ── Ink (warm near-black, no blue cast) ─────────────────────── */
+  --ink:        #1A1610;
+  --ink-mid:    #3A342C;
+  --ink-light:  #7A7060;
+  --ink-faint:  #9A8F82;
+
+  /* ── Surfaces (warm cream) ───────────────────────────────────── */
+  --bg:         #F5F0E8;
+  --bg2:        #EDE8DF;
+  --bg3:        #E4DDD2;
+  --cloud-gray: #E4DDD2;
+  --off-white:  #FAF7F2;
+
+  /* ── Glass layers ────────────────────────────────────────────── */
+  --w1:  rgba(245,240,232,0.80);
+  --w2:  rgba(245,240,232,0.55);
+  --w3:  rgba(245,240,232,0.35);
+  --w4:  rgba(255,255,255,0.88);
+
+  /* ── Legacy aliases (kept for chart/detail compat) ───────────── */
+  --navy-dark:    #1A1610;
+  --navy-mid:     #3A342C;
+  --navy:         #1A1610;
+  --teal-dark:    #0A7B6C;
+  --teal-mid:     #0E9E8A;
+  --teal-light:   #2DC4AD;
+  --teal-pale:    #7EDDD0;
+  --ocean-light:  rgba(14,158,138,0.10);
+  --ocean-mid:    #0E9E8A;
+  --ocean-deep:   #0A7B6C;
+  --ocean-glass:  rgba(14,158,138,0.06);
   --yellow:       #F5C518;
   --yellow-hover: #E0B000;
+  --gold:         #FF5500;
+  --gold-mid:     #FF7733;
 
-  /* Navy */
-  --navy-dark: #1A1F36;
-  --navy-mid:  #2D3561;
-
-  /* Page surfaces */
-  --bg:          #F5F0E8;
-  --off-white:   #FFFFFF;
-  --cloud-gray:  #E8E0D0;
-
-  /* Glass pill */
-  --w1:          rgba(255,255,255,0.72);
-  --w2:          rgba(255,255,255,0.50);
-  --w3:          rgba(255,255,255,0.30);
-  --w4:          rgba(255,255,255,0.82);
-  --w5:          rgba(14,158,138,0.55);
-
-  /* Aliases kept for detail.css compat */
-  --ocean-light: rgba(14,158,138,0.12);
-  --ocean-mid:   #0E9E8A;
-  --ocean-deep:  #0A7B6C;
-  --ocean-glass: rgba(14,158,138,0.08);
-  --navy:        #1A1F36;
-  --gold:        #F5C518;
-  --gold-mid:    #E0B000;
-
-  /* Ink */
-  --ink:       #1A1F36;
-  --ink-mid:   #2D3561;
-  --ink-light: #475569;
-  --ink-faint: #6B7280;
-
-  /* Status — single authoritative values, used everywhere */
+  /* ── Status — semantic, unchanged ───────────────────────────── */
   --red-dot:  #E53E3E;
   --red-bdr:  #FEB2B2;
-  --red-txt:  #E53E3E;
+  --red-txt:  #C53030;
   --red-bg:   #FFF0F0;
 
   --yel-dot:  #D69E2E;
@@ -60,11 +61,12 @@
   --grn-txt:  #276749;
   --grn-bg:   #F0FFF4;
 
-  /* Shadows */
-  --sh:  0 2px 8px rgba(0,0,0,0.06);
-  --shm: 0 4px 16px rgba(0,0,0,0.10);
+  /* ── Shadows ─────────────────────────────────────────────────── */
+  --sh:  0 2px 8px rgba(26,22,16,0.07);
+  --shm: 0 4px 20px rgba(26,22,16,0.11);
+  --sh-org: 0 4px 20px rgba(255,85,0,0.14);
 
-  /* Radii */
+  /* ── Radii ───────────────────────────────────────────────────── */
   --r:  10px;
   --rm: 10px;
   --rl: 14px;
