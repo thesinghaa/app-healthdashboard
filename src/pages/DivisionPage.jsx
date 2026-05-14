@@ -22,10 +22,10 @@ const GRID_CLASS = {
 };
 
 const CHIP_COLOR = {
-  rch:  '#0F766E',
-  ndcp: '#7C3AED',
-  ncd:  '#6D28D9',
-  hss:  '#1D4ED8',
+  rch:  '#FF5500',
+  ndcp: '#C2410C',
+  ncd:  '#0A7B6C',
+  hss:  '#B45309',
 };
 
 export default function DivisionPage({ division, onBack, onSelectProgram }) {

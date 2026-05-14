@@ -25,10 +25,10 @@
 /*   --chip-rgb drives the glass border gradient, independent of     */
 /*   the badge chip colour. NCD uses violet border (not red) so      */
 /*   the glass effect stays calm and non-alarming.                   */
-.card-rch  { --chip: #0F766E; --chip-rgb: 15,118,110;  }
-.card-ndcp { --chip: #7C3AED; --chip-rgb: 124,58,237;  }
-.card-ncd  { --chip: #6D28D9; --chip-rgb: 109,40,217;  }
-.card-hss  { --chip: #1D4ED8; --chip-rgb: 29,78,216;   }
+.card-rch  { --chip: #FF5500; --chip-rgb: 255,85,0;    }
+.card-ndcp { --chip: #C2410C; --chip-rgb: 194,65,12;   }
+.card-ncd  { --chip: #0A7B6C; --chip-rgb: 10,123,108;  }
+.card-hss  { --chip: #B45309; --chip-rgb: 180,83,9;    }
 
 /* ── Section card — flat warm panel ─────────────────────────────── */
 .bento-card {
@@ -346,7 +346,7 @@
 /* Override page background to warm cream */
 .home-bg-gradient {
   background-color: #F5F0E8 !important;
-  background-image: radial-gradient(circle, rgba(14,158,138,0.045) 1px, transparent 1px) !important;
+  background-image: radial-gradient(circle, rgba(255,85,0,0.045) 1px, transparent 1px) !important;
 }
 
 /* ── Carousel area — fills .home-grid ── */
@@ -624,7 +624,7 @@
 
 .cc-row--red    { background: rgba(255, 240, 240, 0.72); border-color: rgba(229,62,62,0.18); }
 .cc-row--yellow { background: rgba(255, 251, 230, 0.72); border-color: rgba(214,158,46,0.18); }
-.cc-row--green  { background: rgba(235, 255, 250, 0.72); border-color: rgba(14,158,138,0.18); }
+.cc-row--green  { background: rgba(245,240,232,0.72); border-color: rgba(255,85,0,0.15); }
 
 .cc-row--no-match { display: none; }
 

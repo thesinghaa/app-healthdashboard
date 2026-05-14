@@ -254,7 +254,7 @@
   border-radius: 10px;
   padding: 10px 14px;
   font-family: 'Inter', sans-serif;
-  box-shadow: 0 4px 16px rgba(10,123,108,0.14);
+  box-shadow: 0 4px 16px rgba(26,22,16,0.12);
 }
 .ncd-tip-label {
   font-size: 12px;
@@ -385,7 +385,7 @@
   background: transparent;
   transition: opacity 0.18s ease, background 0.18s ease;
 }
-.ncd-dlg-row:hover { background: rgba(14,158,138,0.05); }
+.ncd-dlg-row:hover { background: rgba(255,85,0,0.05); }
 
 .ncd-dlg-dot {
   width: 7px;
@@ -678,8 +678,8 @@
 /* ── Topbar badges / links ───────────────────────────────────────── */
 .hmis-live-badge {
   font-size: 10px; font-weight: 700; font-family: 'Inter', sans-serif;
-  background: rgba(14,158,138,0.12); color: #0A7B6C;
-  border: 1px solid rgba(14,158,138,0.30); border-radius: 20px;
+  background: rgba(255,85,0,0.10); color: #0A7B6C;
+  border: 1px solid rgba(255,85,0,0.25); border-radius: 20px;
   padding: 3px 10px; letter-spacing: 0.06em; text-transform: uppercase;
 }
 .hmis-error-badge {
@@ -688,11 +688,11 @@
 }
 .hmis-sheet-link {
   font-size: 11px; font-weight: 600; font-family: 'Inter', sans-serif;
-  background: rgba(14,158,138,0.10); color: #0A7B6C;
-  border: 1px solid rgba(14,158,138,0.30); border-radius: 6px;
+  background: rgba(255,85,0,0.09); color: #0A7B6C;
+  border: 1px solid rgba(255,85,0,0.25); border-radius: 6px;
   padding: 4px 12px; text-decoration: none; white-space: nowrap;
 }
-.hmis-sheet-link:hover { background: rgba(14,158,138,0.18); }
+.hmis-sheet-link:hover { background: rgba(255,85,0,0.15); }
 
 /* ── Category tabs ───────────────────────────────────────────────── */
 .hmis-tabs-section {
@@ -847,7 +847,7 @@
   cursor: pointer;
 }
 .hmis-row-clickable:hover {
-  background: #F0FAFA !important;
+  background: var(--bg) !important;
   box-shadow: inset 3px 0 0 currentColor;
 }
 .hmis-row-drill {
@@ -1180,11 +1180,11 @@
 /* ── Programme header card ───────────────────────────────────────── */
 .kd-prog-header {
   background: rgba(255,255,255,0.90);
-  border: 1.5px solid rgba(14,158,138,0.30);
-  border-top: 3px solid rgba(14,158,138,0.60);
+  border: 1.5px solid rgba(255,85,0,0.25);
+  border-top: 3px solid var(--org);
   border-radius: 14px;
   padding: 22px 26px;
-  box-shadow: 0 4px 20px rgba(10,123,108,0.10);
+  box-shadow: 0 4px 20px rgba(26,22,16,0.09);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -1271,10 +1271,10 @@
 /* ── KD indicator table ──────────────────────────────────────────── */
 .kd-table {
   background: rgba(255,255,255,0.90);
-  border: 1.5px solid rgba(14,158,138,0.22);
+  border: 1.5px solid rgba(255,85,0,0.18);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(10,123,108,0.08);
+  box-shadow: 0 2px 12px rgba(26,22,16,0.07);
 }
 .kd-table-head {
   display: grid;
@@ -1316,7 +1316,7 @@
 }
 .kd-table-row:hover,
 .kd-table-row:focus {
-  background: #F0FAFA;
+  background: var(--bg);
   border-left-color: #0A7B6C;
 }
 .kd-table-row:hover .kd-drill-arrow {
@@ -1399,11 +1399,11 @@
 /* ── Hero detail card ────────────────────────────────────────────── */
 .kdi-hero {
   background: rgba(255,255,255,0.92);
-  border: 1.5px solid rgba(14,158,138,0.28);
+  border: 1.5px solid rgba(255,85,0,0.22);
   border-left: 5px solid #059669;
   border-radius: 14px;
   padding: 26px 30px;
-  box-shadow: 0 6px 24px rgba(10,123,108,0.12);
+  box-shadow: 0 6px 24px rgba(26,22,16,0.10);
   display: flex;
   flex-direction: column;
   gap: 16px;

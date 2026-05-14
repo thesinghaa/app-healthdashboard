@@ -19,11 +19,11 @@ const STATUS_TEXT = { red: 'Critical', yellow: 'Caution', green: 'On Track' };
 const STATUS_CLS  = { red: 'sl-red',   yellow: 'sl-yellow', green: 'sl-green' };
 
 const DIV_CHIP = {
-  rch:  '#0F766E',
-  ndcp: '#7C3AED',
-  ncd:  '#6D28D9',
-  hss:  '#1D4ED8',
-  hrh:  '#4472C4',
+  rch:  '#FF5500',
+  ndcp: '#C2410C',
+  ncd:  '#0A7B6C',
+  hss:  '#B45309',
+  hrh:  '#1A1610',
 };
 
 const DIV_DESC = {
