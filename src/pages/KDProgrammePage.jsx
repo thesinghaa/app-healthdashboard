@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { KD_TREE } from '../data/kdData';
 import { STATUS_CONFIG } from '../data/programs';
+import CurrentStatusSection from './CurrentStatusSection';
 
 /* ── Status helpers ──────────────────────────────────────────────── */
 function kdStatus(kd) {
@@ -266,6 +267,24 @@ export default function KDProgrammePage({ program, division, onBack, onSelectInd
 
         {/* Critical KDs callout — only rendered when gap KDs exist */}
         <CriticalKDs kds={kds} />
+
+        {/* ── CURRENT STATUS — prominently above KD table ────────── */}
+        {program?.currentStatus && (
+          <div className="kd-prog-section kd-cs-outer">
+            <div className="kd-cs-outer-header">
+              <div>
+                <div className="kd-cs-outer-label">Current Status</div>
+                <div className="kd-cs-outer-sublabel">
+                  SDG &amp; Disease Elimination · MoHFW NPCC May 2026
+                </div>
+              </div>
+              <span className="kd-cs-outer-pill">LIVE DATA</span>
+            </div>
+            <div className="kd-cs-outer-body">
+              <CurrentStatusSection program={program} />
+            </div>
+          </div>
+        )}
 
         {/* KD indicator table */}
         <div className="kd-prog-section">

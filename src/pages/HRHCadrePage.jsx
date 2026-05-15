@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Plot from 'react-plotly.js';
 import { STATUS_CONFIG } from '../data/programs';
+import CurrentStatusSection from './CurrentStatusSection';
 
 /* ── Palette ─────────────────────────────────────────────────────── */
 const C_REG  = '#FF5500';
@@ -457,6 +458,27 @@ export default function HRHCadrePage({ program, division, onBack }) {
           </div>
         </div>
 
+        {/* ── PM-ABHIM: show infrastructure Current Status instead of staffing ── */}
+        {program.id === 'pm-abhim' ? (
+          <div className="hrh-cadre-section">
+            <div className="kd-cs-outer">
+              <div className="kd-cs-outer-header">
+                <div>
+                  <div className="kd-cs-outer-label">Current Status</div>
+                  <div className="kd-cs-outer-sublabel">
+                    PM-ABHIM &amp; XV-FC Financial Progress · MoHFW NPCC May 2026
+                  </div>
+                </div>
+                <span className="kd-cs-outer-pill">LIVE DATA</span>
+              </div>
+              <div className="kd-cs-outer-body">
+                <CurrentStatusSection program={program} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+
         {/* Eyebrow */}
         <div className="hrh-cadre-section">
           <div className="hrh-cs-band">
@@ -678,6 +700,10 @@ export default function HRHCadrePage({ program, division, onBack }) {
             </div>
           </div>
         </div>
+
+          </>
+        )}
+        {/* ── end PM-ABHIM conditional ─────────────────────────── */}
 
       </div>
 

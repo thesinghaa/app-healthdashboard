@@ -2706,3 +2706,76 @@
   flex-shrink: 0;
   animation: cs-dot-pulse 1.8s ease-in-out infinite;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   CURRENT STATUS — prominent wrapper above Key Deliverables
+   Used in KDProgrammePage and HRHCadrePage (PM-ABHIM)
+   ───────────────────────────────────────────────────────────────── */
+
+.kd-cs-outer {
+  border-radius: 16px;
+  border: 2.5px solid #FF5500;
+  overflow: hidden;
+  box-shadow: 0 6px 32px rgba(255,85,0,0.14), 0 1px 4px rgba(255,85,0,0.08);
+  /* remove the normal kd-prog-section padding so we control it ourselves */
+  padding: 0 !important;
+}
+
+.kd-cs-outer-header {
+  background: linear-gradient(100deg, #FF5500 0%, #E04000 100%);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.kd-cs-outer-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.kd-cs-outer-sublabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.kd-cs-outer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.kd-cs-outer-pill::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  flex-shrink: 0;
+  animation: cs-dot-pulse 1.8s ease-in-out infinite;
+}
+
+.kd-cs-outer-body {
+  background: #FFFCFA;
+  padding: 22px 22px 10px;
+}

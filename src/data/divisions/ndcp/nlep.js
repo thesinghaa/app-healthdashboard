@@ -31,6 +31,8 @@ export default {
     totalDistricts: 25,
     iotAchieved: 13,
     iotDistricts50_60: 'Changlang, Dibang Valley, Dibang Valley Lower, Kameng West, Kamle, Lohit, Longding, Lower Siang, Namasai, Siang East, Siang West, Subansiri Upper, Tirap',
+    eliminationAchieved: 12,
+    eliminationDistricts: 'Anjaw, Kameng East, Kradaadi, Kurung Kumey, Lepa Rada, Pakke Kessang, Shiyomi, Siang, Siang Upper, Subansiri Lower, Subansiri Upper, Tawang',
     annualData: [
       { fy: '2024-25', newCases: 26, g2dCases: 1, childCases: 1 },
       { fy: '2025-26', newCases: 24, g2dCases: 0, childCases: 0 },
