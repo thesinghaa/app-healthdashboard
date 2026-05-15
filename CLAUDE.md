@@ -51,21 +51,27 @@ Live repo: `https://github.com/AryanSinghpif/app-healthdashboard`
 
 ---
 
-## Navigation (4 layers)
+## Navigation (5 layers)
 
 ```
 Home (divisions)
-  └── KDProgrammePage (3rd layer — programme KD list)
-        └── KDIndicatorDetail (4th layer — single KD deep-dive)
+  └── DivisionPage (division programme grid)
+        └── KDProgrammePage (programme KD table)  ←  or HRHCadrePage / DrugsDiagnosticsPage
+              ├── KDIndicatorDetail (single KD deep-dive)
+              └── CurrentStatusDetailPage (current status charts — full page)
 ```
 
 State lives in `App.jsx`:
-- `page`: `'home' | 'kd-list' | 'kd-indicator'`
-- `program`, `division`, `indicator` objects
+- `page`: `'home' | 'division' | 'kd-list' | 'kd-indicator' | 'current-status'`
+- `program`, `division`, `indicator`, `origin` objects
 
 `goToDetail(program, division)` → `kd-list`
+`goToDivision(division)` → `division`
 `goToIndicator(kd)` → `kd-indicator`
-`goBack()` → returns one level up
+`goToCurrentStatus(program, division)` → `current-status`
+`goBack()` → returns one level up; `current-status` always backs to `division`
+
+**Back navigation note**: `current-status` always returns to `division` regardless of entry point (no origin tracking for this layer).
 
 ---
 
@@ -74,7 +80,12 @@ State lives in `App.jsx`:
 | File | Purpose |
 |------|---------|
 | `src/App.jsx` | Root router — state-based navigation |
+| `src/pages/DivisionPage.jsx` | 2nd layer: division programme grid |
 | `src/pages/KDProgrammePage.jsx` | 3rd layer: programme-level KD table |
+| `src/pages/HRHCadrePage.jsx` | 3rd layer (HRH division only): staffing cadre view |
+| `src/pages/DrugsDiagnosticsPage.jsx` | 3rd layer (HSS drugs): special layout |
+| `src/pages/CurrentStatusDetailPage.jsx` | Full-page current status charts (4th layer) |
+| `src/pages/CurrentStatusSection.jsx` | Chart components; also exports named `CSEntryBar` |
 | `src/pages/KDIndicatorDetail.jsx` | 4th layer: single indicator deep-dive |
 | `src/pages/NCDDetailPage.jsx` | Legacy NCD detail (keep, not removed) |
 | `src/data/kdData.js` | KD tree — all ~157 Key Deliverables |
@@ -193,7 +204,26 @@ NFHS-4: `#6D28D9` / `#A855F7` / `#D8B4FE`
 
 ## Current-Status Sections (added May 2026)
 
-Each programme data file can now include a `currentStatus` object with a `type` field. `DetailPage.jsx` reads this and renders the appropriate component via `CurrentStatusSection`. Placement: immediately after Key Metrics, before HRH staffing section.
+Each programme data file can include a `currentStatus` object with a `type` field. Clicking the `CSEntryBar` on `KDProgrammePage` / `HRHCadrePage` / `DivisionPage` navigates to `CurrentStatusDetailPage`, which wraps `CurrentStatusSection` in an orange-themed full-page layout.
+
+### Entry points
+- `DivisionPage` — "Current Status" pill button inside each programme card (shown only if `prog.currentStatus` exists)
+- `KDProgrammePage` — `CSEntryBar` replaces the old inline chart block inside `kd-prog-section`
+- `HRHCadrePage` — `CSEntryBar` inside `hrh-cadre-section` for PM-ABHIM
+
+### CurrentStatusDetailPage layout
+- Orange hero band (`.csd-hero`) with programme name
+- Navy topbar with breadcrumb (`.app-topbar`)
+- Section header (`.csd-section-header`) + charts body (`.csd-charts-body`) inside `.csd-charts-outer`
+- `CurrentStatusSection` renders charts; `useCSAnim` inside each chart component handles its own GSAP — page animation does NOT target `.csd-content > *` to avoid conflicts
+
+### CSEntryBar (named export)
+`import CurrentStatusSection, { CSEntryBar } from './CurrentStatusSection'`
+- Slim navy gradient clickable bar
+- Shows pulsing live dot, programme type label, source, and "View Full Report →" CTA
+- CSS class: `.cs-entry-bar`
+
+### Programmes with currentStatus
 
 | Programme | File | `currentStatus.type` | Data source |
 |-----------|------|---------------------|-------------|
@@ -205,13 +235,44 @@ Each programme data file can now include a `currentStatus` object with a `type` 
 | NCVBDCP | `ndcp/ncvbdcp.js` | `'malaria'` | 5-year trend (32 cases 2025), 16 districts SNV-eligible |
 | PM-ABHIM | `hrh/pm-abhim.js` | `'pm-abhim'` | IPHL 5/22 complete, XV-FC financial progress table |
 
-Rendering components in `DetailPage.jsx`: `CSBand`, `MMRStatus`, `ChildHealthStatus`, `FPStatus`, `TBStatus`, `LeprosyStatus`, `MalariaStatus`, `PMABHIMStatus`, `CurrentStatusSection`.
+Rendering components in `CurrentStatusSection.jsx`: `MMRStatus`, `ChildHealthStatus`, `FPStatus`, `TBStatus`, `LeprosyStatus`, `MalariaStatus`, `PMABHIMStatus`.
 
-CSS classes all start with `.cs-*` — appended to bottom of `ncd.css` from line ~2145.
+CSS classes: `.cs-*` for chart components; `.csd-*` for `CurrentStatusDetailPage`; `.app-topbar`, `.app-back-btn`, `.app-breadcrumb` for the shared topbar system — all appended to `ncd.css`.
 
-`HRHSection` is now guarded: `division?.id === 'hrh' && program.id !== 'pm-abhim'` — PM-ABHIM uses `PMABHIMStatus` instead of the staffing charts.
+`HRHSection` is guarded: `division?.id === 'hrh' && program.id !== 'pm-abhim'` — PM-ABHIM routes to `CurrentStatusDetailPage` instead.
 
 PM-ABHIM is registered in `hrh/index.js` as the 8th programme in the HRH division.
+
+---
+
+## Orange glass 3D card design system (added May 2026)
+
+Applied consistently across all navigation layers via `ncd.css` overrides:
+
+| Element | Class | Treatment |
+|---------|-------|-----------|
+| Home carousel cards | `.carousel-card` | `border: 4px solid #FF5500`, `blur(32px) saturate(175%)`, warm cream bg, 3-layer depth + orange glow |
+| Carousel division heading | `.cc-header` | `border-left: none` (removed left orange stripe), warm glass bg |
+| Programme row tiles | `.programme-row` | Glass micro-tiles, `border-top: 2px orange`, status left-border colours preserved |
+| Division programme cards | `.dv-prog-card` | `border-top: 4px #FF5500`, `blur(18px)` |
+| KD programme sections | `.kd-prog-section` | Glass container `blur(14px)`, `border-top: 3px`, 16px radius |
+| KD table inside section | `.kd-prog-section .kd-table` | White tile with orange tint border |
+| Detail cards / CS plot cards | `.detail-card`, `.cs-plot-card` | `blur(12px)`, `border-top: 3px`, depth shadows |
+| HRH cadre sections | `.hrh-cadre-section` | Glass panels |
+
+**Important**: `.bento-card` class in `grid.css` is dead — NOT used in any JSX. Home page uses `.carousel-card`.
+
+---
+
+## NCD division data files (`src/data/divisions/ncd/`)
+
+11 programmes under NCD division. Each file exports a default object with: `id`, `name`, `status`, `keyMetric`, `statusReason`, `summary`, `keyMetrics[]`, `observations[]`, `actions[]`, `nfhsData[]`.
+
+**Audit history**: May 2026 — found and fixed copy-paste errors in two files:
+- `npcbvi.js` had data duplicated from `niddcp.js` (iodised salt) — corrected to NPCBVI (blindness/cataract) data
+- `pmndp.js` had `keyMetric: 'Mental health access'` copied from `nmhp.js` — corrected to `'High blood sugar: 11.9%'`
+
+All 11 NCD files now have unique, programme-appropriate `keyMetric` and `summary` values (verified May 2026).
 
 ---
 
