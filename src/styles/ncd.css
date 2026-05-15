@@ -2596,3 +2596,45 @@
   font-size: 15px !important;
   font-weight: 700 !important;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Plotly CS plot cards & layout helpers
+   ───────────────────────────────────────────────────────────────── */
+
+/* Row of plot cards */
+.cs-plot-row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.cs-plot-row > .detail-card,
+.cs-plot-row > .cs-card {
+  margin-bottom: 0;
+}
+
+/* Plotly card — same as detail-card but with orange top accent */
+.cs-plot-card {
+  background: #FFFFFF;
+  border-radius: 14px;
+  border: 1px solid #E9E4DA;
+  box-shadow: 0 2px 12px rgba(26,22,16,0.06);
+  padding: 20px 22px 16px;
+  flex: 1;
+  min-width: 260px;
+  margin-bottom: 16px;
+  border-top: 3px solid var(--org, #FF5500);
+  position: relative;
+}
+.cs-plot-card--half {
+  flex: 0 1 calc(50% - 8px);
+  min-width: 240px;
+}
+.cs-plot-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #1A1F36 !important;
+  margin: 0 !important;
+}
