@@ -8,6 +8,7 @@ import KDProgrammePage from './pages/KDProgrammePage';
 import HRHCadrePage from './pages/HRHCadrePage';
 import DrugsDiagnosticsPage from './pages/DrugsDiagnosticsPage';
 import KDIndicatorDetail from './pages/KDIndicatorDetail';
+import CurrentStatusDetailPage from './pages/CurrentStatusDetailPage';
 
 export default function App() {
   const [view, setView] = useState({
@@ -51,6 +52,10 @@ export default function App() {
     transitionTo({ ...viewRef.current, page: 'kd-indicator', indicator });
   }, [transitionTo]);
 
+  const goToCurrentStatus = useCallback((program, division) => {
+    transitionTo({ page: 'current-status', program, division, indicator: null, origin: 'division' });
+  }, [transitionTo]);
+
   const goHome = useCallback(() => {
     transitionTo({ page: 'home', program: null, division: null, indicator: null });
   }, [transitionTo]);
@@ -59,6 +64,8 @@ export default function App() {
     const cur = viewRef.current;
     if (cur.page === 'kd-indicator') {
       transitionTo({ ...cur, page: 'kd-list', indicator: null });
+    } else if (cur.page === 'current-status') {
+      transitionTo({ page: 'division', program: null, division: cur.division, indicator: null, origin: 'home' });
     } else if (cur.page === 'kd-list' && cur.origin === 'division') {
       transitionTo({ page: 'division', program: null, division: cur.division, indicator: null, origin: 'home' });
     } else {
@@ -103,6 +110,16 @@ export default function App() {
           division={view.division}
           onBack={goHome}
           onSelectProgram={goToDetail}
+          onCurrentStatus={goToCurrentStatus}
+        />
+      );
+    }
+    if (view.page === 'current-status') {
+      return (
+        <CurrentStatusDetailPage
+          program={view.program}
+          division={view.division}
+          onBack={goBack}
         />
       );
     }

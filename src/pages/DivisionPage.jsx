@@ -28,7 +28,7 @@ const CHIP_COLOR = {
   hss:  '#B45309',
 };
 
-export default function DivisionPage({ division, onBack, onSelectProgram }) {
+export default function DivisionPage({ division, onBack, onSelectProgram, onCurrentStatus }) {
   const wrapRef = useRef(null);
 
   const sorted = [...division.programs].sort(
@@ -80,11 +80,14 @@ export default function DivisionPage({ division, onBack, onSelectProgram }) {
         {/* ── Programme grid ─────────────────────────────────────── */}
         <div className={`dv-prog-grid ${GRID_CLASS[division.id] || 'div-grid-2col'}`}>
           {sorted.map(prog => (
-            <button
+            <div
               key={prog.id}
               className={`dv-prog-card ${STATUS_CLASS[prog.status]}`}
               onClick={() => onSelectProgram(prog, division)}
+              role="button"
+              tabIndex={0}
               title={`View ${prog.name} — key deliverables and indicators`}
+              onKeyDown={e => e.key === 'Enter' && onSelectProgram(prog, division)}
             >
               {/* Header */}
               <div className="dv-card-header">
@@ -119,10 +122,17 @@ export default function DivisionPage({ division, onBack, onSelectProgram }) {
               <div className="dv-card-footer">
                 <span className="dv-card-cta">View Indicators →</span>
                 {prog.currentStatus && (
-                  <span className="dv-cs-badge">Current Status</span>
+                  <button
+                    className="dv-cs-btn"
+                    onClick={e => { e.stopPropagation(); onCurrentStatus(prog, division); }}
+                    onKeyDown={e => { e.stopPropagation(); e.key === 'Enter' && onCurrentStatus(prog, division); }}
+                    tabIndex={0}
+                  >
+                    Current Status
+                  </button>
                 )}
               </div>
-            </button>
+            </div>
           ))}
         </div>
 

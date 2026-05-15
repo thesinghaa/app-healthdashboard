@@ -2779,3 +2779,256 @@
   background: #FFFCFA;
   padding: 22px 22px 10px;
 }
+
+/* =================================================================
+   CURRENT STATUS BUTTON — programme cards (DivisionPage)
+   ================================================================= */
+
+.dv-cs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FF5500;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 5px 13px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.18s, transform 0.14s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px rgba(255,85,0,0.28);
+  position: relative;
+}
+
+.dv-cs-btn::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  flex-shrink: 0;
+  animation: cs-dot-pulse 1.8s ease-in-out infinite;
+}
+
+.dv-cs-btn:hover {
+  background: #E04000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255,85,0,0.38);
+}
+
+.dv-cs-btn:active {
+  transform: translateY(0);
+}
+
+/* =================================================================
+   CURRENT STATUS DETAIL PAGE (3rd layer — CurrentStatusDetailPage)
+   ================================================================= */
+
+.csd-root {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Shared App Topbar (navy) ─────────────────────────────────── */
+.app-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1A1F36;
+  border-bottom: 3px solid #FF5500;
+  box-shadow: 0 2px 12px rgba(26,31,54,0.22);
+}
+
+.app-topbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.app-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.app-back-btn:hover {
+  background: rgba(255,85,0,0.18);
+  border-color: rgba(255,85,0,0.45);
+}
+
+.app-back-arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.app-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.app-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.app-bc-sep {
+  color: rgba(255,255,255,0.35);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.app-bc-prog {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-bc-current {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FF5500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Orange hero header ───────────────────────────────────────── */
+.csd-hero {
+  background: linear-gradient(108deg, #FF5500 0%, #C83A00 100%);
+  padding: 40px 0 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.csd-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 90% 50%, rgba(255,255,255,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(0,0,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.csd-hero-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.csd-hero-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+
+.csd-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+
+.csd-hero-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.5;
+}
+
+/* ── Content area ─────────────────────────────────────────────── */
+.csd-content {
+  flex: 1;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 28px 40px;
+}
+
+/* =================================================================
+   COLOUR-THEME OVERRIDES — all inner-page topbars → navy + orange
+   ================================================================= */
+
+/* NCD / KD topbar (ncd-topbar) */
+.ncd-topbar {
+  background: #1A1F36 !important;
+  border-bottom: 3px solid #FF5500 !important;
+}
+
+.ncd-topbar .back-btn {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  color: #FFFFFF !important;
+}
+
+.ncd-topbar .back-btn:hover {
+  background: rgba(255,85,0,0.18) !important;
+  border-color: rgba(255,85,0,0.45) !important;
+}
+
+.ncd-topbar .detail-div-tag {
+  background: #FF5500 !important;
+  color: #FFFFFF !important;
+}
+
+.ncd-topbar .detail-prog-name {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+/* DivisionPage topbar (dv-topbar) — keep its existing teal-adjacent style
+   but add the orange bottom accent to match the theme */
+.dv-topbar {
+  border-bottom: 3px solid #FF5500;
+}
+
+/* KDIndicatorDetail topbar if it exists */
+.kd-ind-topbar {
+  background: #1A1F36 !important;
+  border-bottom: 3px solid #FF5500 !important;
+}
