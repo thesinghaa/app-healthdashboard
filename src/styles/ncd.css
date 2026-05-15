@@ -3175,3 +3175,92 @@
     align-self: flex-end;
   }
 }
+
+/* =================================================================
+   CSD SECTION HEADER — inside CurrentStatusDetailPage content area
+   Matches the kd-cs-outer header style that the inline charts had
+   ================================================================= */
+
+.csd-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(105deg, #FF5500 0%, #E04000 100%);
+  border-radius: 14px 14px 0 0;
+  padding: 16px 22px;
+  margin-bottom: 0;
+}
+
+.csd-section-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.csd-section-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  flex-shrink: 0;
+  animation: cs-dot-pulse 1.8s ease-in-out infinite;
+}
+
+.csd-section-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.csd-section-source {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.72);
+  margin-top: 2px;
+}
+
+.csd-section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.csd-section-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  flex-shrink: 0;
+  animation: cs-dot-pulse 1.8s ease-in-out infinite;
+}
+
+/* Outer container — orange border wrapping header + charts body */
+.csd-charts-outer {
+  border: 2.5px solid #FF5500;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 32px rgba(255,85,0,0.14), 0 1px 4px rgba(255,85,0,0.08);
+  margin-bottom: 28px;
+}
+
+/* Charts body — cream background below the header */
+.csd-charts-body {
+  background: #FFFCFA;
+  padding: 24px 24px 12px;
+}
