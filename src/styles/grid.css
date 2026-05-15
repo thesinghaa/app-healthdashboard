@@ -29,28 +29,39 @@
 .card-ndcp { --chip: #C2410C; --chip-rgb: 194,65,12;   }
 .card-ncd  { --chip: #92400E; --chip-rgb: 146,64,14;   }
 .card-hss  { --chip: #B45309; --chip-rgb: 180,83,9;    }
+.card-hrh  { --chip: #7C2D12; --chip-rgb: 124,45,18;   }
 
 /* ── Section card — flat warm panel ─────────────────────────────── */
 .bento-card {
   position: relative;
-  background: var(--off-white);
-  border: 1px solid var(--bg3);
-  border-radius: 10px;
-  box-shadow: var(--sh);
+  background: rgba(250,247,242,0.78);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1.5px solid rgba(var(--chip-rgb, 255,85,0), 0.32);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.55) inset,
+    0 2px 12px rgba(var(--chip-rgb, 255,85,0), 0.10),
+    0 1px 4px rgba(26,22,16,0.06);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: 0;
   height: 100%;
-  transition: box-shadow 0.25s ease, transform 0.18s ease, border-color 0.25s ease;
+  transition: box-shadow 0.25s ease, transform 0.20s ease, border-color 0.25s ease;
 }
 .bento-card:hover {
-  border-color: rgba(255,85,0,0.28);
+  border-color: rgba(var(--chip-rgb, 255,85,0), 0.58);
   box-shadow:
-    0 0 0 1.5px rgba(255,85,0,0.15),
-    0 8px 32px rgba(255,85,0,0.13),
+    0 0 0 1px rgba(255,255,255,0.55) inset,
+    0 0 0 2px rgba(var(--chip-rgb, 255,85,0), 0.18),
+    0 10px 36px rgba(var(--chip-rgb, 255,85,0), 0.18),
     0 2px 10px rgba(26,22,16,0.08);
   transform: translateY(-2px);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .bento-card { background: rgba(250,247,242,0.96); }
 }
 
 /* ── Card header ────────────────────────────────────────────────── */
