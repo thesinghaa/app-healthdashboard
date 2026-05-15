@@ -295,7 +295,7 @@ function FPStatus({ cs }) {
                 reference: 74.2, valueformat: '.1f', suffix: ' pp gap',
                 increasing: { color: TEAL }, decreasing: { color: ORG },
               },
-              number: { suffix: '%', font: { size: 48, color: ORG, family: 'JetBrains Mono, monospace' } },
+              number: { suffix: '%', font: { size: 44, color: ORG, family: 'JetBrains Mono, monospace' } },
               gauge: {
                 axis: { range: [0, 100], ticksuffix: '%', tickfont: { size: 11 } },
                 bar: { color: ORG, thickness: 0.28 },
@@ -308,16 +308,13 @@ function FPStatus({ cs }) {
                 threshold: { line: { color: TEAL, width: 3 }, thickness: 0.8, value: 74.2 },
               },
             }]}
-            layout={{
-              ...PLOT_BASE, height: 260,
-              annotations: [{
-                text: `<b style="color:${TEAL}">Target: 74.2%</b> (National Average)`,
-                x: 0.5, y: 0.08, xref: 'paper', yref: 'paper',
-                showarrow: false, font: { size: 12, color: TEAL },
-              }],
-            }}
+            layout={{ ...PLOT_BASE, height: 270, margin: { t: 28, r: 20, b: 16, l: 20 } }}
             config={PLOT_CFG} style={{ width: '100%' }}
           />
+          <div className="cs-gauge-target">
+            <span className="cs-gauge-target-val">Target: 74.2%</span>
+            <span className="cs-gauge-target-note">(National Average)</span>
+          </div>
         </CSPlotCard>
       </div>
     </div>
@@ -355,16 +352,13 @@ function TBStatus({ cs }) {
                 threshold: { line: { color: TEAL, width: 3 }, thickness: 0.8, value: 47 },
               },
             }]}
-            layout={{
-              ...PLOT_BASE, height: 220,
-              annotations: [{
-                text: '<b>Target: 47</b> / lakh (80% reduction)',
-                x: 0.5, y: 0.05, xref: 'paper', yref: 'paper',
-                showarrow: false, font: { size: 11, color: TEAL },
-              }],
-            }}
+            layout={{ ...PLOT_BASE, height: 230, margin: { t: 28, r: 20, b: 16, l: 20 } }}
             config={PLOT_CFG} style={{ width: '100%' }}
           />
+          <div className="cs-gauge-target">
+            <span className="cs-gauge-target-val">Target: 47 / lakh</span>
+            <span className="cs-gauge-target-note">(80% reduction)</span>
+          </div>
         </CSPlotCard>
         <CSPlotCard title="TB Mortality" note="per lakh population · State vs Target" half>
           <Plot
@@ -383,16 +377,13 @@ function TBStatus({ cs }) {
                 threshold: { line: { color: TEAL, width: 3 }, thickness: 0.8, value: 3 },
               },
             }]}
-            layout={{
-              ...PLOT_BASE, height: 220,
-              annotations: [{
-                text: '<b>Target: 3</b> / lakh (90% reduction)',
-                x: 0.5, y: 0.05, xref: 'paper', yref: 'paper',
-                showarrow: false, font: { size: 11, color: TEAL },
-              }],
-            }}
+            layout={{ ...PLOT_BASE, height: 230, margin: { t: 28, r: 20, b: 16, l: 20 } }}
             config={PLOT_CFG} style={{ width: '100%' }}
           />
+          <div className="cs-gauge-target">
+            <span className="cs-gauge-target-val">Target: 3 / lakh</span>
+            <span className="cs-gauge-target-note">(90% reduction)</span>
+          </div>
         </CSPlotCard>
       </div>
 

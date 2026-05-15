@@ -3500,3 +3500,27 @@
     0 8px 22px rgba(26,22,16,0.08),
     0 4px 20px rgba(255,85,0,0.10);
 }
+
+/* ── cs-gauge-target — HTML target label below gauge charts ───────── */
+/* Replaces Plotly annotations that overlapped the number/delta text   */
+.cs-gauge-target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 0 10px;
+  border-top: 1px solid rgba(14,158,138,0.18);
+  margin-top: 2px;
+}
+.cs-gauge-target-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0E9E8A;
+  letter-spacing: 0.02em;
+}
+.cs-gauge-target-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #64748B;
+}
