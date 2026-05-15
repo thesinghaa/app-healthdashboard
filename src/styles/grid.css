@@ -375,10 +375,10 @@
    Carousel — single full-screen division card at a time
    ═══════════════════════════════════════════════════════════════════ */
 
-/* Override page background to warm cream */
+/* Override page background to neutral white */
 .home-bg-gradient {
-  background-color: #F5F0E8 !important;
-  background-image: radial-gradient(circle, rgba(255,85,0,0.045) 1px, transparent 1px) !important;
+  background-color: #F7F7F7 !important;
+  background-image: none !important;
 }
 
 /* ── Carousel area — fills .home-grid ── */
