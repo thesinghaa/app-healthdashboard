@@ -645,25 +645,6 @@
   gap: 5px;
   align-content: start;
   background: rgba(245, 240, 232, 0.35);
-  position: relative;
-}
-
-/* ── Wave layer inside card body ── */
-.cc-body::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath d='M0,70 C240,130 480,20 720,85 C960,145 1200,45 1440,95 L1440,400 L0,400 Z' fill='%23FF5500' fill-opacity='0.07'/%3E%3Cpath d='M0,170 C200,120 400,210 620,175 C820,140 1020,205 1220,168 C1340,148 1440,162 L1440,400 L0,400 Z' fill='%23FF5500' fill-opacity='0.047'/%3E%3Cpath d='M0,268 C300,230 600,296 900,260 C1100,232 1300,268 1440,250 L1440,400 L0,400 Z' fill='%23FF5500' fill-opacity='0.036'/%3E%3C/svg%3E");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-/* Programme tiles sit above the wave layer */
-.cc-body > * {
-  position: relative;
-  z-index: 1;
 }
 
 /* ── Programme tile — glass ── */
