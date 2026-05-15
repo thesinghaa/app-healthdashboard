@@ -337,6 +337,481 @@ function HRHSection({ program }) {
   );
 }
 
+/* ── Current-Status Section helpers ─────────────────────────────── */
+
+function CSBand({ heading, source }) {
+  return (
+    <div className="cs-band">
+      <span className="cs-eyebrow">Current Status</span>
+      <span className="cs-hdg">{heading}</span>
+      <span className="cs-src-tag">{source}</span>
+    </div>
+  );
+}
+
+function MMRStatus({ cs }) {
+  return (
+    <>
+      <CSBand heading="SDG 3.1.1 — Maternal Mortality Ratio" source={cs.source} />
+      <div className="detail-card cs-card">
+        <div className="cs-sdg-strip">
+          <div className="cs-sdg-col cs-sdg-col--label">
+            <span className="cs-value-muted">SDG Indicator</span>
+            <span className="cs-sdg-indicator-name">3.1.1 Maternal Mortality Ratio</span>
+          </div>
+          <div className="cs-sdg-col">
+            <span className="cs-value-muted">State Status</span>
+            <span className="cs-value-na">N/A</span>
+          </div>
+          <div className="cs-sdg-col">
+            <span className="cs-value-muted">SDG Target</span>
+            <span className="cs-value-good">Less than 70</span>
+          </div>
+        </div>
+        <div className="cs-stats-3" style={{ marginTop: 20 }}>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val">28</div>
+            <div className="cs-stat-lbl">Total Districts</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-red">3</div>
+            <div className="cs-stat-lbl">Maternal Deaths — HMIS 2024-25</div>
+          </div>
+          <div className="cs-stat-block cs-stat-wide">
+            <div className="cs-stat-lbl cs-stat-lbl--header">Major Cause (HMIS 2024-25)</div>
+            <div className="cs-stat-cause">Others / Unknown — 64.3% (2)</div>
+            <div className="cs-stat-cause">Hypertensive Disorder in Pregnancy — 5.51% (1)</div>
+          </div>
+        </div>
+        <div className="cs-highlights">
+          <div className="cs-hl-row">
+            <span className="cs-hl-label">Districts contributing most MDs (2024-25)</span>
+            <span className="cs-hl-value">East Siang (2); Namsai (1)</span>
+          </div>
+          <div className="cs-hl-row">
+            <span className="cs-hl-label">Place of Deaths</span>
+            <span className="cs-hl-value">Facility deaths (100%)</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function ChildHealthStatus({ cs }) {
+  return (
+    <>
+      <CSBand heading="Child Health — Arunachal Pradesh" source={cs.source} />
+      <div className="detail-card cs-card">
+        <table className="cs-table">
+          <thead>
+            <tr>
+              <th>S No</th>
+              <th>SDG Indicator</th>
+              <th>State Status</th>
+              <th>National Level</th>
+              <th>SDG Target 2030</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cs.sdgIndicators.map((row, i) => (
+              <tr key={i}>
+                <td>{row.no}</td>
+                <td>{row.name}</td>
+                <td className="cs-val-teal">{row.state}</td>
+                <td>{row.national}</td>
+                <td>{row.sdgTarget}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="cs-stats-3" style={{ marginTop: 20 }}>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val">{cs.totalDistricts}</div>
+            <div className="cs-stat-lbl">Total Districts</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val">{cs.sncuNicus}</div>
+            <div className="cs-stat-lbl">SNCU / NICUs</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val">{cs.deics}</div>
+            <div className="cs-stat-lbl">DEICs</div>
+          </div>
+        </div>
+      </div>
+      {cs.mortalityRows.map((row, i) => (
+        <div key={i} className="detail-card cs-card">
+          <div className="cs-mort-label">{row.label}</div>
+          <div className="cs-mort-two">
+            <div>
+              <div className="cs-mort-head">Districts with High Mortality</div>
+              <div className="cs-mort-val">{row.highDistricts}</div>
+            </div>
+            <div>
+              <div className="cs-mort-head">Main Reasons of Mortality</div>
+              <div className="cs-mort-val">{row.causes}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+      <div className="detail-card cs-card">
+        <div className="cs-mort-label">RBSK — Functionality of DEIC</div>
+        <div className="cs-stats-3" style={{ marginTop: 12 }}>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-amber">{cs.rbsk.hrPct}</div>
+            <div className="cs-stat-lbl">Overall HR Available</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-amber">{cs.rbsk.equipPct}</div>
+            <div className="cs-stat-lbl">Overall Equipment Available</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-lbl cs-stat-lbl--header">Bottom 30% Districts</div>
+            {cs.rbsk.bottom30.map((d, j) => (
+              <div key={j} className="cs-stat-cause cs-red">{d}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function FPStatus({ cs }) {
+  return (
+    <>
+      <CSBand heading="SDG 3.7.1 — Family Planning" source={cs.source} />
+      <div className="detail-card cs-card">
+        <div className="cs-fp-indicator">{cs.indicator}</div>
+        <div className="cs-stats-3" style={{ marginTop: 20 }}>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-red">{cs.stateStatus}</div>
+            <div className="cs-stat-lbl">State Status</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-value-good-lg">{cs.sdgTarget}</div>
+            <div className="cs-stat-lbl">SDG Target {cs.sdgTargetNote}</div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function TBStatus({ cs }) {
+  return (
+    <>
+      <CSBand heading="TB Mukt Bharat Abhiyan — Current Status" source={cs.source} />
+      <div className="detail-card cs-card">
+        <div className="detail-card-header">
+          <h3>SDG Disease Elimination Targets</h3>
+          <span className="detail-card-note">TB Mukt Bharat Abhiyan</span>
+        </div>
+        <div className="cs-stats-3">
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-red">{cs.incidence}</div>
+            <div className="cs-stat-lbl">Incidence (per lakh population)</div>
+            <div className="cs-stat-sub">Target: 47 / lakh (80% reduction)</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-red">{cs.mortality}</div>
+            <div className="cs-stat-lbl">Mortality (per lakh population)</div>
+            <div className="cs-stat-sub">Target: 3 / lakh (90% reduction)</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <div className="cs-mort-head">Notification vs Estimates — District Achievement</div>
+          <div className="cs-notify-row">
+            <div className="cs-notify-cell cs-green-cell">
+              <div className="cs-notify-val">{cs.notifVsEst.above90} districts</div>
+              <div className="cs-notify-lbl">&gt;90%</div>
+            </div>
+            <div className="cs-notify-cell cs-amber-cell">
+              <div className="cs-notify-val">{cs.notifVsEst.mid} districts</div>
+              <div className="cs-notify-lbl">50–90%</div>
+            </div>
+            <div className="cs-notify-cell cs-red-cell">
+              <div className="cs-notify-val">{cs.notifVsEst.below50} districts</div>
+              <div className="cs-notify-lbl">&lt;50%</div>
+            </div>
+          </div>
+          <div className="cs-factors-note">Factors affecting: {cs.factors.notification}</div>
+          <div className="cs-mort-head" style={{ marginTop: 14 }}>Death Rate — District Achievement</div>
+          <div className="cs-notify-row">
+            <div className="cs-notify-cell cs-red-cell">
+              <div className="cs-notify-val">{cs.deathRate.above5} districts</div>
+              <div className="cs-notify-lbl">&gt;5%</div>
+            </div>
+            <div className="cs-notify-cell cs-amber-cell">
+              <div className="cs-notify-val">{cs.deathRate.mid} districts</div>
+              <div className="cs-notify-lbl">3–5%</div>
+            </div>
+            <div className="cs-notify-cell cs-green-cell">
+              <div className="cs-notify-val">{cs.deathRate.below3} districts</div>
+              <div className="cs-notify-lbl">&lt;3%</div>
+            </div>
+          </div>
+          <div className="cs-factors-note">Factors affecting: {cs.factors.deathRate}</div>
+        </div>
+      </div>
+      <div className="detail-card cs-card">
+        <div className="detail-card-header">
+          <h3>Progress under TB Mukt Bharat Abhiyan</h3>
+          <span className="detail-card-note">{cs.abhiyanPeriod}</span>
+        </div>
+        <div className="cs-tb-grid">
+          {cs.abhiyanMetrics.map((m, i) => (
+            <div key={i} className="cs-tb-metric">
+              <div className="cs-tb-val">{m.value}</div>
+              <div className="cs-tb-lbl">{m.label}</div>
+              <div className="cs-tb-detail">{m.detail}</div>
+            </div>
+          ))}
+        </div>
+        <div className="cs-tb-infra">
+          {cs.infrastructure.map((inf, i) => (
+            <div key={i} className="cs-hl-row">
+              <span className="cs-hl-label">{inf.label}</span>
+              <span className="cs-hl-value">{inf.value} — {inf.detail}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <div className="cs-mort-head">Ni-kshay Poshan Yojana</div>
+          <table className="cs-table" style={{ marginTop: 10 }}>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Eligible Beneficiaries</th>
+                <th>Beneficiaries Paid All Benefits</th>
+                <th>Beneficiaries to be Paid</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cs.nikshayYojana.map((row, i) => (
+                <tr key={i}>
+                  <td><strong>{row.year}</strong></td>
+                  <td>{row.eligible.toLocaleString()}</td>
+                  <td className={row.paidAll < 100 ? 'cs-val-red' : ''}>{row.paidAll.toLocaleString()}</td>
+                  <td>{row.toBePaid.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function LeprosyStatus({ cs }) {
+  return (
+    <>
+      <CSBand heading="NLEP — Disease Elimination Status" source={cs.source} />
+      <div className="detail-card cs-card">
+        <div className="cs-sdg-strip">
+          <div className="cs-sdg-col cs-sdg-col--label">
+            <span className="cs-value-muted">Disease Elimination Target</span>
+            <span className="cs-fp-indicator">{cs.targetDesc}</span>
+          </div>
+          <div className="cs-sdg-col">
+            <span className="cs-value-muted">Total Districts</span>
+            <span className="cs-stat-val" style={{ fontSize: 28 }}>{cs.totalDistricts}</span>
+          </div>
+          <div className="cs-sdg-col">
+            <span className="cs-value-muted">Districts Achieved IOT</span>
+            <span className="cs-stat-val cs-teal" style={{ fontSize: 28 }}>{cs.iotAchieved}</span>
+          </div>
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <div className="cs-mort-head">Districts achieving IOT — 50–60% range</div>
+          <div className="cs-iot-districts">{cs.iotDistricts50_60}</div>
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <div className="cs-mort-head">Data of Arunachal Pradesh (2024-25 &amp; 2025-26)</div>
+          <table className="cs-table" style={{ marginTop: 10 }}>
+            <thead>
+              <tr>
+                <th>F.Y.</th>
+                <th>Total New Cases</th>
+                <th>Total G2D Cases</th>
+                <th>Total Child Cases</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cs.annualData.map((row, i) => (
+                <tr key={i}>
+                  <td><strong>{row.fy}</strong></td>
+                  <td>{row.newCases}</td>
+                  <td>{row.g2dCases}</td>
+                  <td>{row.childCases}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function MalariaStatus({ cs }) {
+  return (
+    <>
+      <CSBand heading="Malaria — Disease Status" source={cs.source} />
+      <div className="detail-card cs-card">
+        <div className="cs-stats-3">
+          <div className="cs-stat-block cs-stat-wide">
+            <div className="cs-stat-lbl cs-stat-lbl--header">National Framework Target</div>
+            <div className="cs-stat-cause">{cs.eliminationTarget}</div>
+          </div>
+          <div className="cs-stat-block">
+            <div className="cs-stat-val cs-amber">{cs.totalCases2025}</div>
+            <div className="cs-stat-lbl">Total Cases 2025</div>
+            <div className="cs-stat-sub">{cs.caseBreakdown2025}</div>
+          </div>
+        </div>
+      </div>
+      <div className="detail-card cs-card">
+        <div className="detail-card-header">
+          <h3>Annual Case Trend</h3>
+          <span className="detail-card-note">Pv = P. vivax · Pf = P. falciparum · Ind = Indigenous · Imp = Imported</span>
+        </div>
+        <table className="cs-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Cases (Total)</th>
+              <th>Pv / Pf</th>
+              <th>Indigenous</th>
+              <th>Imported</th>
+              <th>Deaths</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cs.casesTrend.map((row, i) => (
+              <tr key={i} className={row.year === '2025' ? 'cs-row-highlight' : ''}>
+                <td><strong>{row.year}</strong></td>
+                <td>{row.total}</td>
+                <td>Pv-{row.pv}, Pf-{row.pf}</td>
+                <td>{row.indigenous}</td>
+                <td>{row.imported}</td>
+                <td>{row.deaths}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="detail-card cs-card">
+        <div className="detail-card-header">
+          <h3>Programme Status</h3>
+          <span className="detail-card-note">NCVBDCP · MoHFW NPCC May 2026</span>
+        </div>
+        <ul className="obs-list">
+          {cs.keyPoints.map((pt, i) => (
+            <li key={i} className="obs-item">
+              <span className="obs-marker" />
+              {pt}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+}
+
+function PMABHIMStatus({ cs }) {
+  return (
+    <>
+      <CSBand heading="PM-ABHIM — Physical & Financial Progress (FY 2021-22 to 2025-26)" source={cs.source} />
+      <div className="detail-card cs-card">
+        <div className="detail-card-header">
+          <h3>Physical Progress</h3>
+          <span className="detail-card-note">FY 2021-22 to FY 2025-26</span>
+        </div>
+        <table className="cs-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Approved</th>
+              <th>Work Started</th>
+              <th>% Started</th>
+              <th>Completed</th>
+              <th>% Completed</th>
+              <th>Functional</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cs.physicalProgress.map((row, i) => (
+              <tr key={i}>
+                <td>{row.component}</td>
+                <td>{row.approved}</td>
+                <td>{row.started}</td>
+                <td>{row.startedPct}%</td>
+                <td>{row.completed}</td>
+                <td className={row.completedPct > 0 ? 'cs-val-amber' : 'cs-val-red'}>{row.completedPct}%</td>
+                <td>{row.functional}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="detail-card cs-card">
+        <div className="detail-card-header">
+          <h3>XV-FC Financial Progress</h3>
+          <span className="detail-card-note">Rs. in Crore · % Exp. as on March 2026</span>
+        </div>
+        <div className="cs-table-scroll">
+          <table className="cs-table cs-table--finance">
+            <thead>
+              <tr>
+                <th rowSpan={2} className="cs-th-component">Component</th>
+                {cs.financialYears.map(yr => (
+                  <th key={yr} colSpan={2} className="cs-th-yr">{yr}</th>
+                ))}
+              </tr>
+              <tr>
+                {cs.financialYears.map(yr => [
+                  <th key={yr + 'a'} className="cs-th-sub">Appr.</th>,
+                  <th key={yr + 'r'} className="cs-th-sub">Rel.</th>,
+                ])}
+              </tr>
+            </thead>
+            <tbody>
+              {cs.financialProgress.map((row, i) => (
+                <tr key={i} className={row.isTotal ? 'cs-row-total' : ''}>
+                  <td>{row.component}</td>
+                  {cs.financialYears.map(yr => [
+                    <td key={yr + 'a'}>{row[yr]?.approval ?? '—'}</td>,
+                    <td key={yr + 'r'} className={row[yr]?.release == null ? 'cs-val-muted' : ''}>{row[yr]?.release ?? '—'}</td>,
+                  ])}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="hrh-prod-note">% Expenditure (as on March 2026) is against the amount released.</p>
+      </div>
+    </>
+  );
+}
+
+function CurrentStatusSection({ program }) {
+  const cs = program.currentStatus;
+  if (!cs) return null;
+  switch (cs.type) {
+    case 'mmr':            return <MMRStatus cs={cs} />;
+    case 'child-health':   return <ChildHealthStatus cs={cs} />;
+    case 'family-planning': return <FPStatus cs={cs} />;
+    case 'tb':             return <TBStatus cs={cs} />;
+    case 'leprosy':        return <LeprosyStatus cs={cs} />;
+    case 'malaria':        return <MalariaStatus cs={cs} />;
+    case 'pm-abhim':       return <PMABHIMStatus cs={cs} />;
+    default:               return null;
+  }
+}
+
 export default function DetailPage({ program, division, onBack }) {
   const wrapRef = useRef(null);
 
@@ -417,8 +892,11 @@ export default function DetailPage({ program, division, onBack }) {
           ))}
         </div>
 
-        {/* HRH Current Status */}
-        {division?.id === 'hrh' && <HRHSection program={program} />}
+        {/* Programme-specific Current Status */}
+        <CurrentStatusSection program={program} />
+
+        {/* HRH staffing detail — cadre programmes only */}
+        {division?.id === 'hrh' && program.id !== 'pm-abhim' && <HRHSection program={program} />}
 
         {/* NFHS Chart */}
         {chartData.length > 0 && (

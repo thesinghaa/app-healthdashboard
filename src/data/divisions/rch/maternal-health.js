@@ -28,6 +28,10 @@ export default {
     'Increase iron-folic acid supplementation from 23.8% — roll out through ASHA network',
     'Review out-of-pocket expenditure spikes and map against institutional delivery subsidies',
   ],
+  currentStatus: {
+    type: 'mmr',
+    source: 'MoHFW NPCC May 2026',
+  },
   nfhsData: [
     { label: 'ANC check-up in first trimester', nfhs4: 37.0, nfhs5: 53.1, unit: '%', lowerIsBetter: false },
     { label: '4+ antenatal care visits', nfhs4: 26.8, nfhs5: 36.5, unit: '%', lowerIsBetter: false },

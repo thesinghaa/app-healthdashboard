@@ -2141,3 +2141,405 @@
   margin: 0 4px;
   font-weight: 300;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Current-Status Section — SDG / programme-specific cards
+   ───────────────────────────────────────────────────────────────── */
+
+/* Band / eyebrow heading */
+.cs-band {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0 4px;
+  border-bottom: 2px solid var(--org, #FF5500);
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.cs-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--org, #FF5500);
+  background: rgba(255,85,0,0.08);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.cs-hdg {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1A1F36;
+  flex: 1;
+}
+.cs-src-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+/* Card wrapper */
+.cs-card {
+  margin-bottom: 0;
+}
+
+/* SDG indicator strip */
+.cs-sdg-strip {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.cs-sdg-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+.cs-sdg-col--label {
+  flex: 1;
+  min-width: 200px;
+}
+.cs-sdg-indicator-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1F36;
+  line-height: 1.4;
+}
+.cs-value-muted {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  display: block;
+}
+.cs-value-na {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #6B7280;
+}
+.cs-value-good {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #047857;
+}
+.cs-value-good-lg {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: #047857;
+}
+
+/* 3-column stats grid */
+.cs-stats-3 {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+.cs-stat-block {
+  flex: 1;
+  padding: 12px 16px;
+  border-right: 1px solid #F1F5F9;
+}
+.cs-stat-block:last-child {
+  border-right: none;
+}
+.cs-stat-wide {
+  flex: 1.6;
+}
+.cs-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1A1F36;
+  line-height: 1;
+}
+.cs-stat-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #64748B;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.cs-stat-lbl--header {
+  font-weight: 700;
+  color: #374151;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.cs-stat-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #94A3B8;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.cs-stat-cause {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #374151;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* Colour utilities */
+.cs-red  { color: #DC2626 !important; }
+.cs-teal { color: #0E9E8A !important; }
+.cs-amber { color: #D97706 !important; }
+
+/* Highlights strip */
+.cs-highlights {
+  border-top: 1px solid #F1F5F9;
+  margin-top: 16px;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cs-hl-row {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.cs-hl-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  min-width: 240px;
+  flex-shrink: 0;
+}
+.cs-hl-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #1A1F36;
+  font-weight: 500;
+}
+
+/* Mortality blocks */
+.cs-mort-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #DC2626;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.cs-mort-two {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 24px;
+}
+.cs-mort-head {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 6px;
+}
+.cs-mort-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #1A1F36;
+  line-height: 1.6;
+}
+
+/* Family planning indicator text */
+.cs-fp-indicator {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+/* TB notification/death-rate band */
+.cs-notify-row {
+  display: flex;
+  gap: 2px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.cs-notify-cell {
+  flex: 1;
+  padding: 10px 14px;
+  text-align: center;
+}
+.cs-notify-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+.cs-notify-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+.cs-green-cell  { background: #F0FFF4; color: #065F46; }
+.cs-amber-cell  { background: #FFFBEB; color: #92400E; }
+.cs-red-cell    { background: #FFF5F5; color: #9B1C1C; }
+
+.cs-factors-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #6B7280;
+  margin-top: 6px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* TB Mukt Bharat Abhiyan metrics grid */
+.cs-tb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.cs-tb-metric {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.cs-tb-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FF5500;
+  line-height: 1;
+}
+.cs-tb-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.cs-tb-detail {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: #94A3B8;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.cs-tb-infra {
+  background: #F8FAFC;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* IOT districts */
+.cs-iot-districts {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  color: #374151;
+  line-height: 1.7;
+  background: #F8FAFC;
+  border-radius: 8px;
+  padding: 10px 14px;
+  border-left: 3px solid #0E9E8A;
+}
+
+/* Generic clean table */
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+}
+.cs-table th {
+  background: #1A3A5C;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid #1A3A5C;
+}
+.cs-table td {
+  padding: 8px 12px;
+  border: 1px solid #E2E8F0;
+  color: #374151;
+  vertical-align: top;
+  line-height: 1.5;
+}
+.cs-table tr:nth-child(even) td {
+  background: #F8FAFC;
+}
+.cs-table tr:hover td {
+  background: #EFF6FF;
+}
+.cs-val-teal { color: #0E9E8A; font-weight: 700; }
+.cs-val-amber { color: #D97706; font-weight: 700; }
+.cs-val-red   { color: #DC2626; font-weight: 700; }
+.cs-val-muted { color: #94A3B8; }
+
+/* Highlighted row (latest year) */
+.cs-row-highlight td {
+  background: #FFF8F5 !important;
+  font-weight: 600;
+}
+
+/* Total row in financial table */
+.cs-row-total td {
+  background: #F0F4FF !important;
+  font-weight: 700;
+  border-top: 2px solid #C7D2FE;
+}
+
+/* Scrollable financial table */
+.cs-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+}
+.cs-table--finance {
+  min-width: 780px;
+}
+.cs-th-component {
+  min-width: 200px;
+}
+.cs-th-yr {
+  text-align: center;
+  background: #14447A !important;
+}
+.cs-th-sub {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  background: #1E5799 !important;
+  text-align: right;
+}
+.cs-table--finance td {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+}
+.cs-table--finance td:first-child {
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}

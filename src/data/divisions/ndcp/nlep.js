@@ -23,5 +23,18 @@ export default {
     'Ensure uninterrupted MDT supply at all PHC/SC level',
     'Continue disability prevention services and rehabilitation support',
   ],
+  currentStatus: {
+    type: 'leprosy',
+    source: 'MoHFW NPCC May 2026 · NLEP',
+    targetDesc: 'Leprosy: National roadmap (NSP 2023-27) — Interruption of transmission at district level by 2027',
+    target: 'Interruption of transmission at district level',
+    totalDistricts: 25,
+    iotAchieved: 13,
+    iotDistricts50_60: 'Changlang, Dibang Valley, Dibang Valley Lower, Kameng West, Kamle, Lohit, Longding, Lower Siang, Namasai, Siang East, Siang West, Subansiri Upper, Tirap',
+    annualData: [
+      { fy: '2024-25', newCases: 26, g2dCases: 1, childCases: 1 },
+      { fy: '2025-26', newCases: 24, g2dCases: 0, childCases: 0 },
+    ],
+  },
   nfhsData: [],
 };

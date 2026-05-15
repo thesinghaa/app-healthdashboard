@@ -24,6 +24,14 @@ export default {
     'Ensure ASHA-led postnatal follow-up within 48 hours for all deliveries',
     'Review JSY beneficiary payments for timeliness and completeness',
   ],
+  currentStatus: {
+    type: 'family-planning',
+    source: 'MoHFW NPCC May 2026',
+    indicator: 'SDG 3.7.1 — Proportion of currently married women of reproductive age (15–49 years) who have their need for family planning satisfied with modern methods',
+    stateStatus: '60.2%',
+    sdgTarget: '74.2%',
+    sdgTargetNote: '(National Average)',
+  },
   nfhsData: [
     { label: 'Institutional births', nfhs4: 52.3, nfhs5: 79.2, unit: '%', lowerIsBetter: false },
     { label: 'Births in public facility', nfhs4: 42.7, nfhs5: 74.8, unit: '%', lowerIsBetter: false },

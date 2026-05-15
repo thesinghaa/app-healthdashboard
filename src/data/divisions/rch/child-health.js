@@ -30,6 +30,34 @@ export default {
     'Fill 48% HR vacancies at DEIC Tezu, Pasighat, Longding via emergency recruitment',
     'Strengthen SNCU cause-of-death classification to reduce "Any Other" category',
   ],
+  currentStatus: {
+    type: 'child-health',
+    source: 'SRS 2023 · FBNC Portal · HMIS 2025-26',
+    sdgIndicators: [
+      { no: '1', name: 'Infant Mortality Rate (IMR) — SRS 2023', state: '20', national: '25', sdgTarget: '—' },
+      { no: '2', name: 'Stillbirth Rate (SBR) — HMIS 2025-26', state: '8.8', national: '9.5', sdgTarget: '—' },
+    ],
+    totalDistricts: 28,
+    sncuNicus: 5,
+    deics: 3,
+    mortalityRows: [
+      {
+        label: 'SNCU Mortality (FBNC Portal, Apr–Dec 2025) — 27 Neonatal Deaths',
+        highDistricts: 'East Siang (5.6%); Papumpare (4.0%)',
+        causes: 'Respiratory Distress Syndrome (18.5%), Birth Asphyxia (14.8%), Meconium Aspiration Syndrome (7.4%), Any Other (55.6%)',
+      },
+      {
+        label: 'Infant Mortality Rate (HMIS, Apr–Dec 2025) — 52 Infant Deaths',
+        highDistricts: 'Longding (13.8), West Siang (8.1), Namsai (6.6), Lohit (5.6)',
+        causes: 'Prematurity (23.1%), Asphyxia (11.5%), Sepsis (5.8%), Other (57.7%)',
+      },
+    ],
+    rbsk: {
+      hrPct: '52%',
+      equipPct: '67%',
+      bottom30: ['Pashighat 74%', 'Tezu 25%'],
+    },
+  },
   nfhsData: [
     { label: 'Neonatal Mortality Rate (per 1,000 LB)', nfhs4: null, nfhs5: 7.7, unit: '', lowerIsBetter: true },
     { label: 'Infant Mortality Rate (per 1,000 LB)', nfhs4: 23, nfhs5: 12.9, unit: '', lowerIsBetter: true },
