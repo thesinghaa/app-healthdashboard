@@ -48,24 +48,23 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, #1A1610 0%, #231B0F 55%, #1A1610 100%);
+  background: linear-gradient(160deg, #F5EDE0 0%, #FFE4CC 40%, #F5EDE0 100%);
   padding: 6px 0;
   height: 78px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(255,85,0,0.22);
+  border-bottom: 1px solid rgba(255,85,0,0.18);
 }
 
-/* Subtle orange radial glow at centre-top */
+/* Orange warmth bloom in the centre */
 .home-header::before {
   content: '';
   position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 120px;
-  background: radial-gradient(ellipse, rgba(255,85,0,0.14) 0%, transparent 70%);
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 120% at 50% 120%, rgba(255,85,0,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 80% at 15% 100%, rgba(255,119,51,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 80% at 85% 100%, rgba(255,119,51,0.12) 0%, transparent 60%);
   pointer-events: none;
 }
 

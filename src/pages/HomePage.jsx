@@ -205,25 +205,25 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
             <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 1 }}>
               <defs>
                 <linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%"   stopColor="#FF5500" stopOpacity="0.22"/>
-                  <stop offset="50%"  stopColor="#FF7733" stopOpacity="0.16"/>
-                  <stop offset="100%" stopColor="#FF5500" stopOpacity="0.22"/>
+                  <stop offset="0%"   stopColor="#FF7733" stopOpacity="0.38"/>
+                  <stop offset="50%"  stopColor="#FF5500" stopOpacity="0.28"/>
+                  <stop offset="100%" stopColor="#FF7733" stopOpacity="0.38"/>
                 </linearGradient>
               </defs>
-              <path d="M0,60 C240,100 480,30 720,65 C960,100 1200,40 1440,72 L1440,130 L0,130 Z" fill="url(#wg1)"/>
+              <path d="M0,55 C240,95 480,25 720,60 C960,95 1200,35 1440,65 L1440,130 L0,130 Z" fill="url(#wg1)"/>
             </svg>
             <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 1 }}>
               <defs>
                 <linearGradient id="wg2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%"   stopColor="#C2410C" stopOpacity="0.18"/>
-                  <stop offset="50%"  stopColor="#FF5500" stopOpacity="0.24"/>
-                  <stop offset="100%" stopColor="#C2410C" stopOpacity="0.18"/>
+                  <stop offset="0%"   stopColor="#FF5500" stopOpacity="0.45"/>
+                  <stop offset="50%"  stopColor="#C2410C" stopOpacity="0.32"/>
+                  <stop offset="100%" stopColor="#FF5500" stopOpacity="0.45"/>
                 </linearGradient>
               </defs>
-              <path d="M0,88 C180,50 360,110 540,80 C720,50 900,100 1080,74 C1260,48 1380,92 1440,84 L1440,130 L0,130 Z" fill="url(#wg2)"/>
+              <path d="M0,85 C180,48 360,108 540,78 C720,48 900,98 1080,72 C1260,46 1380,90 1440,82 L1440,130 L0,130 Z" fill="url(#wg2)"/>
             </svg>
             <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 1 }}>
-              <path d="M0,108 C300,82 600,120 900,100 C1100,84 1300,112 1440,104 L1440,130 L0,130 Z" fill="rgba(255,85,0,0.30)"/>
+              <path d="M0,108 C300,80 600,118 900,98 C1100,82 1300,110 1440,102 L1440,130 L0,130 Z" fill="rgba(255,85,0,0.50)"/>
             </svg>
           </div>
           <div className="home-header-inner">
