@@ -118,6 +118,9 @@ export default function DivisionPage({ division, onBack, onSelectProgram }) {
 
               <div className="dv-card-footer">
                 <span className="dv-card-cta">View Indicators →</span>
+                {prog.currentStatus && (
+                  <span className="dv-cs-badge">Current Status</span>
+                )}
               </div>
             </button>
           ))}

@@ -2638,3 +2638,43 @@
   color: #1A1F36 !important;
   margin: 0 !important;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Current Status badge on programme cards (DivisionPage)
+   ───────────────────────────────────────────────────────────────── */
+
+.dv-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dv-cs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #FFF3EE;
+  border: 1px solid #FF5500;
+  border-radius: 20px;
+  padding: 3px 9px 3px 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #FF5500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.dv-cs-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FF5500;
+  flex-shrink: 0;
+}
