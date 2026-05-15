@@ -31,33 +31,50 @@
 .card-hss  { --chip: #B45309; --chip-rgb: 180,83,9;    }
 .card-hrh  { --chip: #7C2D12; --chip-rgb: 124,45,18;   }
 
-/* ── Section card — flat warm panel ─────────────────────────────── */
+/* ── Section card — orange glass with 3D depth ───────────────────── */
 .bento-card {
   position: relative;
   background: rgba(250,247,242,0.78);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   border: 2px solid rgba(var(--chip-rgb, 255,85,0), 0.55);
+  border-top: 2px solid rgba(var(--chip-rgb, 255,85,0), 0.82);
   border-radius: 12px;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.55) inset,
-    0 2px 14px rgba(var(--chip-rgb, 255,85,0), 0.12),
-    0 1px 4px rgba(26,22,16,0.06);
+    /* top-edge light catch — simulates light source from above */
+    inset 0 1px 0 rgba(255,255,255,0.88),
+    inset 1px 0 0 rgba(255,255,255,0.28),
+    /* bottom-edge depth shadow — grounds the card */
+    inset 0 -1px 0 rgba(var(--chip-rgb, 255,85,0), 0.12),
+    /* layered elevation — short sharp + long soft */
+    0 2px 4px rgba(26,22,16,0.07),
+    0 6px 16px rgba(26,22,16,0.09),
+    0 18px 44px rgba(26,22,16,0.08),
+    /* orange ambient glow */
+    0 2px 14px rgba(var(--chip-rgb, 255,85,0), 0.13);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: 0;
   height: 100%;
-  transition: box-shadow 0.25s ease, transform 0.20s ease, border-color 0.25s ease;
+  transition: box-shadow 0.28s ease, transform 0.22s ease, border-color 0.22s ease;
 }
 .bento-card:hover {
-  border-color: rgba(var(--chip-rgb, 255,85,0), 0.85);
+  border-color: rgba(var(--chip-rgb, 255,85,0), 0.88);
+  border-top-color: rgba(var(--chip-rgb, 255,85,0), 1.00);
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.55) inset,
-    0 0 0 2px rgba(var(--chip-rgb, 255,85,0), 0.18),
-    0 10px 36px rgba(var(--chip-rgb, 255,85,0), 0.18),
-    0 2px 10px rgba(26,22,16,0.08);
-  transform: translateY(-2px);
+    /* brighter top highlight on hover */
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    inset 1px 0 0 rgba(255,255,255,0.44),
+    inset 0 -1px 0 rgba(var(--chip-rgb, 255,85,0), 0.18),
+    /* deeper elevation */
+    0 4px 8px rgba(26,22,16,0.08),
+    0 12px 32px rgba(26,22,16,0.12),
+    0 28px 60px rgba(26,22,16,0.10),
+    /* stronger orange glow ring */
+    0 0 0 2px rgba(var(--chip-rgb, 255,85,0), 0.20),
+    0 4px 28px rgba(var(--chip-rgb, 255,85,0), 0.22);
+  transform: translateY(-3px);
 }
 
 @supports not (backdrop-filter: blur(1px)) {
