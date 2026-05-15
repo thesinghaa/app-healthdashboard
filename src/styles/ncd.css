@@ -3283,8 +3283,7 @@
   background: rgba(255,252,248,0.84) !important;
   backdrop-filter: blur(32px) saturate(175%) !important;
   -webkit-backdrop-filter: blur(32px) saturate(175%) !important;
-  border: 1.5px solid rgba(255,85,0,0.30) !important;
-  border-top: 4px solid #FF5500 !important;
+  border: 4px solid #FF5500 !important;
   border-radius: 20px !important;
   box-shadow:
     /* light-catch rim */
