@@ -280,27 +280,6 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
                 {/* Card row: tall glass swipe buttons flanking the viewport */}
                 <div className="carousel-card-stage">
 
-                  {/* Wave background behind cards */}
-                  <div className="carousel-waves-bg" aria-hidden="true">
-                    <svg viewBox="0 0 1440 560" preserveAspectRatio="none">
-                      <defs>
-                        <linearGradient id="cwg1" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%"   stopColor="#FF7733" stopOpacity="0.13"/>
-                          <stop offset="50%"  stopColor="#FF5500" stopOpacity="0.08"/>
-                          <stop offset="100%" stopColor="#FF7733" stopOpacity="0.13"/>
-                        </linearGradient>
-                        <linearGradient id="cwg2" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%"   stopColor="#FF5500" stopOpacity="0.10"/>
-                          <stop offset="50%"  stopColor="#C2410C" stopOpacity="0.06"/>
-                          <stop offset="100%" stopColor="#FF5500" stopOpacity="0.10"/>
-                        </linearGradient>
-                      </defs>
-                      <path d="M0,120 C200,200 400,60 600,140 C800,220 1000,80 1200,160 C1320,200 1400,140 1440,155 L1440,560 L0,560 Z" fill="url(#cwg1)"/>
-                      <path d="M0,220 C180,160 360,290 540,240 C720,190 900,310 1080,260 C1240,215 1360,275 1440,255 L1440,560 L0,560 Z" fill="url(#cwg2)"/>
-                      <path d="M0,360 C240,310 480,400 720,360 C960,320 1200,390 1440,355 L1440,560 L0,560 Z" fill="rgba(255,85,0,0.055)"/>
-                    </svg>
-                  </div>
-
                   <button className="carousel-arrow carousel-arrow--prev" onClick={goPrev} aria-label="Previous">‹</button>
 
               <div
