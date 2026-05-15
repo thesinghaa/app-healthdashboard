@@ -3,8 +3,8 @@ export default {
   id: 'pmndp',
   name: 'PMNDP',
   status: 'yellow',
-  keyMetric: 'Mental health access',
-  statusReason: 'Alcohol use in men at 59% drives mental health co-morbidity',
+  keyMetric: 'High blood sugar: 11.9%',
+  statusReason: 'Men high blood sugar 11.9%; district NCD clinic capacity under review',
   summary: 'Prevention and Management of Diabetes, NCDs and palliative care in NE states faces access barriers. Strengthening district-level NCD clinics is priority.',
   keyMetrics: [
     { label: 'Diabetes Programme', value: 'Active', change: null, changeDir: null, source: 'NHM' },
