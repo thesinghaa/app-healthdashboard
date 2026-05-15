@@ -37,11 +37,11 @@
   background: rgba(250,247,242,0.78);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1.5px solid rgba(var(--chip-rgb, 255,85,0), 0.32);
+  border: 2px solid rgba(var(--chip-rgb, 255,85,0), 0.55);
   border-radius: 12px;
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.55) inset,
-    0 2px 12px rgba(var(--chip-rgb, 255,85,0), 0.10),
+    0 2px 14px rgba(var(--chip-rgb, 255,85,0), 0.12),
     0 1px 4px rgba(26,22,16,0.06);
   overflow: hidden;
   display: flex;
@@ -51,7 +51,7 @@
   transition: box-shadow 0.25s ease, transform 0.20s ease, border-color 0.25s ease;
 }
 .bento-card:hover {
-  border-color: rgba(var(--chip-rgb, 255,85,0), 0.58);
+  border-color: rgba(var(--chip-rgb, 255,85,0), 0.85);
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.55) inset,
     0 0 0 2px rgba(var(--chip-rgb, 255,85,0), 0.18),
