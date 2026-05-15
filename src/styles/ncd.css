@@ -3300,11 +3300,11 @@
     0 4px 32px rgba(255,85,0,0.16) !important;
 }
 
-/* Card header — orange left stripe stays, add matching top accent */
+/* Card header — no left border (outer card border handles the frame) */
 .cc-header {
   background: rgba(255,252,248,0.60) !important;
   border-bottom: 1px solid rgba(255,85,0,0.14) !important;
-  border-left: 4px solid #FF5500 !important;
+  border-left: none !important;
 }
 
 /* Programme rows inside the card — warm glass micro-tiles */
