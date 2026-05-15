@@ -828,6 +828,43 @@ function PMABHIMStatus({ cs }) {
 }
 
 /* ══════════════════════════════════════════════════════════════════ */
+/*  CSEntryBar — clickable bar that opens CurrentStatusDetailPage    */
+/*  Named export — used in KDProgrammePage and HRHCadrePage          */
+/* ══════════════════════════════════════════════════════════════════ */
+const TYPE_META = {
+  'mmr':             { label: 'Maternal Mortality Ratio', source: 'SDG 3.1.1 · MoHFW NPCC May 2026' },
+  'child-health':    { label: 'Child Health Outcomes',    source: 'IMR · SBR · SNCU · RBSK · MoHFW NPCC May 2026' },
+  'family-planning': { label: 'Safe Motherhood & FP',     source: 'SDG 3.7.1 · MoHFW NPCC May 2026' },
+  'tb':              { label: 'TB Elimination (NTEP)',     source: 'Incidence · Mortality · Abhiyan · Ni-kshay · May 2026' },
+  'leprosy':         { label: 'Leprosy Elimination (NLEP)',source: 'IOT Districts · Elimination Status · MoHFW NPCC May 2026' },
+  'malaria':         { label: 'Malaria Control (NCVBDCP)', source: '5-Year Case Trend · Species Mix · MoHFW NPCC May 2026' },
+  'pm-abhim':        { label: 'PM-ABHIM Infrastructure',  source: 'IPHL · PHC/CHC Progress · XV-FC Financial · May 2026' },
+};
+
+export function CSEntryBar({ program, onClick }) {
+  const cs = program?.currentStatus;
+  if (!cs) return null;
+  const meta = TYPE_META[cs.type] ?? { label: 'Current Status', source: 'MoHFW NPCC May 2026' };
+
+  return (
+    <button className="cs-entry-bar" onClick={onClick} type="button">
+      <div className="cs-entry-bar-left">
+        <span className="cs-entry-bar-dot" />
+        <div className="cs-entry-bar-text">
+          <span className="cs-entry-bar-eyebrow">Current Status</span>
+          <span className="cs-entry-bar-label">{meta.label}</span>
+        </div>
+        <span className="cs-entry-bar-source">{meta.source}</span>
+      </div>
+      <div className="cs-entry-bar-cta">
+        View Full Report
+        <span className="cs-entry-bar-arrow">&#8594;</span>
+      </div>
+    </button>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════ */
 /*  Main dispatcher — exported default                               */
 /* ══════════════════════════════════════════════════════════════════ */
 export default function CurrentStatusSection({ program }) {

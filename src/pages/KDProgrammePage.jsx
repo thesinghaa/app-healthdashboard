@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { KD_TREE } from '../data/kdData';
 import { STATUS_CONFIG } from '../data/programs';
-import CurrentStatusSection from './CurrentStatusSection';
+import CurrentStatusSection, { CSEntryBar } from './CurrentStatusSection';
 
 /* ── Status helpers ──────────────────────────────────────────────── */
 function kdStatus(kd) {
@@ -183,7 +183,7 @@ function CriticalKDs({ kds }) {
 }
 
 /* ── Main component ──────────────────────────────────────────────── */
-export default function KDProgrammePage({ program, division, onBack, onSelectIndicator }) {
+export default function KDProgrammePage({ program, division, onBack, onSelectIndicator, onCurrentStatus }) {
   const wrapRef = useRef(null);
 
   /* Lookup KDs from KD_TREE */
@@ -268,21 +268,13 @@ export default function KDProgrammePage({ program, division, onBack, onSelectInd
         {/* Critical KDs callout — only rendered when gap KDs exist */}
         <CriticalKDs kds={kds} />
 
-        {/* ── CURRENT STATUS — prominently above KD table ────────── */}
-        {program?.currentStatus && (
-          <div className="kd-prog-section kd-cs-outer">
-            <div className="kd-cs-outer-header">
-              <div>
-                <div className="kd-cs-outer-label">Current Status</div>
-                <div className="kd-cs-outer-sublabel">
-                  SDG &amp; Disease Elimination · MoHFW NPCC May 2026
-                </div>
-              </div>
-              <span className="kd-cs-outer-pill">LIVE DATA</span>
-            </div>
-            <div className="kd-cs-outer-body">
-              <CurrentStatusSection program={program} />
-            </div>
+        {/* ── CURRENT STATUS — entry bar above KD table ─────────── */}
+        {program?.currentStatus && onCurrentStatus && (
+          <div className="kd-prog-section">
+            <CSEntryBar
+              program={program}
+              onClick={() => onCurrentStatus(program, division)}
+            />
           </div>
         )}
 

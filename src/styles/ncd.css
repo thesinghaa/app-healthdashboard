@@ -3032,3 +3032,146 @@
   background: #1A1F36 !important;
   border-bottom: 3px solid #FF5500 !important;
 }
+
+/* =================================================================
+   CS ENTRY BAR — clickable row that opens CurrentStatusDetailPage
+   ================================================================= */
+
+.cs-entry-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: linear-gradient(108deg, #1A1F36 0%, #242C4E 100%);
+  border: none;
+  border-left: 4px solid #FF5500;
+  border-radius: 12px;
+  padding: 18px 22px;
+  cursor: pointer;
+  gap: 16px;
+  text-align: left;
+  box-shadow: 0 3px 16px rgba(26,31,54,0.18), 0 1px 4px rgba(26,31,54,0.10);
+  transition: box-shadow 0.22s, transform 0.16s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-entry-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(255,85,0,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cs-entry-bar:hover {
+  box-shadow: 0 8px 28px rgba(255,85,0,0.22), 0 2px 8px rgba(26,31,54,0.14);
+  transform: translateY(-2px);
+}
+
+.cs-entry-bar:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 12px rgba(255,85,0,0.16);
+}
+
+.cs-entry-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.cs-entry-bar-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FF5500;
+  flex-shrink: 0;
+  animation: cs-dot-pulse 1.8s ease-in-out infinite;
+}
+
+.cs-entry-bar-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.cs-entry-bar-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FF5500;
+  line-height: 1;
+}
+
+.cs-entry-bar-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.cs-entry-bar-source {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.38);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.cs-entry-bar-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #FF5500;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 8px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.16s;
+  position: relative;
+  z-index: 1;
+}
+
+.cs-entry-bar:hover .cs-entry-bar-cta {
+  background: #E04000;
+}
+
+.cs-entry-bar-arrow {
+  font-size: 15px;
+  line-height: 1;
+  transition: transform 0.16s;
+}
+
+.cs-entry-bar:hover .cs-entry-bar-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 600px) {
+  .cs-entry-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .cs-entry-bar-source {
+    display: none;
+  }
+  .cs-entry-bar-cta {
+    align-self: flex-end;
+  }
+}

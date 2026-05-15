@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Plot from 'react-plotly.js';
 import { STATUS_CONFIG } from '../data/programs';
-import CurrentStatusSection from './CurrentStatusSection';
+import CurrentStatusSection, { CSEntryBar } from './CurrentStatusSection';
 
 /* ── Palette ─────────────────────────────────────────────────────── */
 const C_REG  = '#FF5500';
@@ -355,7 +355,7 @@ function SmallDonut({ labels, values, colors, title }) {
 }
 
 /* ── Main export ─────────────────────────────────────────────────── */
-export default function HRHCadrePage({ program, division, onBack }) {
+export default function HRHCadrePage({ program, division, onBack, onCurrentStatus }) {
   const rootRef = useRef(null);
   const cfg = STATUS_CONFIG[program?.status] ?? STATUS_CONFIG.yellow;
 
@@ -458,23 +458,15 @@ export default function HRHCadrePage({ program, division, onBack }) {
           </div>
         </div>
 
-        {/* ── PM-ABHIM: show infrastructure Current Status instead of staffing ── */}
+        {/* ── PM-ABHIM: entry bar instead of inline charts ────────── */}
         {program.id === 'pm-abhim' ? (
           <div className="hrh-cadre-section">
-            <div className="kd-cs-outer">
-              <div className="kd-cs-outer-header">
-                <div>
-                  <div className="kd-cs-outer-label">Current Status</div>
-                  <div className="kd-cs-outer-sublabel">
-                    PM-ABHIM &amp; XV-FC Financial Progress · MoHFW NPCC May 2026
-                  </div>
-                </div>
-                <span className="kd-cs-outer-pill">LIVE DATA</span>
-              </div>
-              <div className="kd-cs-outer-body">
-                <CurrentStatusSection program={program} />
-              </div>
-            </div>
+            {onCurrentStatus && (
+              <CSEntryBar
+                program={program}
+                onClick={() => onCurrentStatus(program, division)}
+              />
+            )}
           </div>
         ) : (
           <>

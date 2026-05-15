@@ -84,6 +84,7 @@ export default function App() {
             program={view.program}
             division={view.division}
             onBack={goBack}
+            onCurrentStatus={goToCurrentStatus}
           />
         );
       }
@@ -101,6 +102,7 @@ export default function App() {
           division={view.division}
           onBack={goHome}
           onSelectIndicator={goToIndicator}
+          onCurrentStatus={goToCurrentStatus}
         />
       );
     }
