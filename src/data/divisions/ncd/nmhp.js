@@ -4,6 +4,7 @@ export default {
   name: 'NMHP',
   status: 'yellow',
   keyMetric: 'Mental health access',
+  statusReason: 'DMHP HR shortages persist; Tele-MANAS uptake limited in tribal areas',
   summary: 'National Mental Health Programme services are limited in Arunachal Pradesh. Tele-MANAS and district mental health teams require strengthening.',
   keyMetrics: [
     { label: 'Tele-MANAS', value: 'Active', change: null, changeDir: null, source: 'MoHFW' },

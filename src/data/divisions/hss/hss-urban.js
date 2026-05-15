@@ -15,7 +15,7 @@ export default {
   ],
   observations: [
     'Urban institutional births at 90.6% — significantly above rural 77.3%',
-    'Urban health insurance coverage at 33.6% — much lower than rural 28.5%',
+    'Urban health insurance coverage at 33.6% — above rural (28.5%) but both remain critically low',
     'Out-of-pocket expenditure per delivery in urban: Rs. 10,178 vs rural Rs. 9,649',
     'Urban sanitation improved to 79.9% but still below 90% target',
   ],
