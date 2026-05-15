@@ -2643,6 +2643,16 @@
    Current Status badge on programme cards (DivisionPage)
    ───────────────────────────────────────────────────────────────── */
 
+@keyframes cs-badge-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes cs-dot-pulse {
+  0%, 100% { transform: scale(1);   opacity: 1; box-shadow: 0 0 0 0 rgba(255,85,0,0.5); }
+  50%       { transform: scale(1.2); opacity: 1; box-shadow: 0 0 0 4px rgba(255,85,0,0); }
+}
+
 .dv-card-footer {
   display: flex;
   align-items: center;
@@ -2655,7 +2665,19 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: #FFF3EE;
+  /* shimmer gradient that sweeps left-to-right */
+  background: linear-gradient(
+    100deg,
+    #FFF3EE 0%,
+    #FFF3EE 30%,
+    #FFD4BF 48%,
+    #FFFFFF 54%,
+    #FFD4BF 60%,
+    #FFF3EE 70%,
+    #FFF3EE 100%
+  );
+  background-size: 300% 100%;
+  animation: cs-badge-shimmer 2.6s linear infinite;
   border: 1px solid #FF5500;
   border-radius: 20px;
   padding: 3px 9px 3px 7px;
@@ -2663,12 +2685,17 @@
   font-size: 10.5px;
   font-weight: 700;
   color: #FF5500;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  /* subtle outer glow */
+  box-shadow: 0 0 0 2px rgba(255,85,0,0.08), 0 1px 6px rgba(255,85,0,0.15);
 }
 
+/* live dot — pulsing orange circle */
 .dv-cs-badge::before {
   content: '';
   display: inline-block;
@@ -2677,4 +2704,5 @@
   border-radius: 50%;
   background: #FF5500;
   flex-shrink: 0;
+  animation: cs-dot-pulse 1.8s ease-in-out infinite;
 }
