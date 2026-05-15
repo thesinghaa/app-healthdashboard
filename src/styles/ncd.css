@@ -3264,3 +3264,211 @@
   background: #FFFCFA;
   padding: 24px 24px 12px;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   ORANGE GLASS CARD SYSTEM — unified 3D depth + glassmorphism
+   Applied across all 4 navigation layers (home → division → KD → detail)
+
+   Depth anatomy (bottom → top):
+   1. long ambient shadow   — far, very soft, barely tinted
+   2. medium elevation      — mid-range, readable
+   3. short crisp shadow    — close, sharper edge
+   4. orange ambient glow   — colored bleed from the border
+   5. inset bottom tint     — orange "floor" colour catch
+   6. inset top highlight   — white rim from overhead light
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Layer 1: HomePage bento cards — strengthen existing depth ──── */
+.bento-card {
+  background: rgba(253,250,245,0.84) !important;
+  backdrop-filter: blur(22px) saturate(178%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(178%) !important;
+  border: 1.5px solid rgba(var(--chip-rgb, 255,85,0), 0.44) !important;
+  border-top: 4px solid rgba(var(--chip-rgb, 255,85,0), 1.00) !important;
+  box-shadow:
+    /* light-catch rim */
+    inset 0 2px 0 rgba(255,255,255,0.94),
+    inset 1px 0 0 rgba(255,255,255,0.40),
+    inset -1px 0 0 rgba(255,255,255,0.22),
+    /* orange floor */
+    inset 0 -2px 0 rgba(var(--chip-rgb, 255,85,0), 0.18),
+    /* elevation layers */
+    0 2px 4px rgba(26,22,16,0.08),
+    0 8px 22px rgba(26,22,16,0.11),
+    0 28px 64px rgba(26,22,16,0.09),
+    /* orange glow */
+    0 4px 30px rgba(var(--chip-rgb, 255,85,0), 0.17) !important;
+}
+.bento-card:hover {
+  border-color: rgba(var(--chip-rgb, 255,85,0), 0.92) !important;
+  border-top-color: rgba(var(--chip-rgb, 255,85,0), 1.00) !important;
+  transform: translateY(-5px) !important;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.97),
+    inset 1px 0 0 rgba(255,255,255,0.58),
+    inset -1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -2px 0 rgba(var(--chip-rgb, 255,85,0), 0.24),
+    0 4px 8px rgba(26,22,16,0.09),
+    0 16px 40px rgba(26,22,16,0.13),
+    0 40px 80px rgba(26,22,16,0.10),
+    0 0 0 2px rgba(var(--chip-rgb, 255,85,0), 0.20),
+    0 8px 44px rgba(var(--chip-rgb, 255,85,0), 0.26) !important;
+}
+
+/* ── Layer 2: DivisionPage programme cards ───────────────────────── */
+.dv-prog-card {
+  background: rgba(255,252,248,0.85) !important;
+  backdrop-filter: blur(18px) saturate(168%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(168%) !important;
+  border: 1.5px solid rgba(255,85,0,0.28) !important;
+  border-top: 4px solid #FF5500 !important;
+  border-left: 4px solid rgba(255,85,0,0.22) !important;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.93),
+    inset 0 -2px 0 rgba(255,85,0,0.11),
+    0 2px 5px rgba(26,22,16,0.07),
+    0 8px 24px rgba(26,22,16,0.10),
+    0 24px 56px rgba(26,22,16,0.08),
+    0 4px 24px rgba(255,85,0,0.13) !important;
+  transition: box-shadow 0.26s ease, transform 0.22s ease, border-color 0.22s ease !important;
+}
+.dv-prog-card:hover {
+  border-color: rgba(255,85,0,0.58) !important;
+  border-top-color: #FF5500 !important;
+  transform: translateY(-5px) !important;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.97),
+    inset 0 -2px 0 rgba(255,85,0,0.17),
+    0 4px 10px rgba(26,22,16,0.09),
+    0 16px 42px rgba(26,22,16,0.12),
+    0 38px 76px rgba(26,22,16,0.09),
+    0 0 0 1.5px rgba(255,85,0,0.22),
+    0 8px 44px rgba(255,85,0,0.24) !important;
+}
+/* Status left-border colours preserved; top always orange */
+.dv-prog-card.status-critical {
+  border-left-color: #DC2626 !important;
+  background: rgba(255,248,248,0.85) !important;
+}
+.dv-prog-card.status-caution {
+  border-left-color: #D97706 !important;
+  background: rgba(255,253,243,0.85) !important;
+}
+.dv-prog-card.status-on-track {
+  border-left-color: #FF5500 !important;
+  background: rgba(255,252,248,0.85) !important;
+}
+
+/* ── Layer 3: KD page — section panels ───────────────────────────── */
+.kd-prog-section {
+  background: rgba(255,252,248,0.80) !important;
+  backdrop-filter: blur(14px) saturate(152%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(152%) !important;
+  border: 1.5px solid rgba(255,85,0,0.22) !important;
+  border-top: 3px solid #FF5500 !important;
+  border-radius: 16px !important;
+  padding: 22px 24px !important;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.90),
+    inset 0 -1.5px 0 rgba(255,85,0,0.09),
+    0 2px 6px rgba(26,22,16,0.06),
+    0 8px 22px rgba(26,22,16,0.08),
+    0 4px 20px rgba(255,85,0,0.10) !important;
+}
+
+/* Programme header — transparent inside section glass card */
+.kd-prog-section > .kd-prog-header {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* KD table — white tile inside the section glass card */
+.kd-prog-section .kd-table {
+  background: rgba(255,255,255,0.94) !important;
+  border: 1px solid rgba(255,85,0,0.12) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 1px 4px rgba(26,22,16,0.05),
+    0 4px 14px rgba(26,22,16,0.06),
+    0 2px 10px rgba(255,85,0,0.06) !important;
+}
+
+/* Summary chips — glass micro-cards */
+.kd-summary-chip {
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255,85,0,0.14) !important;
+  border-top: 2px solid rgba(255,85,0,0.40) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.90),
+    0 1px 4px rgba(26,22,16,0.06),
+    0 3px 10px rgba(255,85,0,0.07) !important;
+}
+
+/* ── Layer 4: Inner page detail cards ──────────────────────────── */
+.detail-card {
+  background: rgba(255,252,248,0.90) !important;
+  backdrop-filter: blur(12px) saturate(155%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(155%) !important;
+  border: 1.5px solid rgba(255,85,0,0.20) !important;
+  border-top: 3px solid #FF5500 !important;
+  border-radius: 14px !important;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.92),
+    inset 0 -1.5px 0 rgba(255,85,0,0.09),
+    0 2px 8px rgba(26,22,16,0.07),
+    0 8px 24px rgba(26,22,16,0.09),
+    0 4px 20px rgba(255,85,0,0.10) !important;
+}
+
+.cs-plot-card {
+  background: rgba(255,252,248,0.90) !important;
+  backdrop-filter: blur(10px) saturate(152%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(152%) !important;
+  border: 1.5px solid rgba(255,85,0,0.22) !important;
+  border-top: 3px solid #FF5500 !important;
+  border-radius: 14px !important;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.92),
+    inset 0 -1.5px 0 rgba(255,85,0,0.09),
+    0 2px 8px rgba(26,22,16,0.07),
+    0 8px 24px rgba(26,22,16,0.09),
+    0 4px 20px rgba(255,85,0,0.10) !important;
+}
+
+/* csd-charts-outer gets matching depth treatment */
+.csd-charts-outer {
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.94),
+    inset 0 -2px 0 rgba(255,85,0,0.12),
+    0 4px 10px rgba(26,22,16,0.07),
+    0 12px 34px rgba(26,22,16,0.10),
+    0 6px 36px rgba(255,85,0,0.18) !important;
+}
+
+/* ── ncd-content gap boost — more breathing room between glass panels */
+.ncd-content {
+  gap: 28px !important;
+}
+
+/* ── hrh-cadre-section — glass panels for HRH page sections ──────── */
+.hrh-cadre-section {
+  background: rgba(255,252,248,0.80);
+  backdrop-filter: blur(14px) saturate(152%);
+  -webkit-backdrop-filter: blur(14px) saturate(152%);
+  border: 1.5px solid rgba(255,85,0,0.22);
+  border-top: 3px solid #FF5500;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.90),
+    inset 0 -1.5px 0 rgba(255,85,0,0.09),
+    0 2px 6px rgba(26,22,16,0.06),
+    0 8px 22px rgba(26,22,16,0.08),
+    0 4px 20px rgba(255,85,0,0.10);
+}
