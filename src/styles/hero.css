@@ -49,8 +49,8 @@
   position: relative;
   overflow: hidden;
   background: linear-gradient(160deg, #F5EDE0 0%, #FFE4CC 40%, #F5EDE0 100%);
-  padding: 6px 0;
-  height: 78px;
+  padding: 10px 0;
+  height: 92px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(255,85,0,0.18);
@@ -110,7 +110,7 @@
     0 8px 32px rgba(0,0,0,0.30),
     0 2px 8px rgba(0,0,0,0.20),
     0 0 20px rgba(255,85,0,0.08);
-  padding: 7px 22px;
+  padding: 11px 26px;
 }
 
 @supports not (backdrop-filter: blur(1px)) {
