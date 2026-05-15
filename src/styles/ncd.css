@@ -2543,3 +2543,56 @@
   font-family: 'Inter', sans-serif;
   font-size: 12px;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Current-Status NFHS section — Maternal Health & Child Health
+   ───────────────────────────────────────────────────────────────── */
+
+/* Card gets a subtle left accent */
+.cs-nfhs-card {
+  border-left: 4px solid var(--org, #FF5500);
+}
+
+/* Big section title */
+.cs-nfhs-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #1A1F36!important;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cs-nfhs-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748B;
+  letter-spacing: 0;
+}
+
+/* Larger indicator table */
+.ind-table--lg .ind-head {
+  font-size: 12px;
+  padding: 10px 16px;
+}
+.ind-row--lg {
+  padding: 14px 16px;
+  min-height: 52px;
+}
+.ind-row--lg .ind-lbl {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ind-row--lg .ind-direction {
+  font-size: 10px;
+}
+.mono--lg {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+.ind-delta--lg {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}

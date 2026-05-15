@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  LabelList, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from 'recharts';
 import { STATUS_CONFIG } from '../data/programs';
 
@@ -836,17 +837,31 @@ export default function DetailPage({ program, division, onBack }) {
 
   const cfg = STATUS_CONFIG[program.status];
 
+  // Programmes where the NFHS section is rebranded as "Current Status"
+  const isCurrentStatus = ['maternal-health', 'child-health'].includes(program.id);
+
   // Build chart data — only % indicators with both values
   const chartData = (program.nfhsData || [])
     .filter(d => d.unit === '%' && d.nfhs4 !== null && d.nfhs5 !== null)
     .map(d => ({
-      name: d.label.length > 44 ? d.label.slice(0, 42) + '…' : d.label,
+      name: isCurrentStatus
+        ? (d.label.length > 38 ? d.label.slice(0, 36) + '…' : d.label)
+        : (d.label.length > 44 ? d.label.slice(0, 42) + '…' : d.label),
       fullLabel: d.label,
-      'NFHS-4': d.nfhs4,
-      'NFHS-5': d.nfhs5,
+      'NFHS-4 (2015-16)': d.nfhs4,
+      'NFHS-5 (2019-21)': d.nfhs5,
     }));
 
-  const barH = 54;
+  // Radar chart data for maternal-health (all % indicators)
+  const radarData = program.id === 'maternal-health'
+    ? chartData.map(d => ({
+        indicator: d.name.length > 22 ? d.name.slice(0, 20) + '…' : d.name,
+        'NFHS-4': d['NFHS-4 (2015-16)'],
+        'NFHS-5': d['NFHS-5 (2019-21)'],
+      }))
+    : [];
+
+  const barH = isCurrentStatus ? 68 : 54;
   const chartHeight = chartData.length * barH + 50;
 
   return (
@@ -898,11 +913,14 @@ export default function DetailPage({ program, division, onBack }) {
         {/* HRH staffing detail — cadre programmes only */}
         {division?.id === 'hrh' && program.id !== 'pm-abhim' && <HRHSection program={program} />}
 
-        {/* NFHS Chart */}
+        {/* NFHS Chart — "Current Status" for maternal-health & child-health */}
         {chartData.length > 0 && (
-          <div className="detail-card">
+          <div className={`detail-card${isCurrentStatus ? ' cs-nfhs-card' : ''}`}>
             <div className="detail-card-header">
-              <h3>NFHS-4 (2015-16) vs NFHS-5 (2019-21) — Key Indicators</h3>
+              {isCurrentStatus
+                ? <h3 className="cs-nfhs-title">Current Status <span className="cs-nfhs-subtitle">NFHS-4 (2015-16) vs NFHS-5 (2019-21)</span></h3>
+                : <h3>NFHS-4 (2015-16) vs NFHS-5 (2019-21) — Key Indicators</h3>
+              }
               <span className="detail-card-note">Percentage points</span>
             </div>
             <div className="chart-wrap">
@@ -910,50 +928,89 @@ export default function DetailPage({ program, division, onBack }) {
                 <BarChart
                   data={chartData}
                   layout="vertical"
-                  margin={{ top: 8, right: 44, left: 12, bottom: 8 }}
+                  margin={{ top: 8, right: isCurrentStatus ? 56 : 44, left: 12, bottom: 8 }}
                   barCategoryGap="28%"
-                  barGap={3}
+                  barGap={4}
                 >
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#ede9e1" />
-                  <XAxis type="number" tick={{ fontSize: 11, fill: '#7a7060' }} unit="%" />
+                  <XAxis type="number" tick={{ fontSize: isCurrentStatus ? 13 : 11, fill: '#7a7060' }} unit="%" domain={[0, 100]} />
                   <YAxis
                     dataKey="name"
                     type="category"
-                    width={274}
-                    tick={{ fontSize: 11, fill: '#3a3020' }}
+                    width={isCurrentStatus ? 300 : 274}
+                    tick={{ fontSize: isCurrentStatus ? 13 : 11, fill: '#3a3020', fontWeight: isCurrentStatus ? 500 : 400 }}
                   />
                   <Tooltip
                     labelFormatter={(_, p) => p?.[0]?.payload?.fullLabel || ''}
                     formatter={(v, name) => [`${v}%`, name]}
-                    contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #e0d8cc' }}
+                    contentStyle={{ fontSize: isCurrentStatus ? 14 : 12, borderRadius: 8, border: '1px solid #e0d8cc' }}
                   />
-                  <Legend iconType="square" wrapperStyle={{ fontSize: 12 }} />
-                  <Bar dataKey="NFHS-4" fill={NFHS4_COLOR} radius={[0, 3, 3, 0]} maxBarSize={18} />
-                  <Bar dataKey="NFHS-5" fill={NFHS5_COLOR} radius={[0, 3, 3, 0]} maxBarSize={18} />
+                  <Legend iconType="square" wrapperStyle={{ fontSize: isCurrentStatus ? 13 : 12 }} />
+                  <Bar dataKey="NFHS-4 (2015-16)" fill={NFHS4_COLOR} radius={[0, 3, 3, 0]} maxBarSize={isCurrentStatus ? 26 : 18}>
+                    {isCurrentStatus && (
+                      <LabelList dataKey="NFHS-4 (2015-16)" position="right"
+                        formatter={v => `${v}%`}
+                        style={{ fontSize: 11, fill: NFHS4_COLOR, fontWeight: 600 }} />
+                    )}
+                  </Bar>
+                  <Bar dataKey="NFHS-5 (2019-21)" fill={NFHS5_COLOR} radius={[0, 3, 3, 0]} maxBarSize={isCurrentStatus ? 26 : 18}>
+                    {isCurrentStatus && (
+                      <LabelList dataKey="NFHS-5 (2019-21)" position="right"
+                        formatter={v => `${v}%`}
+                        style={{ fontSize: 11, fill: NFHS5_COLOR, fontWeight: 600 }} />
+                    )}
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
         )}
 
-        {/* NFHS Detail Table */}
-        {(program.nfhsData || []).length > 0 && (
-          <div className="detail-card">
+        {/* Radar chart — maternal health only */}
+        {radarData.length > 0 && (
+          <div className="detail-card cs-nfhs-card">
             <div className="detail-card-header">
-              <h3>Indicator Details</h3>
+              <h3 className="cs-nfhs-title">Current Status <span className="cs-nfhs-subtitle">Coverage Profile — Radar View</span></h3>
+              <span className="detail-card-note">NFHS-4 vs NFHS-5 · % of women / births</span>
+            </div>
+            <ResponsiveContainer width="100%" height={420}>
+              <RadarChart cx="50%" cy="50%" outerRadius="72%" data={radarData}>
+                <PolarGrid stroke="#E2E8F0" />
+                <PolarAngleAxis dataKey="indicator" tick={{ fontSize: 11, fill: '#374151', fontWeight: 500 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 10, fill: '#94A3B8' }} />
+                <Radar name="NFHS-4 (2015-16)" dataKey="NFHS-4" stroke={NFHS4_COLOR}
+                  fill={NFHS4_COLOR} fillOpacity={0.18} strokeWidth={2} />
+                <Radar name="NFHS-5 (2019-21)" dataKey="NFHS-5" stroke={NFHS5_COLOR}
+                  fill={NFHS5_COLOR} fillOpacity={0.25} strokeWidth={2.5} />
+                <Legend iconType="square" wrapperStyle={{ fontSize: 13, paddingTop: 12 }} />
+                <Tooltip formatter={(v, name) => [`${v}%`, name]}
+                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #e0d8cc' }} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+
+        {/* NFHS Detail Table — "Current Status" for maternal-health & child-health */}
+        {(program.nfhsData || []).length > 0 && (
+          <div className={`detail-card${isCurrentStatus ? ' cs-nfhs-card' : ''}`}>
+            <div className="detail-card-header">
+              {isCurrentStatus
+                ? <h3 className="cs-nfhs-title">Current Status <span className="cs-nfhs-subtitle">Indicator Details</span></h3>
+                : <h3>Indicator Details</h3>
+              }
               <div className="table-legend">
                 <span className="tl-dot" style={{ background: NFHS4_COLOR }} /> NFHS-4
                 <span className="tl-dot" style={{ background: NFHS5_COLOR }} /> NFHS-5
               </div>
             </div>
-            <div className="ind-table">
+            <div className={`ind-table${isCurrentStatus ? ' ind-table--lg' : ''}`}>
               <div className="ind-head">
                 <span>Indicator <span className="head-note">(green row = improvement · red row = regression)</span></span>
                 <span>NFHS-4 (2015-16)</span>
                 <span>NFHS-5 (2019-21)</span>
                 <span>Change</span>
               </div>
-              {program.nfhsData.map(d => <IndRow key={d.label} {...d} />)}
+              {program.nfhsData.map(d => <IndRow key={d.label} {...d} large={isCurrentStatus} />)}
             </div>
           </div>
         )}
@@ -1002,7 +1059,7 @@ export default function DetailPage({ program, division, onBack }) {
   );
 }
 
-function IndRow({ label, nfhs4, nfhs5, unit, lowerIsBetter }) {
+function IndRow({ label, nfhs4, nfhs5, unit, lowerIsBetter, large }) {
   let improved = null;
   let diff = null;
 
@@ -1012,18 +1069,18 @@ function IndRow({ label, nfhs4, nfhs5, unit, lowerIsBetter }) {
   }
 
   const fmtVal = v => v !== null && v !== undefined
-    ? <span className="mono">{v}{unit}</span>
+    ? <span className={large ? 'mono mono--lg' : 'mono'}>{v}{unit}</span>
     : <em className="na">—</em>;
 
   return (
-    <div className={`ind-row ${improved === null ? '' : improved ? 'row-ok' : 'row-bad'}`}>
+    <div className={`ind-row ${improved === null ? '' : improved ? 'row-ok' : 'row-bad'}${large ? ' ind-row--lg' : ''}`}>
       <span className="ind-lbl">
         {label}
         <span className="ind-direction">{lowerIsBetter ? 'lower is better' : 'higher is better'}</span>
       </span>
       <span className="ind-val v4">{fmtVal(nfhs4)}</span>
       <span className="ind-val v5">{fmtVal(nfhs5)}</span>
-      <span className={`ind-delta ${improved === null ? 'delta-na' : improved ? 'delta-pos' : 'delta-neg'}`}>
+      <span className={`ind-delta ${improved === null ? 'delta-na' : improved ? 'delta-pos' : 'delta-neg'}${large ? ' ind-delta--lg' : ''}`}>
         {improved !== null && (improved ? '↑ ' : '↓ ')}
         {diff !== null ? `${diff > 0 ? '+' : ''}${diff}${unit}` : '—'}
       </span>
