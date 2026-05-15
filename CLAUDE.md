@@ -191,6 +191,30 @@ NFHS-4: `#6D28D9` / `#A855F7` / `#D8B4FE`
 
 ---
 
+## Current-Status Sections (added May 2026)
+
+Each programme data file can now include a `currentStatus` object with a `type` field. `DetailPage.jsx` reads this and renders the appropriate component via `CurrentStatusSection`. Placement: immediately after Key Metrics, before HRH staffing section.
+
+| Programme | File | `currentStatus.type` | Data source |
+|-----------|------|---------------------|-------------|
+| Maternal Health | `rch/maternal-health.js` | `'mmr'` | SDG 3.1.1 — N/A state, 3 MDs, East Siang/Namsai |
+| Child Health | `rch/child-health.js` | `'child-health'` | IMR 20, SBR 8.8, SNCU 27 deaths, RBSK 52%/67% |
+| JSY | `rch/jsy.js` | `'family-planning'` | SDG 3.7.1 — 60.2% vs 74.2% national avg |
+| TB (NTEP) | `ndcp/tb.js` | `'tb'` | Incidence 191, Mortality 18; TB Mukt Abhiyan progress |
+| NLEP | `ndcp/nlep.js` | `'leprosy'` | 25 districts, 13 IOT, annual case data |
+| NCVBDCP | `ndcp/ncvbdcp.js` | `'malaria'` | 5-year trend (32 cases 2025), 16 districts SNV-eligible |
+| PM-ABHIM | `hrh/pm-abhim.js` | `'pm-abhim'` | IPHL 5/22 complete, XV-FC financial progress table |
+
+Rendering components in `DetailPage.jsx`: `CSBand`, `MMRStatus`, `ChildHealthStatus`, `FPStatus`, `TBStatus`, `LeprosyStatus`, `MalariaStatus`, `PMABHIMStatus`, `CurrentStatusSection`.
+
+CSS classes all start with `.cs-*` — appended to bottom of `ncd.css` from line ~2145.
+
+`HRHSection` is now guarded: `division?.id === 'hrh' && program.id !== 'pm-abhim'` — PM-ABHIM uses `PMABHIMStatus` instead of the staffing charts.
+
+PM-ABHIM is registered in `hrh/index.js` as the 8th programme in the HRH division.
+
+---
+
 ## Hard rules (follow exactly)
 
 1. **Git commit author** must always be: `AryanSinghpif <aryan.singh@pahleindia.org>`
