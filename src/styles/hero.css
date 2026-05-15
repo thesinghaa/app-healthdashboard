@@ -48,11 +48,25 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #F0EBE1 0%, #EDE6DA 50%, #E8E0D4 100%);
-  padding: 4px 0;
-  height: 72px;
+  background: linear-gradient(160deg, #1A1610 0%, #231B0F 55%, #1A1610 100%);
+  padding: 6px 0;
+  height: 78px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgba(255,85,0,0.22);
+}
+
+/* Subtle orange radial glow at centre-top */
+.home-header::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 120px;
+  background: radial-gradient(ellipse, rgba(255,85,0,0.14) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 /* SVG wave layers behind glass pill */
@@ -76,7 +90,7 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 24px;
   display: flex;
   align-items: center;
 }
@@ -87,17 +101,21 @@
   align-items: center;
   gap: 24px;
   width: 100%;
-  background: rgba(250,247,242,0.82);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border-radius: 16px;
-  border: 1px solid var(--bg3);
-  box-shadow: 0 4px 24px rgba(26,22,16,0.10);
-  padding: 7px 24px;
+  background: rgba(250,247,242,0.93);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 14px;
+  border: 1px solid rgba(255,85,0,0.22);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.18) inset,
+    0 8px 32px rgba(0,0,0,0.30),
+    0 2px 8px rgba(0,0,0,0.20),
+    0 0 20px rgba(255,85,0,0.08);
+  padding: 7px 22px;
 }
 
 @supports not (backdrop-filter: blur(1px)) {
-  .glass-navbar { background: rgba(255,255,255,0.90); }
+  .glass-navbar { background: rgba(250,247,242,0.97); }
 }
 
 /* ── Brand block ────────────────────────────────────────────────── */

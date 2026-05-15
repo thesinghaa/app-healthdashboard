@@ -202,17 +202,28 @@ export default function HomePage({ onSelectProgram, onSelectDivision }) {
         {/* ── Navbar — unchanged ── */}
         <div className="home-header">
           <div className="header-waves">
-            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.55 }}>
-              <path d="M0,80 C240,110 480,40 720,70 C960,100 1200,50 1440,80 L1440,130 L0,130 Z" fill="#7EDDD0"/>
+            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 1 }}>
+              <defs>
+                <linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stopColor="#FF5500" stopOpacity="0.22"/>
+                  <stop offset="50%"  stopColor="#FF7733" stopOpacity="0.16"/>
+                  <stop offset="100%" stopColor="#FF5500" stopOpacity="0.22"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,60 C240,100 480,30 720,65 C960,100 1200,40 1440,72 L1440,130 L0,130 Z" fill="url(#wg1)"/>
             </svg>
-            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.45 }}>
-              <path d="M0,95 C180,55 360,115 540,85 C720,55 900,105 1080,78 C1260,52 1380,96 1440,88 L1440,130 L0,130 Z" fill="#2DC4AD"/>
+            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 1 }}>
+              <defs>
+                <linearGradient id="wg2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stopColor="#C2410C" stopOpacity="0.18"/>
+                  <stop offset="50%"  stopColor="#FF5500" stopOpacity="0.24"/>
+                  <stop offset="100%" stopColor="#C2410C" stopOpacity="0.18"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,88 C180,50 360,110 540,80 C720,50 900,100 1080,74 C1260,48 1380,92 1440,84 L1440,130 L0,130 Z" fill="url(#wg2)"/>
             </svg>
-            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.35 }}>
-              <path d="M0,108 C300,75 600,120 900,98 C1100,80 1300,110 1440,102 L1440,130 L0,130 Z" fill="#FF5500"/>
-            </svg>
-            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 0.25 }}>
-              <path d="M0,118 C360,95 720,125 1080,112 C1260,105 1380,120 1440,118 L1440,130 L0,130 Z" fill="rgba(255,85,0,0.65)"/>
+            <svg viewBox="0 0 1440 130" preserveAspectRatio="none" style={{ opacity: 1 }}>
+              <path d="M0,108 C300,82 600,120 900,100 C1100,84 1300,112 1440,104 L1440,130 L0,130 Z" fill="rgba(255,85,0,0.30)"/>
             </svg>
           </div>
           <div className="home-header-inner">
